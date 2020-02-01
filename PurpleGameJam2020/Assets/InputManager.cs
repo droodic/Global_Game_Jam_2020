@@ -72,7 +72,13 @@ public class InputManager : MonoBehaviour
     {
         if (context.started)
         {
+            if (_player != null)
+            {
+
             _player.Power.UsePower();
+            Debug.Log(context);
+            }
         }
+        
     }
 }
