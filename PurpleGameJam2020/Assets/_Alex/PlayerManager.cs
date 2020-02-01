@@ -54,5 +54,15 @@ public class PlayerManager : MonoBehaviour
     public void AddPlayer(Player player)
     {
         _players.Add(player);
+        if (_players.Count ==1)
+        {
+            UIManager.Instance.P1 = player;
+            UIManager.Instance.P1.tag = "Player";
+        }
+        else if (_players.Count == 2)
+        {
+            UIManager.Instance.P2 = player;
+            UIManager.Instance.P2.tag = "Player2";
+        }
     }
 }

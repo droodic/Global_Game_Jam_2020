@@ -22,6 +22,7 @@ public class DebrisBehaviour : MonoBehaviour
                 return;
             }
             ivm.AddDebrisCount(this.gameObject);
+            UIManager.Instance.UpdateDebrisUI(ivm);
             GetComponent<SphereCollider>().enabled = false;
             target = collider.gameObject.transform;
             isColliding = true;

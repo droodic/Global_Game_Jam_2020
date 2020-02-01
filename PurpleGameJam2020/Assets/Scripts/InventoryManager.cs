@@ -5,19 +5,21 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     private int maxInventory = 300;
-    private int debrisCount = 0;
+    private int debrisCount = 50;
+
+    public int DebrisCount { get => debrisCount; set => debrisCount = value; }
 
     public void Start()
     {
-        Debug.Log(debrisCount);
+        Debug.Log(DebrisCount);
     }
 
     public void AddDebrisCount(GameObject debris)
     {
         if (!hasReachedMaxInventory())
         {
-            debrisCount++;
-            Debug.Log(debrisCount);
+            DebrisCount++;
+            Debug.Log(DebrisCount);
             if (debris.transform.position == gameObject.transform.position)
             {
                 Destroy(debris);
@@ -27,7 +29,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool hasReachedMaxInventory()
     {
-        if (debrisCount >= maxInventory)
+        if (DebrisCount >= maxInventory)
         {
             //Debug.Log("inventoryFull");
             return true;
@@ -39,8 +41,25 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public bool hasAnyDebris()
+    {
+        if(debrisCount != 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void RemoveDebrisCount()
     {
-        debrisCount--;
+        if (debrisCount > 0)
+        {
+            debrisCount--;
+            UIManager.Instance.UpdateDebrisUI(this);
+        }
+        Debug.Log($"Inv: {debrisCount}");
     }
 }
