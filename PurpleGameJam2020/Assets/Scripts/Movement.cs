@@ -23,6 +23,17 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
+
+        player = GetComponent<Player>();
+        _characterController = GetComponent<CharacterController>();
+        _camera = Camera.main;
+        SetupKeyboardAndMouseInput();
+        SetupGamepad();
+
+    }
+
+    private void SetupKeyboardAndMouseInput()
+    {
         _WASD = new InputAction(name: "move");
         _WASD.AddCompositeBinding("2DVector")
             .With("Up", "<Keyboard>/w")
@@ -31,16 +42,7 @@ public class Movement : MonoBehaviour
             .With("Right", "<Keyboard>/d");
         _MOUSE = new InputAction(name: "mouse");
         _MOUSE.AddBinding("Vector2").WithPath("<Mouse>/position");
-        player = GetComponent<Player>();
-        _characterController = GetComponent<CharacterController>();
-        _camera = Camera.main;
-        SetupGamepad();
         _keyboard = Keyboard.current;
-
-    }
-    private void OnMove(InputAction.CallbackContext context)
-    {
-        Debug.LogError("AIMING" + context.ToString());
     }
 
     private void SetupGamepad()
@@ -70,9 +72,6 @@ public class Movement : MonoBehaviour
             _player2 = !_player2;
             SetupGamepad();
         }
-
-        _mousePos = _MOUSE.ReadValue<Vector2>();
-
     }
     private void FixedUpdate()
     {
@@ -83,18 +82,12 @@ public class Movement : MonoBehaviour
     private void MovePlayer()
     {
         var newSpeed = _speed;
-        
-        Vector2 vect = _WASD.ReadValue<Vector2>();
-        Vector3 move;
-        if (_gamepad != null)
+        if (player.InputManager.Sprinting)
         {
-            vect = _gamepad.leftStick.ReadValue();
-            if (_gamepad.rightShoulder.ReadValue() > 0 && !player.SprintLocked)
-            {
-                newSpeed = _speed * 3.0f;
-            }
-            
+            newSpeed = _speed * 3.0f;
         }
+        Vector2 vect = player.InputManager.MoveAxis;
+        Vector3 move;
         if (vect == Vector2.zero)
         {
             return;
@@ -109,15 +102,22 @@ public class Movement : MonoBehaviour
 
     private void MoveArm()
     {
-        Ray ray = Camera.main.ScreenPointToRay(_mousePos);
-        RaycastHit raycastHit;
-        Physics.Raycast(ray, out raycastHit, 1000.0f);
-        Vector2 vect = new Vector2(raycastHit.point.z, raycastHit.point.x);
+        Vector2 vect;
         Vector3 move;
         Quaternion rotation;
-        if (_gamepad != null)
+        if (player.InputManager.MouseAndKey)
         {
-            vect = _gamepad.rightStick.ReadValue();
+            RaycastHit raycastHit;
+            Ray ray = Camera.main.ScreenPointToRay(player.InputManager.AimAxis);
+            Physics.Raycast(ray, out raycastHit, 1000.0f, LayerMask.GetMask("Floor"));
+             vect = new Vector2(raycastHit.point.z, raycastHit.point.x);
+            move = raycastHit.point;
+            move.y = Arm.transform.position.y;
+            Arm.transform.LookAt(move);
+        }
+        else
+        {
+            vect = player.InputManager.AimAxis;
             move = _camera.transform.right * vect.x + _camera.transform.forward * vect.y;
             move.y = 0.0f;
             if (move == Vector3.zero)
@@ -127,17 +127,7 @@ public class Movement : MonoBehaviour
             rotation = Quaternion.LookRotation(move.normalized, Vector3.up);
             Arm.transform.rotation = rotation;
         }
-        else
-        {
-            move = raycastHit.point;
-            move.y = Arm.transform.position.y;
-            Arm.transform.LookAt(move);
-        }
-        if (vect.x == 0 && vect.y == 0)
-        {
-            return;
-        }
 
-    
+
     }
 }
