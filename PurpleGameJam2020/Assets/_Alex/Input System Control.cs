@@ -36,9 +36,9 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Sprint"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""2dbd8b2a-d4df-4bd3-ab0a-f987e31cd8f1"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -46,9 +46,9 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                     ""name"": ""Power"",
                     ""type"": ""Button"",
                     ""id"": ""8a771b29-9728-4dc9-b672-d3aa168f2f8a"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -168,7 +168,7 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Power"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -179,7 +179,7 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyAndMouse"",
                     ""action"": ""Power"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
