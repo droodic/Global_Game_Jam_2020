@@ -45,7 +45,7 @@ public class InputManager : MonoBehaviour
         _moveAxis = Vector2.zero;
         _aimAxis = Vector2.zero;
     }
-    
+
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveAxis = context.ReadValue<Vector2>();
@@ -72,13 +72,7 @@ public class InputManager : MonoBehaviour
     {
         if (context.started)
         {
-            if (_player != null)
-            {
-
             _player.Power.UsePower();
-            Debug.Log(context);
-            }
         }
-        
     }
 }
