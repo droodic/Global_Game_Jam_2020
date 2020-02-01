@@ -11,8 +11,10 @@ public class UIManager : MonoBehaviour
 
     //Energy
     [SerializeField] Slider p1EnergySlider;
+    [SerializeField] Image p1SliderFill;
     [SerializeField] Image p1SliderBg;
     [SerializeField] Slider p2EnergySlider;
+    [SerializeField] Image p2SliderFill;
     [SerializeField] Image p2SliderBg;
 
     //Powerups
@@ -21,11 +23,13 @@ public class UIManager : MonoBehaviour
 
 
     Color defaultColor;
+    Color defaultFillColor;
 
     // Start is called before the first frame update
     void Start()
     {
         defaultColor = p1SliderBg.color;
+        defaultFillColor = p1SliderFill.color;
     }
 
     // Update is called once per frame
@@ -55,18 +59,85 @@ public class UIManager : MonoBehaviour
         {
             p2SliderBg.color = defaultColor;
         }
+
+        
     }
 
-    public void UpdatePowerUI()
+
+    /// <summary>
+    /// Num : The number of the powerup 
+    ///     1 - DebrisBomb
+    ///     2 - Speedpowerup
+    /// Bool : Are you Enabling or Disabling the powerup
+    /// </summary>
+    /// <param name="num"></param>
+    /// <param name="enable"></param>
+    public void UpdatePowerUI(int num = 0, bool enable = true)
     {
-        if (p1.GetComponent<PowerupManager>().HasDebrisBomb)
+        if (enable)
         {
-           //p1Power.sprite = bombsprite;
-            p1Power.enabled = true;
+            if (p1.GetComponent<PowerupManager>().HasDebrisBomb)
+            {
+                //p1Power.sprite = bombsprite;
+                p1Power.enabled = true;
+            }
+            else if (p2.GetComponent<PowerupManager>().HasDebrisBomb)
+            {
+                //p1Power.sprite = bombsprite;
+                p2Power.enabled = true;
+            }
+
+            if (p1.GetComponent<PowerupManager>().HasSpeedUp)
+            {
+                //p1Power.sprite = speedupSprite;
+                p1Power.enabled = true;
+            }
+            else if (p2.GetComponent<PowerupManager>().HasSpeedUp)
+            {
+                //p1Power.sprite = speedupSprite;
+                p2Power.enabled = true;
+            }
+            if (p1.GetComponent<PowerupManager>().HasMagnet)
+            {
+                //p1Power.sprite = speedupSprite;
+                p1Power.enabled = true;
+            }
+            else if (p2.GetComponent<PowerupManager>().HasMagnet)
+            {
+                //p1Power.sprite = speedupSprite;
+                p2Power.enabled = true;
+            }
         }
-        else
+        
+
+        else if (!enable)
         {
-            p1Power.enabled = false;
+            //Disable speed buff
+            if (num == 2)
+            {
+                if (p1.SprintBuffed)
+                {
+                    p1SliderFill.color = Color.white;
+                }
+                else if (p2.SprintBuffed)
+                {
+                    p2SliderFill.color = Color.white;
+                }
+                if (!p1.SprintBuffed)
+                {
+                    p1SliderFill.color = defaultFillColor;
+                }
+                else if (!p2.SprintBuffed)
+                {
+                    p2SliderFill.color = defaultFillColor;
+                }
+            }
+
+
         }
+
+
+        //Speedup Power Check
+        
     }
 }
