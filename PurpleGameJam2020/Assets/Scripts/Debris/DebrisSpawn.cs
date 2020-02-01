@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DebrisSpawn : MonoBehaviour
 {
+    [SerializeField] int minSpawn = 300;
+    [SerializeField] int maxSpawn = 450;
+    [SerializeField] int spawnLimit = 800;
     [SerializeField] GameObject debrisOne;
     [SerializeField] GameObject debrisTwo;
 
@@ -25,10 +28,10 @@ public class DebrisSpawn : MonoBehaviour
 
     void SpawnDebris()
     {
-        if(spawnedDebris < 550)
+        if(spawnedDebris < 800)
         {
             int rand;
-            rand = Random.Range(250, 300);
+            rand = Random.Range(minSpawn, maxSpawn);
             for (int i = 0; i < rand; i++)
             {
                 Instantiate(debrisOne, RandomPointInBounds(floorBounds.bounds), this.transform.rotation);
