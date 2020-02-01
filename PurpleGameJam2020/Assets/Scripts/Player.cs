@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
         _movement = GetComponent<Movement>();
         power = GetComponent<PowerupManager>();
         CameraRig.Instance.AddPlayer(this);
+        PlayerManager.Instance.AddPlayer(this);
         //player2 = this.gameObject.tag == "Player2";
 
     }
