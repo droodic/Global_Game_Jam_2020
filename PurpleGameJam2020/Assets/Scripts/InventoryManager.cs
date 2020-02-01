@@ -29,12 +29,12 @@ public class InventoryManager : MonoBehaviour
     {
         if (debrisCount >= maxInventory)
         {
-            Debug.Log("inventoryFull");
+            //Debug.Log("inventoryFull");
             return true;
         }
         else
         {
-            Debug.Log("inventoryNotFull");
+            //Debug.Log("inventoryNotFull");
             return false;
         }
     }

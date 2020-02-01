@@ -14,12 +14,17 @@ public class DebrisBehaviour : MonoBehaviour
     /// <param name="collider"></param>
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Player") //to change to vacuum part
+        if (collider.gameObject.tag == "Player" && !isColliding)
         {
+            var ivm = collider.gameObject.GetComponent<InventoryManager>();
+            if (ivm.hasReachedMaxInventory())
+            {
+                return;
+            }
+            ivm.AddDebrisCount(this.gameObject);
+            GetComponent<SphereCollider>().enabled = false;
             target = collider.gameObject.transform;
             isColliding = true;
-            var ivm = collider.gameObject.GetComponent<InventoryManager>();
-            ivm.AddDebrisCount(this.gameObject);
         }
     }
 
@@ -30,7 +35,7 @@ public class DebrisBehaviour : MonoBehaviour
 
     public void Update()
     {
-        if (target != null && isColliding && !(target.GetComponent<InventoryManager>().hasReachedMaxInventory()))
+        if (target != null && isColliding)
         {
             MoveToPlayerCenter(target.GetComponent<Collider>());
             if (gameObject.transform.position == target.position)
