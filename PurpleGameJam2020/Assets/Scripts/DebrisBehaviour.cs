@@ -12,8 +12,8 @@ public class DebrisBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && !(InventoryManager.Instance().hasReachedMaxInventory()))
         {
-            InventoryManager.Instance().AddDebrisCount();
             Destroy(gameObject);
+            InventoryManager.Instance().AddDebrisCount();
         }
     }
 }
