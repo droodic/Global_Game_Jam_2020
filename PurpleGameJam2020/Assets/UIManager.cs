@@ -63,45 +63,63 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void UpdatePowerUI(int num = 0)
+    public void UpdatePowerUI(int num = 0, bool enable = true)
     {
+        if (enable)
+        {
+            if (p1.GetComponent<PowerupManager>().HasDebrisBomb)
+            {
+                //p1Power.sprite = bombsprite;
+                p1Power.enabled = true;
+            }
+            else if (p2.GetComponent<PowerupManager>().HasDebrisBomb)
+            {
+                //p1Power.sprite = bombsprite;
+                p2Power.enabled = true;
+            }
 
-        if (p1.GetComponent<PowerupManager>().HasDebrisBomb)
-        {
-           //p1Power.sprite = bombsprite;
-            p1Power.enabled = true;
+            if (p1.GetComponent<PowerupManager>().HasSpeedUp)
+            {
+                //p1Power.sprite = speedupSprite;
+                p1Power.enabled = true;
+            }
+            else if (p2.GetComponent<PowerupManager>().HasSpeedUp)
+            {
+                //p1Power.sprite = speedupSprite;
+                p2Power.enabled = true;
+            }
         }
+        
 
-        else if (p1.GetComponent<PowerupManager>().HasSpeedUp)
+        else if (!enable)
         {
-            //p1Power.sprite = speedupSprite;
-            p1Power.enabled = true;
-        }
-        else
-        {
+            //Disable speed buff
+            if (num == 2)
+            {
+                if (p1.SprintBuffed)
+                {
+                    p1SliderFill.color = Color.white;
+                }
+                else if (p2.SprintBuffed)
+                {
+                    p2SliderFill.color = Color.white;
+                }
+                if (!p1.SprintBuffed)
+                {
+                    p1SliderFill.color = defaultFillColor;
+                }
+                else if (!p2.SprintBuffed)
+                {
+                    p2SliderFill.color = defaultFillColor;
+                }
+            }
+
             p1Power.enabled = false;
+            p2Power.enabled = false;
         }
 
 
         //Speedup Power Check
-        if(num == 2)
-        {
-            if (p1.SprintBuffed)
-            {
-                p1SliderFill.color = Color.white;
-            }
-            else if (p2.SprintBuffed)
-            {
-                p2SliderFill.color = Color.white;
-            }
-            if (!p1.SprintBuffed)
-            {
-                p1SliderFill.color = defaultFillColor;
-            }
-            else if (!p2.SprintBuffed)
-            {
-                p2SliderFill.color = defaultFillColor;
-            }
-        }
+        
     }
 }

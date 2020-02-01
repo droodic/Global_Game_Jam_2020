@@ -38,7 +38,7 @@ public class PowerupManager : MonoBehaviour
                 Debug.LogError("used speedup");
                 player.SprintBuffed = true;
                 HasSpeedUp = false;
-                ui.UpdatePowerUI(2);
+                ui.UpdatePowerUI(2, false);
                 StartCoroutine(CancelPowers(2, 5f));
             }
             hasPowerUp = false;
@@ -89,7 +89,7 @@ public class PowerupManager : MonoBehaviour
         if(powerNum == 2)
         {
             player.SprintBuffed = false;
-            ui.UpdatePowerUI(2);
+            ui.UpdatePowerUI(2, false);
             Debug.LogError("Coroutine end");
         }
     }
