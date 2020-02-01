@@ -82,7 +82,7 @@ public class Movement : MonoBehaviour
     private void MovePlayer()
     {
         var newSpeed = _speed;
-        if (player.InputManager.Sprinting)
+        if (player.InputManager.Sprinting && !player.SprintLocked)
         {
             newSpeed = _speed * 3.0f;
         }
