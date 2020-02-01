@@ -43,11 +43,11 @@ public class UIManager : MonoBehaviour
         }
         if (p2.SprintLocked)
         {
-            p1SliderBg.color = Color.red;
+            p2SliderBg.color = Color.red;
         }
         else if (!p2.SprintLocked)
         {
-            p1SliderBg.color = defaultColor;
+            p2SliderBg.color = defaultColor;
         }
     }
 }

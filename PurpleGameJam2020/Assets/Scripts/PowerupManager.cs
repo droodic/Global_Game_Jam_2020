@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PowerupManager : MonoBehaviour
 {
-    private bool hasDebrisBomb;
-
-    public bool HasDebrisBomb { get => hasDebrisBomb; set => hasDebrisBomb = value; }
+    Queue<string> powerQueue;
 
     // Start is called before the first frame update
     void Start()
@@ -20,11 +18,7 @@ public class PowerupManager : MonoBehaviour
        // if(Input.GetKeyDown)
     }
 
-    void ShootDebrisBomb()
-    {
-        if (hasDebrisBomb)
-        {
 
-        }
-    }
 }
+
+

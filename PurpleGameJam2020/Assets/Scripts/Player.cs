@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -16,44 +17,43 @@ public class Player : MonoBehaviour
     public bool SprintLocked { get => sprintLocked; set => sprintLocked = value; }
 
     bool player2;
-
+    Gamepad gp;
     // Start is called before the first frame update
     void Start()
     {
+        gp = GetComponent<Movement>().Gamepad;
         player2 = this.gameObject.tag == "Player2";
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
-        string ButtonName = player2 ? "Sprint2" : "Sprint";
+        //string ButtonName = player2 ? "Sprint2" : "Sprint";
 
-        if (Input.GetButton(ButtonName) && !SprintLocked)
+
+
+        if (gp != null) 
         {
-            Sprint();
-        }
+            if (gp.rightShoulder.ReadValue() > 0 && !SprintLocked)
+            {
+                Sprint();
+            }
 
-        if(Input.GetButtonUp(ButtonName) || !sprinting)
-        {
-            ClearSprint(SprintLocked);
+            if (gp.rightShoulder.ReadValue() == 0 || !sprinting)
+            {
+                ClearSprint(SprintLocked);
+            }
         }
-
         //Debug Switch
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Keyboard.current.pKey.wasPressedThisFrame)
         {
             player2 = !player2;
+            gp = GetComponent<Movement>().Gamepad;
+            Debug.LogError(player2 + this.gameObject.name);
         }
 
-        if (SprintLocked && lockTimer > 0)
-        {
-            lockTimer -= Time.deltaTime;
-        }
-        else if(SprintLocked && lockTimer <= 0)
-        {
-            SprintLocked = false;
-            lockTimer = 5f;
-        }
-
+        
     }
 
     void Sprint()
@@ -82,7 +82,6 @@ public class Player : MonoBehaviour
             if (SprintMeter < 50)
             {
                 SprintMeter += 0.25f;
-                //p1slider.value = SprintMeter;
                 Debug.Log("Sprintmeter" + SprintMeter.ToString());
             }
             else if (SprintMeter.Equals(50))
@@ -100,10 +99,11 @@ public class Player : MonoBehaviour
                 //p1slider.value = SprintMeter;
                 Debug.Log("Sprintmeter" + SprintMeter.ToString());
             }
-            else if (SprintMeter.Equals(50))
+            if (SprintMeter>= 50)
             {
                 sprinting = true;
                 SprintLocked = false;
+                SprintMeter = 50;
             }
         }
     }
