@@ -20,9 +20,9 @@ TagManager:
   - Player
   - Debris
   - Floor
-  - 
-  - 
-  - 
+  - Player1
+  - Player2
+  - ForceField
   - 
   - 
   - 
