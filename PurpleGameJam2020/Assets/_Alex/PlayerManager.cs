@@ -22,4 +22,9 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] private List<Player> _players;
     public List<Player> Players { get => _players; set => _players = value; }
+    
+    public void AddPlayer(Player player)
+    {
+        _players.Add(player);
+    }
 }

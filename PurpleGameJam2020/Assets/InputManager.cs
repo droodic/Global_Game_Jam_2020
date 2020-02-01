@@ -58,8 +58,6 @@ public class InputManager : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        //_sprinting = context.ReadValue<bool>();
-        Debug.Log(context);
         if (context.ReadValue<float>() == 1)
         {
             _sprinting = true;
