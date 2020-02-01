@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     private int maxInventory = 300;
-    private int debrisCount = 0;
+    private int debrisCount = 50;
 
     public void Start()
     {
@@ -39,8 +39,24 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public bool hasAnyDebris()
+    {
+        if(debrisCount != 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void RemoveDebrisCount()
     {
-        debrisCount--;
+        if (debrisCount > 0)
+        {
+            debrisCount--;
+        }
+        Debug.Log($"Inv: {debrisCount}");
     }
 }
