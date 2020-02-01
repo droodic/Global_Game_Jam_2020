@@ -70,8 +70,9 @@ public class Movement : MonoBehaviour
         }
 
         _mousePos = _MOUSE.ReadValue<Vector2>();
+
     }
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         MovePlayer();
         MoveArm();
@@ -81,25 +82,27 @@ public class Movement : MonoBehaviour
     {
         var newSpeed = _speed;
         
-        Vector2 vect = _WASD.ReadValue<Vector2>() * Time.deltaTime * newSpeed;
+        Vector2 vect = _WASD.ReadValue<Vector2>();
+        Vector3 move;
         if (_gamepad != null)
         {
-            vect = _gamepad.leftStick.ReadValue() * Time.deltaTime * newSpeed;
+            vect = _gamepad.leftStick.ReadValue();
             if (_gamepad.rightShoulder.ReadValue() > 0 && !player.SprintLocked)
             {
                 newSpeed = _speed * 3.0f;
             }
+            
         }
         if (vect == Vector2.zero)
         {
             return;
         }
-        var move = _camera.transform.right * vect.x + _camera.transform.forward * vect.y;
+        move = _camera.transform.right * vect.x + _camera.transform.forward * vect.y;
         move.y = 0.0f;
-        _characterController.Move(move);
-        transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
+        _characterController.Move(move * Time.deltaTime * newSpeed);
         var rotation = Quaternion.LookRotation(move.normalized, Vector3.up);
         _body.transform.rotation = rotation;
+        transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
     }
 
     private void MoveArm()
@@ -107,9 +110,7 @@ public class Movement : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(_mousePos);
         RaycastHit raycastHit;
         Physics.Raycast(ray, out raycastHit, 1000.0f);
-        Debug.DrawRay(ray.origin, ray.direction *raycastHit.distance,Color.red,3.0f);
         Vector2 vect = new Vector2(raycastHit.point.z, raycastHit.point.x);
-        Debug.Log(raycastHit.point);
         Vector3 move;
         Quaternion rotation;
         if (_gamepad != null)
@@ -117,6 +118,10 @@ public class Movement : MonoBehaviour
             vect = _gamepad.rightStick.ReadValue();
             move = _camera.transform.right * vect.x + _camera.transform.forward * vect.y;
             move.y = 0.0f;
+            if (move == Vector3.zero)
+            {
+                return;
+            }
             rotation = Quaternion.LookRotation(move.normalized, Vector3.up);
             _arm.transform.rotation = rotation;
         }
