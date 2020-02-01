@@ -63,6 +63,15 @@ public class UIManager : MonoBehaviour
         
     }
 
+
+    /// <summary>
+    /// Num : The number of the powerup 
+    ///     1 - DebrisBomb
+    ///     2 - Speedpowerup
+    /// Bool : Are you Enabling or Disabling the powerup
+    /// </summary>
+    /// <param name="num"></param>
+    /// <param name="enable"></param>
     public void UpdatePowerUI(int num = 0, bool enable = true)
     {
         if (enable)
@@ -114,8 +123,7 @@ public class UIManager : MonoBehaviour
                 }
             }
 
-            p1Power.enabled = false;
-            p2Power.enabled = false;
+
         }
 
 

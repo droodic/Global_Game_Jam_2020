@@ -73,13 +73,13 @@ GameObject:
   - component: {fileID: 6838978456329300893}
   - component: {fileID: 6838978456329300892}
   - component: {fileID: 6838978456329300895}
-  - component: {fileID: 6838978456329300894}
   - component: {fileID: 6838978456329300881}
   - component: {fileID: 3982773192715029285}
   - component: {fileID: 6838978456329300890}
   - component: {fileID: -3447191559328478263}
   - component: {fileID: 6649819917190676997}
   - component: {fileID: 5064778832961764809}
+  - component: {fileID: 350751091133287416}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -149,19 +149,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6838978456329300894
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6838978456329300880}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 0.54, z: 5}
-  m_Center: {x: 0, y: 0.28, z: 0}
 --- !u!143 &6838978456329300881
 CharacterController:
   m_ObjectHideFlags: 0
@@ -248,7 +235,20 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
+--- !u!135 &350751091133287416
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838978456329300880}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &393758595404933517
 PrefabInstance:
   m_ObjectHideFlags: 0

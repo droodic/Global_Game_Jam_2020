@@ -6,14 +6,18 @@ public class PowerupManager : MonoBehaviour
 {
     Player player;
     UIManager ui;
+    SphereCollider debrisSphere;
 
     float powerTimer = 5f;
+
     bool hasPowerUp;
     bool hasDebrisBomb;
     bool hasSpeedUp;
+    bool hasMagnet;
 
     public bool HasDebrisBomb { get => hasDebrisBomb; set => hasDebrisBomb = value; }
     public bool HasSpeedUp { get => hasSpeedUp; set => hasSpeedUp = value; }
+    public bool HasMagnet { get => hasMagnet; set => hasMagnet = value; }
 
 
     // Start is called before the first frame update
@@ -21,25 +25,32 @@ public class PowerupManager : MonoBehaviour
     {
         ui = FindObjectOfType<UIManager>();
         player = GetComponent<Player>();
+        debrisSphere = GetComponent<SphereCollider>();
     }
 
     public void UsePower()
     {
         if (hasPowerUp)
         {
-            if (hasDebrisBomb)
+            if (hasDebrisBomb) //1
             {
                 Debug.LogError("threw debris bomb");
                 hasDebrisBomb = false;
                 ui.UpdatePowerUI();
             }
-            else if (HasSpeedUp)
+            else if (HasSpeedUp) //2
             {
                 Debug.LogError("used speedup");
                 player.SprintBuffed = true;
                 HasSpeedUp = false;
                 ui.UpdatePowerUI(2, false);
                 StartCoroutine(CancelPowers(2, 5f));
+            }
+            else if (hasMagnet) //3
+            {
+                Debug.LogError("used magnet power");
+                debrisSphere.radius = 6f;
+                StartCoroutine(CancelPowers(3, 5f));
             }
             hasPowerUp = false;
         }
@@ -64,7 +75,7 @@ public class PowerupManager : MonoBehaviour
     void RollRandomPower()
     {
 
-        int num = 2;
+        int num = 3;
         //num = Random.Range(1, 2);
         if (num == 1)
         {
@@ -74,9 +85,9 @@ public class PowerupManager : MonoBehaviour
         {
             HasSpeedUp = true;
         }
-        else
+        else if(num == 3) 
         {
-            HasDebrisBomb = true;
+            HasMagnet = true;
         }
 
         ui.UpdatePowerUI();
@@ -90,6 +101,13 @@ public class PowerupManager : MonoBehaviour
         {
             player.SprintBuffed = false;
             ui.UpdatePowerUI(2, false);
+            Debug.LogError("Coroutine end");
+        }
+        if (powerNum == 3)
+        {
+            hasMagnet = false;
+           // ui.UpdatePowerUI(3, false);
+            debrisSphere.radius = 2f;
             Debug.LogError("Coroutine end");
         }
     }
