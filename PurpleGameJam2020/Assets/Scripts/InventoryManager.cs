@@ -38,4 +38,9 @@ public class InventoryManager : MonoBehaviour
             return false;
         }
     }
+
+    public void RemoveDebrisCount()
+    {
+        debrisCount--;
+    }
 }

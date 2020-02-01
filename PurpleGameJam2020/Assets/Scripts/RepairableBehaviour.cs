@@ -23,6 +23,11 @@ public class RepairableBehaviour : MonoBehaviour
         return false;
     }
 
+    public void Repair()
+    {
+        currentDebrisCount++;
+    }
+
     public void Break()
     {
         isBroken = true;
