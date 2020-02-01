@@ -54,7 +54,10 @@ public class PlayerManager : MonoBehaviour
     public void AddPlayer(Player player)
     {
         _players.Add(player);
-        if (_players.Count ==1)
+        var indexOfPlayer = _players.IndexOf(player);
+        Debug.Log(indexOfPlayer);
+        player.ChangeColor(player.Colors[indexOfPlayer]);
+        if (_players.Count == 1)
         {
             UIManager.Instance.P1 = player;
             UIManager.Instance.P1.tag = "Player";
