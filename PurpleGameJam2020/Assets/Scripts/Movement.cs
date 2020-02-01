@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    private Player player;
     private Camera _camera;
     private CharacterController _characterController;
     [SerializeField] private float _speed = 5.0f;
@@ -17,6 +18,7 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
+        player = GetComponent<Player>();
         _characterController = GetComponent<CharacterController>();
         _camera = Camera.main;
         SetupGamepad();
@@ -63,7 +65,7 @@ public class Movement : MonoBehaviour
         var newSpeed = _speed;
         //string sprintButton = _player2 ? "Sprint2" : "Sprint";
         //if (Input.GetButton(sprintButton))
-        if (_gamepad.rightShoulder.ReadValue() > 0)
+        if (_gamepad.rightShoulder.ReadValue() > 0 && !player.SprintLocked)
         {
             newSpeed = _speed * 3.0f;
         }
