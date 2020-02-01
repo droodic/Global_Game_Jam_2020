@@ -5,15 +5,15 @@ using UnityEngine;
 public class DebrisBehaviour : MonoBehaviour
 {
     /// <summary>
-    /// On collection debris behaviour
+    /// Debris collection behaviour
     /// </summary>
-    /// <param name="collision"></param>
-    public void OnCollisionEnter(Collision collision)
+    /// <param name="collidier"></param>
+    public void OnTriggerEnter(Collider collidier)
     {
-        if (collision.gameObject.tag == "Player" && !(InventoryManager.Instance().hasReachedMaxInventory()))
+        if (collidier.gameObject.tag == "Player") //to change to vacuum part
         {
-            Destroy(gameObject);
-            InventoryManager.Instance().AddDebrisCount();
+            var ivm = collidier.gameObject.GetComponent<InventoryManager>();
+            ivm.AddDebrisCount(this.gameObject);
         }
     }
 }

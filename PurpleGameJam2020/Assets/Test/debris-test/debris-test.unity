@@ -850,7 +850,6 @@ MonoBehaviour:
   _minimumSize: 6.5
   _players:
   - {fileID: 1243312852}
-  - {fileID: 0}
 --- !u!4 &1784189631
 Transform:
   m_ObjectHideFlags: 0
