@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    private int maxInventory = 5;
+    private int maxInventory = 300;
     private int debrisCount = 0;
 
     public void Start()

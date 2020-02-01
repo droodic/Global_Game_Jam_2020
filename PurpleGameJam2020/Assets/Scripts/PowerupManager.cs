@@ -6,6 +6,7 @@ public class PowerupManager : MonoBehaviour
 {
 
     [SerializeField] GameObject debrisBomb;
+    [SerializeField] SphereCollider sphere;
 
     Player player;
     UIManager ui;
@@ -28,7 +29,7 @@ public class PowerupManager : MonoBehaviour
     {
         ui = FindObjectOfType<UIManager>();
         player = GetComponent<Player>();
-        debrisSphere = GetComponent<SphereCollider>();
+        //debrisSphere = GetComponent<SphereCollider>();
     }
 
     public void UsePower()
@@ -37,7 +38,7 @@ public class PowerupManager : MonoBehaviour
         {
             if (hasDebrisBomb) //1
             {
-                GameObject bullet = Instantiate(debrisBomb, transform.position, Quaternion.identity) as GameObject; //use arm forward
+                GameObject bullet = Instantiate(debrisBomb, transform.forward, Quaternion.identity) as GameObject; //use arm forward
                 bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
                 Debug.LogError("threw debris bomb");
                 hasDebrisBomb = false;
@@ -54,7 +55,7 @@ public class PowerupManager : MonoBehaviour
             else if (hasMagnet) //3
             {
                 Debug.LogError("used magnet power");
-                debrisSphere.radius = 6f;
+                sphere.radius = 6f;
                 StartCoroutine(CancelPowers(3, 5f));
             }
             hasPowerUp = false;
@@ -80,7 +81,7 @@ public class PowerupManager : MonoBehaviour
     void RollRandomPower()
     {
 
-        int num = 1;
+        int num = 3;
         //num = Random.Range(1, 2);
         if (num == 1)
         {
@@ -111,8 +112,8 @@ public class PowerupManager : MonoBehaviour
         if (powerNum == 3)
         {
             hasMagnet = false;
-           // ui.UpdatePowerUI(3, false);
-            debrisSphere.radius = 2f;
+            // ui.UpdatePowerUI(3, false);
+            sphere.radius = 2f;
             Debug.LogError("Coroutine end");
         }
     }
