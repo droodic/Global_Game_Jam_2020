@@ -49,7 +49,7 @@ public class Cat : MonoBehaviour
             }
         }
 
-        destructables[destroyIndex].IsBroken = true;
+        destructables[destroyIndex].Break();
         destroyIndex++;
         Debug.Log("Cat attack");
     }

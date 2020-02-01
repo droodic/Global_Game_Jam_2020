@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DebrisSpawn : MonoBehaviour
 {
-    [SerializeField] int minSpawn = 300;
-    [SerializeField] int maxSpawn = 450;
-    [SerializeField] int spawnLimit = 800;
+    [SerializeField] int minSpawn = 100;
+    [SerializeField] int maxSpawn = 200;
+    [SerializeField] int spawnLimit = 600;
     [SerializeField] GameObject debrisOne;
     [SerializeField] GameObject debrisTwo;
 
