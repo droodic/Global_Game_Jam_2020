@@ -4,10 +4,29 @@ using UnityEngine;
 
 public class CameraRig : MonoBehaviour
 {
+
+    #region Singleton
+    private static CameraRig _instance = null;
+    public static CameraRig Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<CameraRig>();
+            }
+            return _instance;
+        }
+    }
+
+    //public Transform[] Players { get => _players; set => _players = value; }
+
+    #endregion
+
     [SerializeField] private float smoothTime = 0.2f;
     [SerializeField] private float _screenRim = 4f;
     [SerializeField] private float _minimumSize = 6.5f;
-    [SerializeField] private Transform[] _players;
+    private List<Transform> _players;
     private float _zoomSpeed;
     private Vector3 _smoothVelocity;
     private Vector3 _camRigPosition;
@@ -16,6 +35,7 @@ public class CameraRig : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        _players = new List<Transform>();
         _camera = GetComponentInChildren<Camera>();
     }
 
@@ -86,5 +106,10 @@ public class CameraRig : MonoBehaviour
         screenSize = Mathf.Max(screenSize, _minimumSize);
 
         return screenSize;
+    }
+
+    public void AddPlayer(Player player)
+    {
+        _players.Add(player.transform);
     }
 }

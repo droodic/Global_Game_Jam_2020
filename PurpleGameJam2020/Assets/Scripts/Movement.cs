@@ -13,16 +13,36 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject _arm;
     [SerializeField] private GameObject _body;
     private Gamepad _gamepad;
-
+    private Keyboard _keyboard;
     public Gamepad Gamepad { get => _gamepad; set => _gamepad = value; }
+    public GameObject Arm { get => _arm; set => _arm = value; }
+
+    InputAction _WASD;
+    InputAction _MOUSE;
+    private Vector2 _mousePos;
 
     private void Start()
     {
+
         player = GetComponent<Player>();
         _characterController = GetComponent<CharacterController>();
         _camera = Camera.main;
+        SetupKeyboardAndMouseInput();
         SetupGamepad();
 
+    }
+
+    private void SetupKeyboardAndMouseInput()
+    {
+        _WASD = new InputAction(name: "move");
+        _WASD.AddCompositeBinding("2DVector")
+            .With("Up", "<Keyboard>/w")
+            .With("Down", "<Keyboard>/s")
+            .With("Left", "<Keyboard>/a")
+            .With("Right", "<Keyboard>/d");
+        _MOUSE = new InputAction(name: "mouse");
+        _MOUSE.AddBinding("Vector2").WithPath("<Mouse>/position");
+        _keyboard = Keyboard.current;
     }
 
     private void SetupGamepad()
@@ -34,69 +54,80 @@ public class Movement : MonoBehaviour
         else
         {
             _gamepad = Gamepad.current;
+            _MOUSE.Enable();
+            _WASD.Enable();
             if (_player2)
             {
                 _gamepad = null;
+                _WASD.Disable();
+                _MOUSE.Disable();
             }
         }
     }
 
     private void Update()
     {
-        if (Keyboard.current.pKey.ReadValue() > 0)
+        if (Keyboard.current.pKey.wasPressedThisFrame)
         {
             _player2 = !_player2;
             SetupGamepad();
-
         }
     }
-    private void LateUpdate()
+    private void FixedUpdate()
     {
-        if (_gamepad != null)
-        {
-            MovePlayer();
-            MoveArm(); 
-        }
-
+        MovePlayer();
+        MoveArm();
     }
 
     private void MovePlayer()
     {
         var newSpeed = _speed;
-        //string sprintButton = _player2 ? "Sprint2" : "Sprint";
-        //if (Input.GetButton(sprintButton))
-        if (_gamepad.rightShoulder.ReadValue() > 0 && !player.SprintLocked)
+        if (player.InputManager.Sprinting && !player.SprintLocked)
         {
             newSpeed = _speed * 3.0f;
         }
-        //string xAxis = _player2 ? "Horizontal2" : "Horizontal";
-        //string yAxis = _player2 ? "Vertical2" : "Vertical";
-        //var x = Input.GetAxis(xAxis) * Time.deltaTime * newSpeed;
-        //var y = Input.GetAxis(yAxis) * Time.deltaTime * newSpeed;
-        var vect = _gamepad.leftStick.ReadValue() * Time.deltaTime * newSpeed;
-        var move = _camera.transform.right * vect.x + _camera.transform.forward * vect.y;
-        move.y = 0.0f;
-        _characterController.Move(move);
-        transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
-        var rotation = Quaternion.LookRotation(move.normalized, Vector3.up);
-        _body.transform.rotation = rotation;
-    }
-
-    private void MoveArm()
-    { 
-       
-        //string xAxis = _player2 ? "HorizontalArm2" : "HorizontalArm";
-        //string yAxis = _player2 ? "VerticalArm2" : "VerticalArm";
-        //var x = Input.GetAxis(xAxis);
-        //var y = Input.GetAxis(yAxis);
-        var vect = _gamepad.rightStick.ReadValue();
-        if (vect.x == 0 && vect.y == 0)
+        Vector2 vect = player.InputManager.MoveAxis;
+        Vector3 move;
+        if (vect == Vector2.zero)
         {
             return;
         }
-        var move = _camera.transform.right * vect.x + _camera.transform.forward * vect.y;
+        move = _camera.transform.right * vect.x + _camera.transform.forward * vect.y;
         move.y = 0.0f;
+        _characterController.Move(move * Time.deltaTime * newSpeed);
         var rotation = Quaternion.LookRotation(move.normalized, Vector3.up);
-        _arm.transform.rotation = rotation;
+        _body.transform.rotation = rotation;
+        transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
+    }
+
+    private void MoveArm()
+    {
+        Vector2 vect;
+        Vector3 move;
+        Quaternion rotation;
+        if (player.InputManager.MouseAndKey)
+        {
+            RaycastHit raycastHit;
+            Ray ray = Camera.main.ScreenPointToRay(player.InputManager.AimAxis);
+            Physics.Raycast(ray, out raycastHit, 1000.0f, LayerMask.GetMask("Floor"));
+             vect = new Vector2(raycastHit.point.z, raycastHit.point.x);
+            move = raycastHit.point;
+            move.y = Arm.transform.position.y;
+            Arm.transform.LookAt(move);
+        }
+        else
+        {
+            vect = player.InputManager.AimAxis;
+            move = _camera.transform.right * vect.x + _camera.transform.forward * vect.y;
+            move.y = 0.0f;
+            if (move == Vector3.zero)
+            {
+                return;
+            }
+            rotation = Quaternion.LookRotation(move.normalized, Vector3.up);
+            Arm.transform.rotation = rotation;
+        }
+
+
     }
 }

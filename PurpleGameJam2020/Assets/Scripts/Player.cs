@@ -7,77 +7,122 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField] float sprintMeter;
-
+    InputManager _inputManager;
     bool sprinting;
 
     bool sprintLocked;
+    bool sprintBuffed;
+
     float lockTimer = 5f;
 
     public float SprintMeter { get => sprintMeter; set => sprintMeter = value; }
     public bool SprintLocked { get => sprintLocked; set => sprintLocked = value; }
+    public bool SprintBuffed { get => sprintBuffed; set => sprintBuffed = value; }
 
-    bool player2;
-    Gamepad gp;
+    //bool player2;
+    public Gamepad GP { get => _movement.Gamepad; }
+    public InputManager InputManager { get => _inputManager; }
+    public PowerupManager Power { get => power; }
+
+    private Movement _movement;
     PowerupManager power;
     // Start is called before the first frame update
     void Start()
     {
-        gp = GetComponent<Movement>().Gamepad;
+        _inputManager = GetComponent<InputManager>();
+        _movement = GetComponent<Movement>();
         power = GetComponent<PowerupManager>();
-        player2 = this.gameObject.tag == "Player2";
- 
+        CameraRig.Instance.AddPlayer(this);
+        PlayerManager.Instance.AddPlayer(this);
+        //player2 = this.gameObject.tag == "Player2";
+
     }
 
     // Input tracker
     void Update()
     {
-        //string ButtonName = player2 ? "Sprint2" : "Sprint";
-
-        if (gp != null) 
+        if (_inputManager.Sprinting && !SprintLocked)
         {
-            if (gp.rightShoulder.ReadValue() > 0 && !SprintLocked)
-            {
-                Sprint();
-            }
-
-            if (gp.rightShoulder.ReadValue() == 0 || !sprinting)
-            {
-                ClearSprint(SprintLocked);
-            }
-            //Call power
-            if (gp.buttonWest.wasPressedThisFrame)
-            {
-                power.UsePower();
-            }
+            Sprint();
         }
+
+        if (!_inputManager.Sprinting || !sprinting)
+        {
+            ClearSprint(SprintLocked);
+        }
+        //Call power
+        //if (GP.buttonWest.wasPressedThisFrame)
+        //{
+        //    power.UsePower();
+        //}
+        //
+        //if (GP != null)
+        //{
+        //    if (GP.rightShoulder.ReadValue() > 0 && !SprintLocked)
+        //    {
+        //        Sprint();
+        //    }
+        //
+        //    if (GP.rightShoulder.ReadValue() == 0 || !sprinting)
+        //    {
+        //        ClearSprint(SprintLocked);
+        //    }
+        //    //Call power
+        //    if (GP.buttonWest.wasPressedThisFrame)
+        //    {
+        //        power.UsePower();
+        //    }
+        //}
+        //else
+        //{
+        //    if (PlayerManager.Instance.Players[0] == this)
+        //    {
+        //        if (Keyboard.current.shiftKey.ReadValue() > 0 && !SprintLocked)
+        //        {
+        //            Sprint();
+        //        }
+        //
+        //        if (Keyboard.current.shiftKey.ReadValue() == 0 || !sprinting)
+        //        {
+        //            ClearSprint(SprintLocked);
+        //        }
+        //    }
+        //}
 
         //Debug Switch
-        if (Keyboard.current.pKey.wasPressedThisFrame)
-        {
-            player2 = !player2;
-            gp = GetComponent<Movement>().Gamepad;
-            Debug.LogError(player2 + this.gameObject.name);
-        }
+        //if (Keyboard.current.pKey.wasPressedThisFrame)
+        //{
+        //    //player2 = !player2;
+        //    //Debug.LogError(player2 + this.gameObject.name);
+        //}
 
-        
+
     }
 
     void Sprint()
     {
-        if (!sprinting) sprinting = true; //onlyonce
-
-        if (sprinting && SprintMeter > 0)
+        if (!SprintBuffed)
         {
-            SprintMeter-=0.75f;
-           // p1slider.value = SprintMeter;
-        }
-        else if (SprintMeter <= 0)
-        {
-            SprintMeter = 0;
-            SprintLocked = true;
+            if (!sprinting) sprinting = true; //onlyonce
+
+            if (sprinting && SprintMeter > 0)
+            {
+                SprintMeter -= 0.55f;
+                // p1slider.value = SprintMeter;
+            }
+            else if (SprintMeter <= 0)
+            {
+                SprintMeter = 0;
+                SprintLocked = true;
+            }
+
+            //Debug.Log("Sprintmeter" + SprintMeter.ToString());
         }
 
-        Debug.Log("Sprintmeter" + SprintMeter.ToString());
+        else if (SprintBuffed)
+        {
+            SprintMeter = 50f;
+        }
     }
 
     void ClearSprint(bool locked)
@@ -88,7 +133,7 @@ public class Player : MonoBehaviour
             if (SprintMeter < 50)
             {
                 SprintMeter += 0.25f;
-                Debug.Log("Sprintmeter" + SprintMeter.ToString());
+                //Debug.Log("Sprintmeter" + SprintMeter.ToString());
             }
             else if (SprintMeter.Equals(50))
             {
@@ -103,9 +148,9 @@ public class Player : MonoBehaviour
             {
                 SprintMeter += 0.175f;
                 //p1slider.value = SprintMeter;
-                Debug.Log("Sprintmeter" + SprintMeter.ToString());
+                //Debug.Log("Sprintmeter" + SprintMeter.ToString());
             }
-            if (SprintMeter>= 50)
+            if (SprintMeter >= 50)
             {
                 sprinting = true;
                 SprintLocked = false;
