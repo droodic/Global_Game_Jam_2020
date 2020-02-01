@@ -38,7 +38,7 @@ public class PowerupManager : MonoBehaviour
             if (hasDebrisBomb) //1
             {
                 GameObject bullet = Instantiate(debrisBomb, transform.position, Quaternion.identity) as GameObject; //use arm forward
-                bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 1250);
+                bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 2000);
                 Debug.LogError("threw debris bomb");
                 hasDebrisBomb = false;
                 ui.UpdatePowerUI();

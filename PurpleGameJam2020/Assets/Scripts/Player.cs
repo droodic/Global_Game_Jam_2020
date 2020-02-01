@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField] float sprintMeter;
-
+    
     bool sprinting;
 
     bool sprintLocked;
