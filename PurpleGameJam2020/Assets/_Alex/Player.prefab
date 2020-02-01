@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6838978456329300881}
   - component: {fileID: 6838978456329300890}
   - component: {fileID: -3447191559328478263}
+  - component: {fileID: 6649819917190676997}
   - component: {fileID: 5064778832961764809}
   m_Layer: 0
   m_Name: Player
@@ -92,10 +93,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6838978456329300880}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 0.54, z: 2.93}
+  m_Size: {x: 5, y: 0.54, z: 5}
   m_Center: {x: 0, y: 0.28, z: 0}
 --- !u!143 &6838978456329300881
 CharacterController:
@@ -144,6 +145,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprintMeter: 50
+--- !u!114 &6649819917190676997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838978456329300880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e33827c86e1224b907ddc6858cb9e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &5064778832961764809
 Rigidbody:
   m_ObjectHideFlags: 0

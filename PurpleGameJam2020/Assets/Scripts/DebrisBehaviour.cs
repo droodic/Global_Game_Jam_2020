@@ -6,7 +6,7 @@ public class DebrisBehaviour : MonoBehaviour
 {
     private Transform target;
     private bool isColliding = false;
-    private float speed = 50;
+    [SerializeField] private float movementSpeed = 10.0f;
 
     /// <summary>
     /// Debris collection behaviour
@@ -14,7 +14,7 @@ public class DebrisBehaviour : MonoBehaviour
     /// <param name="collider"></param>
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Player" && !isColliding)
+        if ((collider.gameObject.tag == "Player" || collider.gameObject.tag == "Player2") && !isColliding)
         {
             var ivm = collider.gameObject.GetComponent<InventoryManager>();
             if (ivm.hasReachedMaxInventory())
@@ -30,7 +30,7 @@ public class DebrisBehaviour : MonoBehaviour
 
     public void MoveToPlayerCenter(Collider playerCollider)
     {
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, playerCollider.transform.position, speed * Time.deltaTime);
+        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, playerCollider.transform.position, movementSpeed * Time.deltaTime);
     }
 
     public void Update()
