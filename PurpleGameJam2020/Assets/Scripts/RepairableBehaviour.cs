@@ -4,41 +4,48 @@ using UnityEngine;
 
 public class RepairableBehaviour : MonoBehaviour
 {
-    private bool isBroken = true;
+
+
+    private bool isBroken;
+    [SerializeField] Transform jumpLocation;
     [SerializeField] private int debrisCountNeeded = 100;
     private int currentDebrisCount = 0;
 
-    public void Awake()
-    {
-        isBroken = true;
-    }
+    public bool IsBroken { get => isBroken; set => isBroken = value; }
+    public Transform JumpLocation { get => jumpLocation; set => jumpLocation = value; }
+
 
     public bool isRepaired()
     {
         if (currentDebrisCount >= debrisCountNeeded)
         {
-            isBroken = false;
+            IsBroken = false;
             return true;
         }
         return false;
     }
 
-    public void Repair()
+    public void Repair(Player player)
     {
         if (currentDebrisCount <= debrisCountNeeded)
         {
             currentDebrisCount++;
+            player.VictoryPoints++;
+            UIManager.Instance.UpdateVp();
         }
         else
         {
             isRepaired();
+            IsBroken = false;
+            player.VictoryPoints += 100;
+            UIManager.Instance.UpdateVp();
         }
         Debug.Log($"Needed: {currentDebrisCount}");
     }
 
     public void Break()
     {
-        isBroken = true;
+        IsBroken = true;
         currentDebrisCount = 0;
     }
 }

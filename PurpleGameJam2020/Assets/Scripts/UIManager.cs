@@ -31,6 +31,10 @@ public class UIManager : MonoBehaviour
     InventoryManager P1im;
     InventoryManager P2im;
 
+    //VP
+    [SerializeField] Text p1Vp;
+    [SerializeField] Text p2Vp;
+
     //Debris
     [SerializeField] Slider p1DebrisSlider;
     [SerializeField] Slider p2DebrisSlider;
@@ -72,6 +76,12 @@ public class UIManager : MonoBehaviour
             CheckEnergyLocks();
         }
 
+    }
+
+    public void UpdateVp()
+    {
+        p1Vp.text = "Points: " + p1.VictoryPoints.ToString();
+        p2Vp.text = "Points: " + p2.VictoryPoints.ToString();
     }
 
     public void UpdateDebrisUI()

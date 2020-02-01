@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DebrisSpawn : MonoBehaviour
 {
-    [SerializeField] int minSpawn = 300;
-    [SerializeField] int maxSpawn = 450;
-    [SerializeField] int spawnLimit = 800;
+    [SerializeField] int minSpawn = 100;
+    [SerializeField] int maxSpawn = 200;
+    [SerializeField] int spawnLimit = 600;
     [SerializeField] GameObject debrisOne;
     [SerializeField] GameObject debrisTwo;
 
@@ -17,7 +17,7 @@ public class DebrisSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnDebris", 10f, 12.5f);
+        InvokeRepeating("SpawnDebris", 4f, 6f);
     }
 
     // Update is called once per frame

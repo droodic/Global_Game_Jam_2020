@@ -12,12 +12,15 @@ public class Player : MonoBehaviour
     [SerializeField] private MeshRenderer _armMR;
     [SerializeField] float sprintMeter;
     InputManager _inputManager;
-    bool sprinting;
 
+
+    int victoryPoints;
+    bool sprinting;
     bool sprintLocked;
     bool sprintBuffed;
 
     float lockTimer = 5f;
+
 
     public float SprintMeter { get => sprintMeter; set => sprintMeter = value; }
     public bool SprintLocked { get => sprintLocked; set => sprintLocked = value; }
@@ -28,6 +31,7 @@ public class Player : MonoBehaviour
     public InputManager InputManager { get => _inputManager; }
     public PowerupManager Power { get => power; }
     public List<Material> Colors { get => _colors; }
+    public int VictoryPoints { get => victoryPoints; set => victoryPoints = value; }
 
     private Movement _movement;
     PowerupManager power;
