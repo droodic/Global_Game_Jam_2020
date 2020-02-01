@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private Camera _camera;
+    private Camera _camera;
     private CharacterController _characterController;
     [SerializeField] private float _speed = 5.0f;
     [SerializeField] private bool _player2 = false;
     [SerializeField] private GameObject _arm;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _camera = Camera.main;
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            _player2 = !_player2;
+        }
+    }
+    private void LateUpdate()
     {
         MovePlayer();
         MoveArm();
