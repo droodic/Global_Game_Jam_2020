@@ -425,6 +425,7 @@ MonoBehaviour:
   _speed: 5
   _player2: 0
   _arm: {fileID: 8774427805091129563}
+  _body: {fileID: 2898756650648485792}
 --- !u!114 &-3447191559328478263
 MonoBehaviour:
   m_ObjectHideFlags: 0
