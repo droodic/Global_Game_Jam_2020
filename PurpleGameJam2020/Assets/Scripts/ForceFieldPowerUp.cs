@@ -13,15 +13,15 @@ public class ForceFieldPowerUp : MonoBehaviour
     //    }
     //}
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject == PlayerManager.Instance.Players[0] && activatorPlayer == 0)
-        {
-            Physics.IgnoreCollision(collision.gameObject.GetComponent<SphereCollider>(), GetComponent<MeshCollider>());
-        }
-        //if (collision.gameObject == PlayerManager.Instance.Players[1])
-        //{
-        //    Physics.IgnoreCollision(PlayerManager.Instance.Players[1].GetComponent<SphereCollider>(), GetComponent<MeshCollider>());
-        //}
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject == PlayerManager.Instance.Players[0] && activatorPlayer == 0)
+    //    {
+    //        Physics.IgnoreCollision(collision.gameObject.GetComponent<SphereCollider>(), GetComponent<MeshCollider>());
+    //    }
+    //    //if (collision.gameObject == PlayerManager.Instance.Players[1])
+    //    //{
+    //    //    Physics.IgnoreCollision(PlayerManager.Instance.Players[1].GetComponent<SphereCollider>(), GetComponent<MeshCollider>());
+    //    //}
+    //}
 }
