@@ -14,7 +14,7 @@ public class DebrisBehaviour : MonoBehaviour
     /// <param name="collider"></param>
     public void OnTriggerEnter(Collider collider)
     {
-        if ((collider.gameObject.tag == "Player" || collider.gameObject.tag == "Player2") && !isColliding)
+        if ((collider.gameObject.tag == "Player" && !isColliding) || (collider.gameObject.tag == "Player2" && !isColliding))
         {
             var ivm = collider.gameObject.GetComponent<InventoryManager>();
             if (ivm.hasReachedMaxInventory())
@@ -22,7 +22,7 @@ public class DebrisBehaviour : MonoBehaviour
                 return;
             }
             ivm.AddDebrisCount(this.gameObject);
-            UIManager.Instance.UpdateDebrisUI(ivm);
+            UIManager.Instance.UpdateDebrisUI();
             GetComponent<SphereCollider>().enabled = false;
             target = collider.gameObject.transform;
             isColliding = true;

@@ -22,7 +22,7 @@ public class RepairObjects : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (!collider.GetComponent<RepairableBehaviour>().isRepaired())
+        if (collider.CompareTag("RepairableObject") && !collider.GetComponent<RepairableBehaviour>().isRepaired())
         {
             objectToRepair = collider.GetComponent<RepairableBehaviour>();
             isRepairing = true;

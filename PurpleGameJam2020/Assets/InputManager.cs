@@ -40,7 +40,10 @@ public class InputManager : MonoBehaviour
     {
         _player = GetComponent<Player>();
         _playerInput = GetComponent<PlayerInput>();
-        mouseAndKey = _playerInput.devices[0].device.Equals(Mouse.current) || _playerInput.devices[0].device.Equals(Keyboard.current);
+        if (_playerInput.devices.Count > 0)
+        {
+            mouseAndKey = _playerInput.devices[0].device.Equals(Mouse.current) || _playerInput.devices[0].device.Equals(Keyboard.current);
+        }
         Debug.Log(MouseAndKey);
         _moveAxis = Vector2.zero;
         _aimAxis = Vector2.zero;
