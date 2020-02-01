@@ -13,16 +13,32 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject _arm;
     [SerializeField] private GameObject _body;
     private Gamepad _gamepad;
-
+    private Keyboard _keyboard;
     public Gamepad Gamepad { get => _gamepad; set => _gamepad = value; }
+    InputAction _WASD;
+    InputAction _MOUSE;
+    private Vector2 _mousePos;
 
     private void Start()
     {
+        _WASD = new InputAction(name: "move");
+        _WASD.AddCompositeBinding("2DVector")
+            .With("Up", "<Keyboard>/w")
+            .With("Down", "<Keyboard>/s")
+            .With("Left", "<Keyboard>/a")
+            .With("Right", "<Keyboard>/d");
+        _MOUSE = new InputAction(name: "mouse");
+        _MOUSE.AddBinding("Vector2").WithPath("<Mouse>/position");
         player = GetComponent<Player>();
         _characterController = GetComponent<CharacterController>();
         _camera = Camera.main;
         SetupGamepad();
+        _keyboard = Keyboard.current;
 
+    }
+    private void OnMove(InputAction.CallbackContext context)
+    {
+        Debug.LogError("AIMING" + context.ToString());
     }
 
     private void SetupGamepad()
@@ -34,46 +50,50 @@ public class Movement : MonoBehaviour
         else
         {
             _gamepad = Gamepad.current;
+            _MOUSE.Enable();
+            _WASD.Enable();
             if (_player2)
             {
                 _gamepad = null;
+                _WASD.Disable();
+                _MOUSE.Disable();
             }
         }
     }
 
     private void Update()
     {
-        if (Keyboard.current.pKey.ReadValue() > 0)
+        if (Keyboard.current.pKey.wasPressedThisFrame)
         {
             _player2 = !_player2;
             SetupGamepad();
-
         }
+
+        _mousePos = _MOUSE.ReadValue<Vector2>();
     }
     private void LateUpdate()
     {
-        if (_gamepad != null)
-        {
-            MovePlayer();
-            MoveArm(); 
-        }
-
+        MovePlayer();
+        MoveArm();
     }
 
     private void MovePlayer()
     {
         var newSpeed = _speed;
-        //string sprintButton = _player2 ? "Sprint2" : "Sprint";
-        //if (Input.GetButton(sprintButton))
-        if (_gamepad.rightShoulder.ReadValue() > 0 && !player.SprintLocked)
+        
+        Vector2 vect = _WASD.ReadValue<Vector2>() * Time.deltaTime * newSpeed;
+        if (_gamepad != null)
         {
-            newSpeed = _speed * 3.0f;
+            vect = _gamepad.leftStick.ReadValue() * Time.deltaTime * newSpeed;
+            if (_gamepad.rightShoulder.ReadValue() > 0 && !player.SprintLocked)
+            {
+                newSpeed = _speed * 3.0f;
+            }
         }
-        //string xAxis = _player2 ? "Horizontal2" : "Horizontal";
-        //string yAxis = _player2 ? "Vertical2" : "Vertical";
-        //var x = Input.GetAxis(xAxis) * Time.deltaTime * newSpeed;
-        //var y = Input.GetAxis(yAxis) * Time.deltaTime * newSpeed;
-        var vect = _gamepad.leftStick.ReadValue() * Time.deltaTime * newSpeed;
+        if (vect == Vector2.zero)
+        {
+            return;
+        }
         var move = _camera.transform.right * vect.x + _camera.transform.forward * vect.y;
         move.y = 0.0f;
         _characterController.Move(move);
@@ -83,20 +103,34 @@ public class Movement : MonoBehaviour
     }
 
     private void MoveArm()
-    { 
-       
-        //string xAxis = _player2 ? "HorizontalArm2" : "HorizontalArm";
-        //string yAxis = _player2 ? "VerticalArm2" : "VerticalArm";
-        //var x = Input.GetAxis(xAxis);
-        //var y = Input.GetAxis(yAxis);
-        var vect = _gamepad.rightStick.ReadValue();
+    {
+        Ray ray = Camera.main.ScreenPointToRay(_mousePos);
+        RaycastHit raycastHit;
+        Physics.Raycast(ray, out raycastHit, 1000.0f);
+        Debug.DrawRay(ray.origin, ray.direction *raycastHit.distance,Color.red,3.0f);
+        Vector2 vect = new Vector2(raycastHit.point.z, raycastHit.point.x);
+        Debug.Log(raycastHit.point);
+        Vector3 move;
+        Quaternion rotation;
+        if (_gamepad != null)
+        {
+            vect = _gamepad.rightStick.ReadValue();
+            move = _camera.transform.right * vect.x + _camera.transform.forward * vect.y;
+            move.y = 0.0f;
+            rotation = Quaternion.LookRotation(move.normalized, Vector3.up);
+            _arm.transform.rotation = rotation;
+        }
+        else
+        {
+            move = raycastHit.point;
+            move.y = _arm.transform.position.y;
+            _arm.transform.LookAt(move);
+        }
         if (vect.x == 0 && vect.y == 0)
         {
             return;
         }
-        var move = _camera.transform.right * vect.x + _camera.transform.forward * vect.y;
-        move.y = 0.0f;
-        var rotation = Quaternion.LookRotation(move.normalized, Vector3.up);
-        _arm.transform.rotation = rotation;
+
+    
     }
 }
