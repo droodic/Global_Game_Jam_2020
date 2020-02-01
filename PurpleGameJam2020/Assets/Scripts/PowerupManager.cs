@@ -22,11 +22,13 @@ public class PowerupManager : MonoBehaviour
     public bool HasDebrisBomb { get => hasDebrisBomb; set => hasDebrisBomb = value; }
     public bool HasSpeedUp { get => hasSpeedUp; set => hasSpeedUp = value; }
     public bool HasMagnet { get => hasMagnet; set => hasMagnet = value; }
+    public bool HasPowerUp { get => hasPowerUp; set => hasPowerUp = value; }
 
 
     // Start is called before the first frame update
     void Start()
     {
+        
         ui = FindObjectOfType<UIManager>();
         player = GetComponent<Player>();
         //debrisSphere = GetComponent<SphereCollider>();
@@ -34,7 +36,7 @@ public class PowerupManager : MonoBehaviour
 
     public void UsePower()
     {
-        if (hasPowerUp)
+        if (HasPowerUp)
         {
             if (hasDebrisBomb) //1
             {
@@ -42,23 +44,24 @@ public class PowerupManager : MonoBehaviour
                 bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
                 Debug.LogError("threw debris bomb");
                 hasDebrisBomb = false;
-                ui.UpdatePowerUI();
+                ui.UpdatePowerUI(player, 1, false);
             }
             else if (HasSpeedUp) //2
             {
                 Debug.LogError("used speedup");
                 player.SprintBuffed = true;
                 HasSpeedUp = false;
-                ui.UpdatePowerUI(2, false);
+                ui.UpdatePowerUI(player, 2, false);
                 StartCoroutine(CancelPowers(2, 5f));
             }
             else if (hasMagnet) //3
             {
                 Debug.LogError("used magnet power");
+                ui.UpdatePowerUI(player, 3, false);
                 sphere.radius = 6f;
                 StartCoroutine(CancelPowers(3, 5f));
             }
-            hasPowerUp = false;
+            HasPowerUp = false;
         }
 
         else
@@ -69,11 +72,11 @@ public class PowerupManager : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Power" && !hasPowerUp)
+        if (col.gameObject.tag == "Power" && !HasPowerUp)
         {
             Destroy(col.gameObject);
             RollRandomPower();
-            hasPowerUp = true;
+            HasPowerUp = true;
             Debug.Log("collide with power");
         }
     }
@@ -81,7 +84,7 @@ public class PowerupManager : MonoBehaviour
     void RollRandomPower()
     {
 
-        int num = 3;
+        int num = 2;
         //num = Random.Range(1, 2);
         if (num == 1)
         {
@@ -96,7 +99,7 @@ public class PowerupManager : MonoBehaviour
             HasMagnet = true;
         }
 
-        ui.UpdatePowerUI();
+        ui.UpdatePowerUI(player);
     }
 
 
@@ -106,13 +109,12 @@ public class PowerupManager : MonoBehaviour
         if(powerNum == 2)
         {
             player.SprintBuffed = false;
-            ui.UpdatePowerUI(2, false);
+            ui.UpdatePowerUI(player, 2, false);
             Debug.LogError("Coroutine end");
         }
         if (powerNum == 3)
         {
             hasMagnet = false;
-            // ui.UpdatePowerUI(3, false);
             sphere.radius = 2f;
             Debug.LogError("Coroutine end");
         }
