@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class DebrisBehaviour : MonoBehaviour
 {
-    private Transform target;
+    private Player target;
     private bool isColliding = false;
-    [SerializeField] private float movementSpeed = 10.0f;
-
+    [SerializeField] private float movementSpeed = 1.0f;
+    private float lerpValue = 0.0f;
     /// <summary>
     /// Debris collection behaviour
     /// </summary>
@@ -24,22 +24,24 @@ public class DebrisBehaviour : MonoBehaviour
             ivm.AddDebrisCount(this.gameObject);
             UIManager.Instance.UpdateDebrisUI();
             GetComponent<SphereCollider>().enabled = false;
-            target = collider.gameObject.transform;
+            
+            target = collider.gameObject.GetComponent<Player>();
             isColliding = true;
         }
     }
 
-    public void MoveToPlayerCenter(Collider playerCollider)
+    public void MoveToPlayerCenter(GameObject playerCollider)
     {
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, playerCollider.transform.position, movementSpeed * Time.deltaTime);
+        lerpValue += movementSpeed * Time.deltaTime;
+        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, playerCollider.transform.position, lerpValue);
     }
 
     public void Update()
     {
         if (target != null && isColliding)
         {
-            MoveToPlayerCenter(target.GetComponent<Collider>());
-            if (gameObject.transform.position == target.position)
+            MoveToPlayerCenter(target.gameObject);
+            if (Vector3.Distance(gameObject.transform.position, target.transform.position) < 0.5f)
             {
                 Destroy(gameObject);
             }
