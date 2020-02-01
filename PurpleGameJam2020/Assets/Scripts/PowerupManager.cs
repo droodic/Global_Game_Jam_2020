@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PowerupManager : MonoBehaviour
 {
+
+    [SerializeField] GameObject debrisBomb;
+
     Player player;
     UIManager ui;
     SphereCollider debrisSphere;
@@ -34,6 +37,8 @@ public class PowerupManager : MonoBehaviour
         {
             if (hasDebrisBomb) //1
             {
+                GameObject bullet = Instantiate(debrisBomb, transform.position, Quaternion.identity) as GameObject; //use arm forward
+                bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 1250);
                 Debug.LogError("threw debris bomb");
                 hasDebrisBomb = false;
                 ui.UpdatePowerUI();
@@ -75,7 +80,7 @@ public class PowerupManager : MonoBehaviour
     void RollRandomPower()
     {
 
-        int num = 3;
+        int num = 1;
         //num = Random.Range(1, 2);
         if (num == 1)
         {
