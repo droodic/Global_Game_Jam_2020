@@ -44,16 +44,6 @@ public class Player : MonoBehaviour
             player2 = !player2;
         }
 
-        if (SprintLocked && lockTimer > 0)
-        {
-            lockTimer -= Time.deltaTime;
-        }
-        else if(SprintLocked && lockTimer <= 0)
-        {
-            SprintLocked = false;
-            lockTimer = 5f;
-        }
-
     }
 
     void Sprint()
@@ -82,7 +72,6 @@ public class Player : MonoBehaviour
             if (SprintMeter < 50)
             {
                 SprintMeter += 0.25f;
-                //p1slider.value = SprintMeter;
                 Debug.Log("Sprintmeter" + SprintMeter.ToString());
             }
             else if (SprintMeter.Equals(50))
@@ -100,10 +89,11 @@ public class Player : MonoBehaviour
                 //p1slider.value = SprintMeter;
                 Debug.Log("Sprintmeter" + SprintMeter.ToString());
             }
-            else if (SprintMeter.Equals(50))
+            if (SprintMeter>= 50)
             {
                 sprinting = true;
                 SprintLocked = false;
+                SprintMeter = 50;
             }
         }
     }
