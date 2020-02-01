@@ -17,7 +17,7 @@ public class DebrisSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnDebris", 10f, 12.5f);
+        InvokeRepeating("SpawnDebris", 4f, 6f);
     }
 
     // Update is called once per frame

@@ -4,41 +4,50 @@ using UnityEngine;
 
 public class RepairableBehaviour : MonoBehaviour
 {
+
+
     private bool isBroken = true;
     [SerializeField] private int debrisCountNeeded = 100;
     private int currentDebrisCount = 0;
 
+    public bool IsBroken { get => isBroken; set => isBroken = value; }
+
     public void Awake()
     {
-        isBroken = true;
+        IsBroken = true;
     }
 
     public bool isRepaired()
     {
         if (currentDebrisCount >= debrisCountNeeded)
         {
-            isBroken = false;
+            IsBroken = false;
             return true;
         }
         return false;
     }
 
-    public void Repair()
+    public void Repair(Player player)
     {
         if (currentDebrisCount <= debrisCountNeeded)
         {
             currentDebrisCount++;
+            player.VictoryPoints++;
+            UIManager.Instance.UpdateVp();
         }
         else
         {
             isRepaired();
+            IsBroken = false;
+            player.VictoryPoints += 100;
+            UIManager.Instance.UpdateVp();
         }
         Debug.Log($"Needed: {currentDebrisCount}");
     }
 
     public void Break()
     {
-        isBroken = true;
+        IsBroken = true;
         currentDebrisCount = 0;
     }
 }
