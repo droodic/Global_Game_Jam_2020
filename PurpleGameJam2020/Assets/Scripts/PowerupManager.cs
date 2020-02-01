@@ -7,6 +7,7 @@ public class PowerupManager : MonoBehaviour
 
     [SerializeField] GameObject debrisBomb;
     [SerializeField] SphereCollider sphere;
+    [SerializeField] GameObject forceField;
 
     Player player;
     UIManager ui;
@@ -18,11 +19,13 @@ public class PowerupManager : MonoBehaviour
     bool hasDebrisBomb;
     bool hasSpeedUp;
     bool hasMagnet;
+    bool hasForceField;
 
     public bool HasDebrisBomb { get => hasDebrisBomb; set => hasDebrisBomb = value; }
     public bool HasSpeedUp { get => hasSpeedUp; set => hasSpeedUp = value; }
     public bool HasMagnet { get => hasMagnet; set => hasMagnet = value; }
     public bool HasPowerUp { get => hasPowerUp; set => hasPowerUp = value; }
+    public bool HasForceField { get => hasForceField; set => hasForceField = value; }
 
 
     // Start is called before the first frame update
@@ -60,6 +63,13 @@ public class PowerupManager : MonoBehaviour
                 ui.UpdatePowerUI(player, 3, false);
                 sphere.radius = 6f;
                 StartCoroutine(CancelPowers(3, 5f));
+            }
+            else if (hasForceField)
+            {
+                Debug.LogError("spawned force field");
+                ui.UpdatePowerUI(player, 4, false);
+                Instantiate(forceField);
+                StartCoroutine(CancelPowers(4, 5f));
             }
             HasPowerUp = false;
         }
@@ -116,6 +126,12 @@ public class PowerupManager : MonoBehaviour
         {
             hasMagnet = false;
             sphere.radius = 2f;
+            Debug.LogError("Coroutine end");
+        }
+        if (powerNum == 4)
+        {
+            hasForceField = false;
+            Destroy(forceField);
             Debug.LogError("Coroutine end");
         }
     }
