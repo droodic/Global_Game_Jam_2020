@@ -175,8 +175,7 @@ public class UIManager : MonoBehaviour
             }
 
             p1Power.enabled = false;
-            p2Power.enabled = false;
-
+            
         }
         else if (player.tag == "Player2" && !enable)
         {
@@ -191,6 +190,7 @@ public class UIManager : MonoBehaviour
                     p2SliderFill.color = defaultFillColor;
                 }
             }
+            p2Power.enabled = false;
         }
 
     }
