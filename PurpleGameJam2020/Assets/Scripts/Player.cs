@@ -7,14 +7,17 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField] float sprintMeter;
-
+    
     bool sprinting;
 
     bool sprintLocked;
+    bool sprintBuffed;
+
     float lockTimer = 5f;
 
     public float SprintMeter { get => sprintMeter; set => sprintMeter = value; }
     public bool SprintLocked { get => sprintLocked; set => sprintLocked = value; }
+    public bool SprintBuffed { get => sprintBuffed; set => sprintBuffed = value; }
 
     bool player2;
     Gamepad gp;
@@ -64,20 +67,28 @@ public class Player : MonoBehaviour
 
     void Sprint()
     {
-        if (!sprinting) sprinting = true; //onlyonce
-
-        if (sprinting && SprintMeter > 0)
+        if (!SprintBuffed)
         {
-            SprintMeter-=0.75f;
-           // p1slider.value = SprintMeter;
-        }
-        else if (SprintMeter <= 0)
-        {
-            SprintMeter = 0;
-            SprintLocked = true;
-        }
+            if (!sprinting) sprinting = true; //onlyonce
 
-        Debug.Log("Sprintmeter" + SprintMeter.ToString());
+            if (sprinting && SprintMeter > 0)
+            {
+                SprintMeter -= 0.55f;
+                // p1slider.value = SprintMeter;
+            }
+            else if (SprintMeter <= 0)
+            {
+                SprintMeter = 0;
+                SprintLocked = true;
+            }
+
+            Debug.Log("Sprintmeter" + SprintMeter.ToString());
+        }
+        
+        else if (SprintBuffed)
+        {
+            SprintMeter = 50f;
+        }
     }
 
     void ClearSprint(bool locked)

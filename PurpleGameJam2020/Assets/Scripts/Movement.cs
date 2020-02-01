@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour
     private Gamepad _gamepad;
     private Keyboard _keyboard;
     public Gamepad Gamepad { get => _gamepad; set => _gamepad = value; }
+    public GameObject Arm { get => _arm; set => _arm = value; }
+
     InputAction _WASD;
     InputAction _MOUSE;
     private Vector2 _mousePos;
@@ -123,13 +125,13 @@ public class Movement : MonoBehaviour
                 return;
             }
             rotation = Quaternion.LookRotation(move.normalized, Vector3.up);
-            _arm.transform.rotation = rotation;
+            Arm.transform.rotation = rotation;
         }
         else
         {
             move = raycastHit.point;
-            move.y = _arm.transform.position.y;
-            _arm.transform.LookAt(move);
+            move.y = Arm.transform.position.y;
+            Arm.transform.LookAt(move);
         }
         if (vect.x == 0 && vect.y == 0)
         {
