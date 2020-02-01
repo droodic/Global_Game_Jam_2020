@@ -18,21 +18,29 @@ public class InventoryManager : MonoBehaviour
         {
             debrisCount++;
             Debug.Log(debrisCount);
-            Destroy(debris);
+            if (debris.transform.position == gameObject.transform.position)
+            {
+                Destroy(debris);
+            }
         }
     }
 
     public bool hasReachedMaxInventory()
     {
-        if(debrisCount >= maxInventory)
+        if (debrisCount >= maxInventory)
         {
-            Debug.Log("inventoryFull");
+            //Debug.Log("inventoryFull");
             return true;
         }
         else
         {
-            Debug.Log("inventoryNotFull");
+            //Debug.Log("inventoryNotFull");
             return false;
         }
+    }
+
+    public void RemoveDebrisCount()
+    {
+        debrisCount--;
     }
 }

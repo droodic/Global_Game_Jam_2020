@@ -18,20 +18,20 @@ public class Player : MonoBehaviour
 
     bool player2;
     Gamepad gp;
+    PowerupManager power;
     // Start is called before the first frame update
     void Start()
     {
         gp = GetComponent<Movement>().Gamepad;
+        power = GetComponent<PowerupManager>();
         player2 = this.gameObject.tag == "Player2";
  
     }
 
-    // Update is called once per frame
+    // Input tracker
     void Update()
     {
         //string ButtonName = player2 ? "Sprint2" : "Sprint";
-
-
 
         if (gp != null) 
         {
@@ -44,7 +44,13 @@ public class Player : MonoBehaviour
             {
                 ClearSprint(SprintLocked);
             }
+            //Call power
+            if (gp.buttonWest.wasPressedThisFrame)
+            {
+                power.UsePower();
+            }
         }
+
         //Debug Switch
         if (Keyboard.current.pKey.wasPressedThisFrame)
         {

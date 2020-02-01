@@ -4,16 +4,44 @@ using UnityEngine;
 
 public class DebrisBehaviour : MonoBehaviour
 {
+    private Transform target;
+    private bool isColliding = false;
+    [SerializeField] private float movementSpeed = 10.0f;
+
     /// <summary>
     /// Debris collection behaviour
     /// </summary>
-    /// <param name="collidier"></param>
-    public void OnTriggerEnter(Collider collidier)
+    /// <param name="collider"></param>
+    public void OnTriggerEnter(Collider collider)
     {
-        if (collidier.gameObject.tag == "Player") //to change to vacuum part
+        if ((collider.gameObject.tag == "Player" || collider.gameObject.tag == "Player2") && !isColliding)
         {
-            var ivm = collidier.gameObject.GetComponent<InventoryManager>();
+            var ivm = collider.gameObject.GetComponent<InventoryManager>();
+            if (ivm.hasReachedMaxInventory())
+            {
+                return;
+            }
             ivm.AddDebrisCount(this.gameObject);
+            GetComponent<SphereCollider>().enabled = false;
+            target = collider.gameObject.transform;
+            isColliding = true;
+        }
+    }
+
+    public void MoveToPlayerCenter(Collider playerCollider)
+    {
+        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, playerCollider.transform.position, movementSpeed * Time.deltaTime);
+    }
+
+    public void Update()
+    {
+        if (target != null && isColliding)
+        {
+            MoveToPlayerCenter(target.GetComponent<Collider>());
+            if (gameObject.transform.position == target.position)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
