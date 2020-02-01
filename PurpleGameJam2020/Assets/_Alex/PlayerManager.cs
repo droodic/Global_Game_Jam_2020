@@ -60,7 +60,7 @@ public class PlayerManager : MonoBehaviour
         if (_players.Count == 1)
         {
             player.tag = "Player";
-            player.gameObject.layer = LayerMask.GetMask("Player1");
+            player.gameObject.layer = LayerMask.NameToLayer("Player1");
             UIManager.Instance.P1 = player;
             
             
@@ -68,7 +68,7 @@ public class PlayerManager : MonoBehaviour
         else if (_players.Count == 2)
         {
             player.tag = "Player2";
-            player.gameObject.layer = LayerMask.GetMask("Player2");
+            player.gameObject.layer = LayerMask.NameToLayer("Player2");
             UIManager.Instance.P2 = player;
 
         }
