@@ -9,7 +9,7 @@ public class DebrisExplode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("RainDebris", 0.0175f, 0.0175f);
+        InvokeRepeating("RainDebris", 0.0235f, 0.0235f);
     }
 
     // Update is called once per frame
@@ -20,9 +20,9 @@ public class DebrisExplode : MonoBehaviour
 
     void RainDebris()
     {
-        if(count < 300)
+        if(count < 235)
         {
-            Instantiate(debris, this.transform);
+           // Instantiate(debris, this.transform);
             count++;
         }
         else

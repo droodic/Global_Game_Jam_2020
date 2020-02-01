@@ -97,6 +97,16 @@ public class UIManager : MonoBehaviour
                 //p1Power.sprite = speedupSprite;
                 p2Power.enabled = true;
             }
+            if (p1.GetComponent<PowerupManager>().HasMagnet)
+            {
+                //p1Power.sprite = speedupSprite;
+                p1Power.enabled = true;
+            }
+            else if (p2.GetComponent<PowerupManager>().HasMagnet)
+            {
+                //p1Power.sprite = speedupSprite;
+                p2Power.enabled = true;
+            }
         }
         
 
