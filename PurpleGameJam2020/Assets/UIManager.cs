@@ -158,7 +158,7 @@ public class UIManager : MonoBehaviour
             p2PowerAnim.Play();
         }
 
-        if(player.tag == "Player" && !enable)
+        if (player.tag == "Player" && !enable)
         {
             //Disable speed buff
             if (num == 2)
@@ -166,8 +166,8 @@ public class UIManager : MonoBehaviour
                 if (P1.SprintBuffed)
                 {
                     p1SliderFill.color = Color.white;
-               
-                if (!P1.SprintBuffed)
+                }
+                else if (!P1.SprintBuffed)
                 {
                     p1SliderFill.color = defaultFillColor;
                 }
@@ -176,18 +176,20 @@ public class UIManager : MonoBehaviour
 
             p1Power.enabled = false;
             p2Power.enabled = false;
-            }
 
         }
-        else if(player.tag == "Player1" && !enable)
+        else if (player.tag == "Player2" && !enable)
         {
-            if (P2.SprintBuffed)
+            if (num == 2)
             {
-                p2SliderFill.color = Color.white;
-            }
-            else if (!P2.SprintBuffed)
-            {
-                p2SliderFill.color = defaultFillColor;
+                if (P2.SprintBuffed)
+                {
+                    p2SliderFill.color = Color.white;
+                }
+                else if (!P2.SprintBuffed)
+                {
+                    p2SliderFill.color = defaultFillColor;
+                }
             }
         }
 
