@@ -65,7 +65,7 @@ public class Movement : MonoBehaviour
         var newSpeed = _speed;
         //string sprintButton = _player2 ? "Sprint2" : "Sprint";
         //if (Input.GetButton(sprintButton))
-        if (_gamepad.rightShoulder.ReadValue() > 0)
+        if (_gamepad.rightShoulder.ReadValue() > 0 && !player.SprintLocked)
         {
             newSpeed = _speed * 3.0f;
         }
