@@ -9,10 +9,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] Player p1;
     [SerializeField] Player p2;
 
+    //Energy
     [SerializeField] Slider p1EnergySlider;
     [SerializeField] Image p1SliderBg;
     [SerializeField] Slider p2EnergySlider;
     [SerializeField] Image p2SliderBg;
+
+    //Powerups
+    [SerializeField] Image p1Power;
+    [SerializeField] Image p2Power;
+
 
     Color defaultColor;
 
@@ -48,6 +54,19 @@ public class UIManager : MonoBehaviour
         else if (!p2.SprintLocked)
         {
             p2SliderBg.color = defaultColor;
+        }
+    }
+
+    public void UpdatePowerUI()
+    {
+        if (p1.GetComponent<PowerupManager>().HasDebrisBomb)
+        {
+           //p1Power.sprite = bombsprite;
+            p1Power.enabled = true;
+        }
+        else
+        {
+            p1Power.enabled = false;
         }
     }
 }
