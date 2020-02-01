@@ -58,6 +58,7 @@ public class InventoryManager : MonoBehaviour
         if (debrisCount > 0)
         {
             debrisCount--;
+            UIManager.Instance.UpdateDebrisUI(this);
         }
         Debug.Log($"Inv: {debrisCount}");
     }
