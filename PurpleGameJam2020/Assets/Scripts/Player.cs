@@ -27,9 +27,14 @@ public class Player : MonoBehaviour
     private Movement _movement;
     PowerupManager power;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         _inputManager = GetComponent<InputManager>();
+    }
+
+    void Start()
+    {
+        //_inputManager = GetComponent<InputManager>();
         _movement = GetComponent<Movement>();
         power = GetComponent<PowerupManager>();
         CameraRig.Instance.AddPlayer(this);

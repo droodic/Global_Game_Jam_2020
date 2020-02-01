@@ -15,7 +15,7 @@ public class RepairableBehaviour : MonoBehaviour
 
     public bool isRepaired()
     {
-        if(currentDebrisCount >= debrisCountNeeded)
+        if (currentDebrisCount >= debrisCountNeeded)
         {
             isBroken = false;
             return true;
@@ -25,7 +25,15 @@ public class RepairableBehaviour : MonoBehaviour
 
     public void Repair()
     {
-        currentDebrisCount++;
+        if (currentDebrisCount <= debrisCountNeeded)
+        {
+            currentDebrisCount++;
+        }
+        else
+        {
+            isRepaired();
+        }
+        Debug.Log($"Needed: {currentDebrisCount}");
     }
 
     public void Break()
