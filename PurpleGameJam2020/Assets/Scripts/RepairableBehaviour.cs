@@ -7,10 +7,12 @@ public class RepairableBehaviour : MonoBehaviour
 
 
     private bool isBroken = true;
+    [SerializeField] Transform jumpLocation;
     [SerializeField] private int debrisCountNeeded = 100;
     private int currentDebrisCount = 0;
 
     public bool IsBroken { get => isBroken; set => isBroken = value; }
+    public Transform JumpLocation { get => jumpLocation; set => jumpLocation = value; }
 
     public void Awake()
     {
