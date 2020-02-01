@@ -37,6 +37,11 @@ public class RepairObjects : MonoBehaviour
         }
     }
 
+    void OnTriggerExit(Collider col)
+    {
+        isRepairing = false;
+    }
+
     public void ShowParticles()
     {
         var randomPosition = new Vector3(Random.Range(0f, 3f), Random.Range(0f, 3f), Random.Range(0f, 3f));
