@@ -74,13 +74,10 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void UpdateDebrisUI(InventoryManager im)
+    public void UpdateDebrisUI()
     {
-        if (P1im == null) P1im = im;
-        if (P2im == null) P2im = im;
-
-        p1DebrisSlider.value = P1im.DebrisCount;
-        p2DebrisSlider.value = P2im.DebrisCount;
+        p1DebrisSlider.value = P1.GetComponent<InventoryManager>().DebrisCount;
+        p2DebrisSlider.value = P2.GetComponent<InventoryManager>().DebrisCount;
 
     }
 
