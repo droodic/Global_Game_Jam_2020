@@ -23,8 +23,20 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private List<Player> _players;
     public List<Player> Players { get => _players; set => _players = value; }
     
+
+
     public void AddPlayer(Player player)
     {
         _players.Add(player);
+        if (_players.Count ==1)
+        {
+            UIManager.Instance.P1 = player;
+            UIManager.Instance.P1.tag = "Player";
+        }
+        else if (_players.Count == 2)
+        {
+            UIManager.Instance.P2 = player;
+            UIManager.Instance.P2.tag = "Player2";
+        }
     }
 }

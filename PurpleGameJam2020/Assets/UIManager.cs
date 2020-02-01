@@ -104,23 +104,20 @@ public class UIManager : MonoBehaviour
             if (player.GetComponent<PowerupManager>().HasDebrisBomb)
             {
                 //p1Power.sprite = bombsprite;
-                p1Power.enabled = true;
-                p1PowerAnim.Play();
+
             }
             else if (player.GetComponent<PowerupManager>().HasDebrisBomb)
             {
                 //p1Power.sprite = bombsprite;
-                p1Power.enabled = true;
-                p1PowerAnim.Play();
+
             }
 
             if (player.GetComponent<PowerupManager>().HasSpeedUp)
             {
                 //p1Power.sprite = speedupSprite;
-                p1Power.enabled = true;
-                p1PowerAnim.Play();
             }
-
+            p1Power.enabled = true;
+            p1PowerAnim.Play();
         }
         else if (player.tag == "Player2" && enable)
         {
@@ -128,22 +125,21 @@ public class UIManager : MonoBehaviour
             if (player.GetComponent<PowerupManager>().HasDebrisBomb)
             {
                 //p1Power.sprite = bombsprite;
-                p2Power.enabled = true;
-                p2PowerAnim.Play();
+
             }
             else if (player.GetComponent<PowerupManager>().HasDebrisBomb)
             {
                 //p1Power.sprite = bombsprite;
-                p2Power.enabled = true;
-                p2PowerAnim.Play();
+
             }
 
             if (player.GetComponent<PowerupManager>().HasSpeedUp)
             {
                 //p1Power.sprite = speedupSprite;
-                p2Power.enabled = true;
-                p2PowerAnim.Play();
+
             }
+            p2Power.enabled = true;
+            p2PowerAnim.Play();
         }
 
 

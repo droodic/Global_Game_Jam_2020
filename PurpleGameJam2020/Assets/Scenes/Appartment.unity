@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 112000000, guid: 7d9cc12b94ebf314bb696e653b174543,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3163,8 +3163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8822a9936b3d149bcc4dc3296675f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1: {fileID: 0}
-  p2: {fileID: 0}
   p1EnergySlider: {fileID: 301373705}
   p1SliderFill: {fileID: 688379152}
   p1SliderBg: {fileID: 1346438724}
@@ -3173,8 +3171,8 @@ MonoBehaviour:
   p2SliderBg: {fileID: 1496041312}
   p1Power: {fileID: 1181883418}
   p2Power: {fileID: 489365579}
-  p1PowerAnim: {fileID: 0}
-  p2PowerAnim: {fileID: 0}
+  p1PowerAnim: {fileID: 337352138}
+  p2PowerAnim: {fileID: 1718997226}
 --- !u!1 &1557100043
 GameObject:
   m_ObjectHideFlags: 0
