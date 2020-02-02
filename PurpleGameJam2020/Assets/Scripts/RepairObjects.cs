@@ -9,6 +9,7 @@ public class RepairObjects : MonoBehaviour
     private bool isRepairing = false;
     private RepairableBehaviour objectToRepair;
     [SerializeField] private GameObject debrisParticle;
+    [SerializeField] private Collider _collider;
 
     void Start()
     {
@@ -28,14 +29,19 @@ public class RepairObjects : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider collider)
+    private void OnTriggerStay(Collider collider)
     {
         if (collider.CompareTag("RepairableObject") && !collider.GetComponentInParent<RepairableBehaviour>().IsRepaired())
         {
             objectToRepair = collider.GetComponentInParent<RepairableBehaviour>();
             isRepairing = true;
-        }
+        }       
     }
+
+    //public void OnTriggerEnter(Collider collider)
+    //{
+    //    if (collider.CompareTag("RepairableObject") 
+    //}
 
     void OnTriggerExit(Collider col)
     {

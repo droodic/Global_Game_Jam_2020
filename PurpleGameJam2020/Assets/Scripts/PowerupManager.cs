@@ -54,7 +54,7 @@ public class PowerupManager : MonoBehaviour
             {
                 Debug.Log("used speedup");
                 player.SprintBuffed = true;
-                HasSpeedUp = false;
+                //HasSpeedUp = false;
                 ui.UpdatePowerUI(player, 2, false);
                 StartCoroutine(CancelPowers(2, 5f));
             }
@@ -103,7 +103,7 @@ public class PowerupManager : MonoBehaviour
     {
 
 
-        int num = Random.Range(2, 5);
+        int num = Random.Range(2, 3);
         if (num == 1)
         {
             HasDebrisBomb = true;
