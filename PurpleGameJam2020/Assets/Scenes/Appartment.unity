@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 112000000, guid: 7d9cc12b94ebf314bb696e653b174543,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7889,7 +7889,6 @@ Transform:
   - {fileID: 496687131}
   - {fileID: 1298242976}
   - {fileID: 1284134336}
-  - {fileID: 2097918712}
   - {fileID: 2087984702}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -10529,12 +10528,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1266586769588418231, guid: 548ba5e55b1d05940b88bf0200904364,
     type: 3}
   m_PrefabInstance: {fileID: 2087984701}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2097918712 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1266586769588418231, guid: 548ba5e55b1d05940b88bf0200904364,
-    type: 3}
-  m_PrefabInstance: {fileID: 1878294106}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2103649793
 GameObject:
