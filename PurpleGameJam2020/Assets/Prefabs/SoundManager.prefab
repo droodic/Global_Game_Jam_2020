@@ -237,8 +237,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e916ada202e8b9c439b0407c6ede719d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  efxSource: {fileID: 4160830314249901619}
+  playerMoveSource: {fileID: 4160830314249901619}
+  catMoveSource: {fileID: 0}
   musicSource: {fileID: 4160830314249901616}
   playerMoveSound: {fileID: 8300000, guid: 734275e3c96cbd040ab6852f5d8fdd8f, type: 3}
   lowPitchRange: 0.95
   highPitchRange: 1.05
+  catClips:
+  - {fileID: 8300000, guid: 17ea459a1af2d0947b11af9304f17160, type: 3}
+  - {fileID: 8300000, guid: 5b8e2297399edb5439e092749500300a, type: 3}
+  - {fileID: 8300000, guid: a1f1ada3691c0664eba068422e63455c, type: 3}
+  repairSound: {fileID: 8300000, guid: 015d4a22b312a074fb4fb1b420634d05, type: 3}
