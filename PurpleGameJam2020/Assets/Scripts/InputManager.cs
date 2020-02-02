@@ -70,6 +70,10 @@ public class InputManager : MonoBehaviour
 
     public void OnRepair(InputAction.CallbackContext context)
     {
+        if (SoundManager.Instance == null)
+        {
+            return;
+        }
         if (context.ReadValue<float>() == 1)
         {
             _repairing = true;

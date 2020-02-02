@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
     //Subpanels
     [SerializeField] Text winnerText;
     [SerializeField] Text postGamep1Score;
-   // [SerializeField] Text postGamep2Score;
+    // [SerializeField] Text postGamep2Score;
 
     //VP
     [SerializeField] Text p1Vp;
@@ -76,14 +76,15 @@ public class UIManager : MonoBehaviour
     //VictoryPanel
     [SerializeField] GameObject victoryPanel;
 
-    //Pause Panel
-    [SerializeField] GameObject pausePanel;
     [SerializeField] Button _pauseButton;
-
+    [SerializeField] Button _victoryButton;
 
     Color defaultColor;
     Color defaultFillColor;
-
+    private void OnEnable()
+    {
+        Time.timeScale = 0.0f;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -91,7 +92,6 @@ public class UIManager : MonoBehaviour
         defaultFillColor = p1SliderFill.color;
         game = FindObjectOfType<GameManager>();
         victoryPanel.gameObject.SetActive(false);
-        //_pauseButton.Select();
         pausePanel.gameObject.SetActive(false);
     }
 
@@ -99,14 +99,14 @@ public class UIManager : MonoBehaviour
     {
 
 
-    /*[SerializeField] Text winnerText;
-    [SerializeField] Text postGamep1Score;
-    [SerializeField] Text postGamep2Score;*/
-        if(p1.VictoryPoints > p2.VictoryPoints)
+        /*[SerializeField] Text winnerText;
+        [SerializeField] Text postGamep1Score;
+        [SerializeField] Text postGamep2Score;*/
+        if (p1.VictoryPoints > p2.VictoryPoints)
         {
             winnerText.text = "Victoire au Joueur 1!";
         }
-        else if(p1.VictoryPoints < p2.VictoryPoints)
+        else if (p1.VictoryPoints < p2.VictoryPoints)
         {
             winnerText.text = "Victoire au Joueur 2!";
         }
@@ -116,10 +116,11 @@ public class UIManager : MonoBehaviour
         }
 
         postGamep1Score.text = "Points Joueur 1 : " + p1.VictoryPoints.ToString() + "\nPoints Joueur 2 : " + p2.VictoryPoints.ToString();
-       // postGamep2Score.text = p2.VictoryPoints.ToString();
-
+        // postGamep2Score.text = p2.VictoryPoints.ToString();
+        Time.timeScale = 0.0f;
         HudPanel.SetActive(false);
         VictoryPanel.SetActive(true);
+        _victoryButton.Select();
     }
 
     // Update is called once per frame
@@ -147,13 +148,13 @@ public class UIManager : MonoBehaviour
 
     public void UpdateWithBonus(Player player, int num)
     {
-        if(player.tag == "Player")
+        if (player.tag == "Player")
         {
             p1Bonus.text = "Complete! +" + num;
             p1Bonus.enabled = true;
             p1Bonus.GetComponent<Animation>().Play();
         }
-        else if(player.tag == "Player2")
+        else if (player.tag == "Player2")
         {
             p2Bonus.text = "Complete! +" + num;
             p2Bonus.enabled = true;
@@ -201,15 +202,15 @@ public class UIManager : MonoBehaviour
 
     public void DisablePowerBtn(Player player)
     {
-        if(player.tag == "Player")
-        { 
+        if (player.tag == "Player")
+        {
             p1Power.enabled = false;
         }
         else
         {
             p2Power.enabled = false;
         }
-        
+
     }
 
     /// <summary>
@@ -260,7 +261,7 @@ public class UIManager : MonoBehaviour
 
             }
 
-            else if(player.GetComponent<PowerupManager>().HasForceField)
+            else if (player.GetComponent<PowerupManager>().HasForceField)
             {
                 p2Power.sprite = forcefieldPower;
             }
@@ -284,8 +285,6 @@ public class UIManager : MonoBehaviour
 
             }
 
-            
-            
         }
         else if (player.tag == "Player2" && !enable)
         {
@@ -294,7 +293,7 @@ public class UIManager : MonoBehaviour
                 if (P2.SprintBuffed)
                 {
                     p2SliderFill.color = Color.white;
-                    
+
                 }
                 else if (!P2.SprintBuffed)
                 {
@@ -317,11 +316,14 @@ public class UIManager : MonoBehaviour
 
     public void PauseGame()
     {
+        HudPanel.SetActive(false);
         pausePanel.gameObject.SetActive(true);
-        //_pauseButton.Select();
         Time.timeScale = 0;
+        _pauseButton.Select();
+        Debug.Log("PAUSE!!!");
+
     }
-    
+
     public void UnpauseGame()
     {
         pausePanel.gameObject.SetActive(false);

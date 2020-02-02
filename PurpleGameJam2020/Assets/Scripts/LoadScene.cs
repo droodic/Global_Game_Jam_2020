@@ -10,6 +10,7 @@ public class LoadScene : MonoBehaviour {
     /// </summary>
     public void Load()
     {
+        ResetTimeScale();
         if (_async == null)
         {
             Scene curScene = SceneManager.GetActiveScene();
@@ -32,6 +33,7 @@ public class LoadScene : MonoBehaviour {
     /// <param name="sceneIndex">The index of the scene to load</param>
     public void Load(int sceneIndex)
     {
+        ResetTimeScale();
         if (_async == null)
         {
             _async = SceneManager.LoadSceneAsync(sceneIndex);
@@ -46,12 +48,18 @@ public class LoadScene : MonoBehaviour {
         }
     }
 
+    private static void ResetTimeScale()
+    {
+        Time.timeScale = 1.0f;
+    }
+
     /// <summary>
     /// Call to load a new scene, will load the scene based on the param 
     /// </summary>
     /// <param name="sceneName">Name of the scene to load</param>
     public void Load(string sceneName)
     {
+        ResetTimeScale();
         if (_async == null)
         {
             _async = SceneManager.LoadSceneAsync(sceneName);

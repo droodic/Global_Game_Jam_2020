@@ -145,7 +145,15 @@ public class Player : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            UIManager.Instance.PauseGame();
+            if (Time.timeScale == 0.0f)
+            {
+                //UIManager.Instance.UnpauseGame();
+                Debug.Log("UNPAUSE!!!");
+            }
+            else
+            {
+                UIManager.Instance.PauseGame();
+            }
         }
     }
 }

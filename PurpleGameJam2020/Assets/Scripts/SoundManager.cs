@@ -32,7 +32,7 @@ public class SoundManager : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     public void PlaySingle(AudioClip clip)

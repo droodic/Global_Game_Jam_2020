@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        Time.timeScale = 1f; ;
         playing = true;
     }
 
@@ -49,7 +48,6 @@ public class GameManager : MonoBehaviour
         {
             playing = false;
             UIManager.Instance.DisplayVictory();
-            Time.timeScale = 0f;
         }
     }
 }
