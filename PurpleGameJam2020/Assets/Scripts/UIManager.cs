@@ -81,7 +81,6 @@ public class UIManager : MonoBehaviour
             p2EnergySlider.value = P2.SprintMeter;
             CheckEnergyLocks();
         }
-
     }
 
     public void UpdateVp()
@@ -165,7 +164,6 @@ public class UIManager : MonoBehaviour
             else if (player.GetComponent<PowerupManager>().HasMagnet)
             {
                 p1Power.sprite = magnetPower;
-
             }
 
             else if (player.GetComponent<PowerupManager>().HasForceField)
