@@ -26,7 +26,7 @@ public class Cat : MonoBehaviour
         do
         {
             destroyIndex = Random.Range(0, destructables.Length);
-            Debug.Log("Same index as previous, rerolling");
+            //Debug.Log("Same index as previous, rerolling");
         }   while (destroyIndex.Equals(previousIndex));
         //transform.LookAt(Vector3(otherObject.position.x, transform.position.y, otherObject.position.z));
         this.transform.LookAt(new Vector3(destructables[destroyIndex].transform.position.x, transform.position.y, destructables[destroyIndex].transform.position.z));
@@ -58,6 +58,6 @@ public class Cat : MonoBehaviour
 
         destructables[destroyIndex].Break();
         //destroyIndex++;
-        Debug.Log("Cat attack");
+        //Debug.Log("Cat attack");
     }
 }
