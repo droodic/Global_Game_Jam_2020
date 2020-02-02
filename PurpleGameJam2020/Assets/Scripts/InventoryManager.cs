@@ -8,10 +8,12 @@ public class InventoryManager : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private int debrisCount = 0;
 
+    DebrisSpawn ds;
     public int DebrisCount { get => debrisCount; set => debrisCount = value; }
 
     public void Start()
     {
+        ds = FindObjectOfType<DebrisSpawn>();
         //Debug.Log(DebrisCount);
     }
 
@@ -20,6 +22,7 @@ public class InventoryManager : MonoBehaviour
         if (!hasReachedMaxInventory())
         {
             DebrisCount++;
+            ds.SpawnedDebris--;
            // Debug.Log(DebrisCount);
             /*if (debris.transform.position == gameObject.transform.position)
             {
