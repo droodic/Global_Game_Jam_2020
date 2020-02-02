@@ -97,8 +97,10 @@ public class PowerupManager : MonoBehaviour
                 
             }
             HasPowerUp = false;
+            ui.DisablePowerBtn(player);
         }
 
+        
         else
         {
             //Debug.LogError("No current power");
