@@ -19,7 +19,7 @@ public class RepairObjects : MonoBehaviour
     {
         if (isRepairing && objectToRepair != null)
         {
-            if (Mouse.current.leftButton.ReadValue() > 0 && gameObject.GetComponent<InventoryManager>().hasAnyDebris() &&objectToRepair.IsBroken)
+            if (Mouse.current.leftButton.ReadValue() > 0 && gameObject.GetComponent<InventoryManager>().hasAnyDebris() && objectToRepair.IsBroken)
             {
                 objectToRepair.Repair(player);
                 gameObject.GetComponent<InventoryManager>().RemoveDebrisCount();
@@ -30,7 +30,7 @@ public class RepairObjects : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("RepairableObject") && !collider.GetComponent<RepairableBehaviour>().isRepaired())
+        if (collider.CompareTag("RepairableObject") && !collider.GetComponent<RepairableBehaviour>().IsRepaired())
         {
             objectToRepair = collider.GetComponent<RepairableBehaviour>();
             isRepairing = true;
@@ -45,10 +45,13 @@ public class RepairObjects : MonoBehaviour
     public void ShowParticles()
     {
         var randomPosition = new Vector3(Random.Range(0f, 3f), Random.Range(0f, 3f), Random.Range(0f, 3f));
-        var debrisClone = Instantiate(debrisParticle, (gameObject.transform.position + randomPosition + (Vector3.up * 0.2f)), Quaternion.identity, gameObject.transform);
-        //debrisClone.transform.position = Vector3.MoveTowards(debrisClone.transform.position, objectToRepair.gameObject.transform.position, 10 * Time.deltaTime);
-        StartCoroutine(MoveDebris(debrisClone));
-        Destroy(debrisClone.gameObject, 1.0f);
+        if (debrisParticle != null)
+        {
+            var debrisClone = Instantiate(debrisParticle, (gameObject.transform.position + randomPosition + (Vector3.up * 0.2f)), Quaternion.identity, gameObject.transform);
+            //debrisClone.transform.position = Vector3.MoveTowards(debrisClone.transform.position, objectToRepair.gameObject.transform.position, 10 * Time.deltaTime);
+            StartCoroutine(MoveDebris(debrisClone));
+            Destroy(debrisClone.gameObject, 1.0f);
+        }
     }
 
     IEnumerator MoveDebris(GameObject debris)
@@ -59,7 +62,7 @@ public class RepairObjects : MonoBehaviour
             debris.transform.position = Vector3.MoveTowards(debris.transform.position, (objectToRepair.gameObject.transform.position + randomPosition), 15 * Time.deltaTime);
             yield return null;
 
-            if(debris == null)
+            if (debris == null)
             {
                 break;
             }

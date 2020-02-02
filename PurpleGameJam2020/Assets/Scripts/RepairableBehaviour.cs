@@ -1,25 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RepairableBehaviour : MonoBehaviour
 {
-
-
     private bool isBroken;
     [SerializeField] Transform jumpLocation;
     [SerializeField] private int debrisCountNeeded = 100;
     private int currentDebrisCount = 0;
+    [SerializeField] private GameObject repairZones;
+    [SerializeField] private TextMesh progressText;
 
     public bool IsBroken { get => isBroken; set => isBroken = value; }
     public Transform JumpLocation { get => jumpLocation; set => jumpLocation = value; }
 
+    public void Start()
+    {
+        repairZones.SetActive(false);
+    }
 
-    public bool isRepaired()
+    public void Update()
+    {
+        DisplayRepairSign();
+        UpdateText();
+    }
+
+    public bool IsRepaired()
     {
         if (currentDebrisCount >= debrisCountNeeded)
         {
-            IsBroken = false;
+            this.isBroken = false;
+            UpdateText();
             return true;
         }
         return false;
@@ -32,20 +44,41 @@ public class RepairableBehaviour : MonoBehaviour
             currentDebrisCount++;
             player.VictoryPoints++;
             UIManager.Instance.UpdateVp();
+            UpdateText();
         }
         else
         {
-            isRepaired();
-            IsBroken = false;
+            IsRepaired();
+            this.isBroken = false;
             player.VictoryPoints += 100;
             UIManager.Instance.UpdateVp();
+            UpdateText();
         }
         Debug.Log($"Needed: {currentDebrisCount}");
     }
 
     public void Break()
     {
-        IsBroken = true;
+        this.isBroken = true;
         currentDebrisCount = 0;
+        UpdateText();
+    }
+
+    public void DisplayRepairSign()
+    {
+        if (repairZones != null && this.isBroken)
+        {
+            repairZones.SetActive(true);
+        }
+        else
+        {
+            repairZones.SetActive(false);
+        }
+    }
+
+    public void UpdateText()
+    {
+        // progressText.text = $"{((currentDebrisCount / debrisCountNeeded) * 100)} %";
+        progressText.text = currentDebrisCount.ToString() + " / " + debrisCountNeeded.ToString();
     }
 }
