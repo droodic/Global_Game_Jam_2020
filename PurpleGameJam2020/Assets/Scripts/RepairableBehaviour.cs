@@ -7,6 +7,7 @@ public class RepairableBehaviour : MonoBehaviour
 {
     private bool isBroken;
     [SerializeField] Transform jumpLocation;
+    [SerializeField] private int vpCompleteBoost = 100;
     [SerializeField] private int debrisCountNeeded = 100;
     private int currentDebrisCount = 0;
     [SerializeField] private GameObject repairZones;
@@ -51,8 +52,9 @@ public class RepairableBehaviour : MonoBehaviour
         {
             IsRepaired();
             this.isBroken = false;
-            player.VictoryPoints += 100;
+            player.VictoryPoints += vpCompleteBoost;
             UIManager.Instance.UpdateVp();
+            UIManager.Instance.UpdateWithBonus(player, vpCompleteBoost);
             UpdateText();
         }
         Debug.Log($"Needed: {currentDebrisCount}");
