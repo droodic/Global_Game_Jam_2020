@@ -103,11 +103,11 @@ public class PowerupManager : MonoBehaviour
     {
 
 
-        int num = Random.Range(3, 5);
+        int num = Random.Range(2, 5);
         if (num == 1)
         {
             HasDebrisBomb = true;
-                   }
+        }
         else if (num == 2)
         {
             HasSpeedUp = true;
