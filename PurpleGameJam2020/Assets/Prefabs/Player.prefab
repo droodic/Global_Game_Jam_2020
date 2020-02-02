@@ -154,6 +154,10 @@ MonoBehaviour:
   debrisBomb: {fileID: 5844992119902359037, guid: dadafe3b35a625449a3c5a27a535dfd9,
     type: 3}
   sphere: {fileID: 8151482938938841793}
+  forceFieldPlayer1: {fileID: 8634478369428083721, guid: d2a375975bc0cb540a8b0fc5c90f5de1,
+    type: 3}
+  forceFieldPlayer2: {fileID: 5406675224891735744, guid: cbc982a5f9ac85442bc6158b0e7d0b3c,
+    type: 3}
 --- !u!114 &6838978456329300890
 MonoBehaviour:
   m_ObjectHideFlags: 0
