@@ -20,6 +20,7 @@ public class RepairableBehaviour : MonoBehaviour
     public void Start()
     {
         repairZones.SetActive(false);
+        currentDebrisCount = debrisCountNeeded;
     }
 
     public void Update()
