@@ -62,7 +62,7 @@ public class PowerupManager : MonoBehaviour
             {
                 Debug.Log("used magnet power");
                 ui.UpdatePowerUI(player, 3, false);
-                sphere.radius = 6f;
+                sphere.radius = 14f;
                 StartCoroutine(CancelPowers(3, 5f));
             }
             else if (hasForceField) //4
@@ -77,7 +77,7 @@ public class PowerupManager : MonoBehaviour
                 {
                     Destroy(Instantiate(forceFieldPlayer2, this.transform.position, forceFieldPlayer2.transform.rotation, null).gameObject, 5f);
                 }
-                StartCoroutine(CancelPowers(4, 5f));
+                StartCoroutine(CancelPowers(4, 10f));
             }
             HasPowerUp = false;
         }
@@ -103,11 +103,11 @@ public class PowerupManager : MonoBehaviour
     {
 
 
-        int num = Random.Range(3, 5);
+        int num = Random.Range(2, 5);
         if (num == 1)
         {
             HasDebrisBomb = true;
-                   }
+        }
         else if (num == 2)
         {
             HasSpeedUp = true;
@@ -129,20 +129,20 @@ public class PowerupManager : MonoBehaviour
     IEnumerator CancelPowers(int powerNum, float sec)
     {
         yield return new WaitForSeconds(sec);
-        if (powerNum == 2 && !HasSpeedUp)
+        if (powerNum == 2 && HasSpeedUp)
         {
             HasSpeedUp = false;
             player.SprintBuffed = false;
             ui.UpdatePowerUI(player, 2, false);
             Debug.LogError("Coroutine end");
         }
-        if (powerNum == 3 && !hasMagnet)
+        if (powerNum == 3 && hasMagnet)
         {
             hasMagnet = false;
-            sphere.radius = 2f;
+            sphere.radius = 4f;
             Debug.LogError("Coroutine end");
         }
-        if (powerNum == 4 && !HasForceField)
+        if (powerNum == 4 && HasForceField)
         {
             hasForceField = false;
             Debug.LogError("Coroutine end");
