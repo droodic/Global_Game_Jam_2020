@@ -6,13 +6,16 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private Vector2 _moveAxis;
-    public Vector2 MoveAxis { get => _moveAxis; set => _moveAxis = value; }
+    public Vector2 MoveAxis { get => _moveAxis; }
 
     private Vector2 _aimAxis;
-    public Vector2 AimAxis { get => _aimAxis; set => _aimAxis = value; }
+    public Vector2 AimAxis { get => _aimAxis; }
 
     private bool _sprinting;
-    public bool Sprinting { get => _sprinting; set => _sprinting = value; }
+    public bool Sprinting { get => _sprinting; }
+
+    private bool _repairing;
+    public bool Repairing { get => _repairing; }
 
     private PlayerInput _playerInput;
     private bool mouseAndKey;
@@ -60,6 +63,18 @@ public class InputManager : MonoBehaviour
         if (context.started)
         {
             _player.Power.UsePower();
+        }
+    }
+
+    public void OnRepair(InputAction.CallbackContext context)
+    {
+        if (context.ReadValue<float>() == 1)
+        {
+            _repairing = true;
+        }
+        else if (context.ReadValue<float>() == 0)
+        {
+            _repairing = false;
         }
     }
 }

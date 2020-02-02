@@ -16,7 +16,7 @@
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.Vector1ShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Name\": \"LerpValue\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"7f3615fb-9dd7-41a4-9d0c-3a3906af774d\"\n    },\n    \"m_DefaultReferenceName\": \"Vector1_87DCCCB2\",\n    \"m_OverrideReferenceName\": \"_Alpha\",\n    \"m_Precision\": 0,\n    \"m_Value\": 0.10000000149011612,\n    \"m_FloatType\": 1,\n    \"m_RangeValues\": {\n        \"x\": 0.0,\n        \"y\": 1.0\n    },\n    \"m_Hidden\": false\n}"
+            "JSONnodeData": "{\n    \"m_Name\": \"LerpValue\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"7f3615fb-9dd7-41a4-9d0c-3a3906af774d\"\n    },\n    \"m_DefaultReferenceName\": \"Vector1_87DCCCB2\",\n    \"m_OverrideReferenceName\": \"_LerpValue\",\n    \"m_Precision\": 0,\n    \"m_Value\": 0.10000000149011612,\n    \"m_FloatType\": 1,\n    \"m_RangeValues\": {\n        \"x\": 0.0,\n        \"y\": 1.0\n    },\n    \"m_Hidden\": false\n}"
         }
     ],
     "m_SerializableNodes": [
