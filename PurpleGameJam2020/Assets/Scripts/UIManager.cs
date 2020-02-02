@@ -48,6 +48,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image p2SliderBg;
 
     //Powerups
+    [SerializeField] Sprite speedPower;
+    [SerializeField] Sprite magnetPower;
+    [SerializeField] Sprite forcefieldPower;
+
     [SerializeField] Image p1Power;
     [SerializeField] Image p2Power;
     [SerializeField] Animation p1PowerAnim;
@@ -127,20 +131,20 @@ public class UIManager : MonoBehaviour
         if (player.tag == "Player" && enable)
         {
 
-            if (player.GetComponent<PowerupManager>().HasDebrisBomb)
-            {
-                //p1Power.sprite = bombsprite;
-
-            }
-            else if (player.GetComponent<PowerupManager>().HasDebrisBomb)
-            {
-                //p1Power.sprite = bombsprite;
-
-            }
-
             if (player.GetComponent<PowerupManager>().HasSpeedUp)
             {
-                //p1Power.sprite = speedupSprite;
+                p1Power.sprite = speedPower;
+
+            }
+            else if (player.GetComponent<PowerupManager>().HasMagnet)
+            {
+                p1Power.sprite = magnetPower;
+
+            }
+
+            else if (player.GetComponent<PowerupManager>().HasForceField)
+            {
+                p1Power.sprite = forcefieldPower;
             }
             p1Power.enabled = true;
             p1PowerAnim.Play();
@@ -148,21 +152,21 @@ public class UIManager : MonoBehaviour
         else if (player.tag == "Player2" && enable)
         {
 
-            if (player.GetComponent<PowerupManager>().HasDebrisBomb)
-            {
-                //p1Power.sprite = bombsprite;
-
-            }
-            else if (player.GetComponent<PowerupManager>().HasDebrisBomb)
-            {
-                //p1Power.sprite = bombsprite;
-
-            }
 
             if (player.GetComponent<PowerupManager>().HasSpeedUp)
             {
-                //p1Power.sprite = speedupSprite;
+                p2Power.sprite = speedPower;
 
+            }
+            else if (player.GetComponent<PowerupManager>().HasMagnet)
+            {
+                p2Power.sprite = magnetPower;
+
+            }
+
+            else if(player.GetComponent<PowerupManager>().HasForceField)
+            {
+                p2Power.sprite = forcefieldPower;
             }
             p2Power.enabled = true;
             p2PowerAnim.Play();

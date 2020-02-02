@@ -46,13 +46,13 @@ public class PowerupManager : MonoBehaviour
             {
                 GameObject bullet = Instantiate(debrisBomb, transform.forward, Quaternion.identity) as GameObject; //use arm forward
                 bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
-                Debug.LogError("threw debris bomb");
+                Debug.Log("threw debris bomb");
                 hasDebrisBomb = false;
                 ui.UpdatePowerUI(player, 1, false);
             }
             else if (HasSpeedUp) //2
             {
-                Debug.LogError("used speedup");
+                Debug.Log("used speedup");
                 player.SprintBuffed = true;
                 HasSpeedUp = false;
                 ui.UpdatePowerUI(player, 2, false);
@@ -60,18 +60,18 @@ public class PowerupManager : MonoBehaviour
             }
             else if (hasMagnet) //3
             {
-                Debug.LogError("used magnet power");
+                Debug.Log("used magnet power");
                 ui.UpdatePowerUI(player, 3, false);
                 sphere.radius = 6f;
                 StartCoroutine(CancelPowers(3, 5f));
             }
             else if (hasForceField) //4
             {
-                Debug.LogError("spawned force field");
+                Debug.Log("spawned force field");
                 ui.UpdatePowerUI(player, 4, false);
                 if (player == PlayerManager.Instance.Players[0])
                 {
-                    Destroy(Instantiate(forceFieldPlayer1, this.transform.position, forceFieldPlayer1.transform.rotation,  null).gameObject, 5f);
+                    Destroy(Instantiate(forceFieldPlayer1, this.transform.position, forceFieldPlayer1.transform.rotation, null).gameObject, 5f);
                 }
                 else if (player == PlayerManager.Instance.Players[1])
                 {
@@ -102,12 +102,12 @@ public class PowerupManager : MonoBehaviour
     void RollRandomPower()
     {
 
-        int num = 4;
-        //num = Random.Range(1, 2);
+
+        int num = Random.Range(3, 5);
         if (num == 1)
         {
             HasDebrisBomb = true;
-        }
+                   }
         else if (num == 2)
         {
             HasSpeedUp = true;
@@ -116,11 +116,12 @@ public class PowerupManager : MonoBehaviour
         {
             HasMagnet = true;
         }
-        else if(num == 4)
+        else if (num == 4)
         {
             HasForceField = true;
         }
-
+        Debug.Log(num);
+        HasPowerUp = true;
         ui.UpdatePowerUI(player);
     }
 
@@ -128,13 +129,14 @@ public class PowerupManager : MonoBehaviour
     IEnumerator CancelPowers(int powerNum, float sec)
     {
         yield return new WaitForSeconds(sec);
-        if (powerNum == 2)
+        if (powerNum == 2 && !HasSpeedUp)
         {
+            HasSpeedUp = false;
             player.SprintBuffed = false;
             ui.UpdatePowerUI(player, 2, false);
             Debug.LogError("Coroutine end");
         }
-        if (powerNum == 3)
+        if (powerNum == 3 && !hasMagnet)
         {
             hasMagnet = false;
             sphere.radius = 2f;
@@ -145,6 +147,7 @@ public class PowerupManager : MonoBehaviour
             hasForceField = false;
             Debug.LogError("Coroutine end");
         }
+
     }
 }
 

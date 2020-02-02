@@ -49,6 +49,14 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Repair"",
+                    ""type"": ""Button"",
+                    ""id"": ""8dad15fc-83f9-48c7-8e5d-bf28f276baf0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -183,6 +191,39 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                     ""action"": ""Power"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5bf812c-976a-40e7-a80b-9679951d95a9"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyAndMouse"",
+                    ""action"": ""Power"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97b8aeca-f0bc-4cf3-b184-46c00a129254"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyAndMouse"",
+                    ""action"": ""Repair"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9690e97-8655-4821-88ea-da9018d0644a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Repair"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -223,6 +264,7 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
         m_Actions_Aim = m_Actions.FindAction("Aim", throwIfNotFound: true);
         m_Actions_Sprint = m_Actions.FindAction("Sprint", throwIfNotFound: true);
         m_Actions_Power = m_Actions.FindAction("Power", throwIfNotFound: true);
+        m_Actions_Repair = m_Actions.FindAction("Repair", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -276,6 +318,7 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
     private readonly InputAction m_Actions_Aim;
     private readonly InputAction m_Actions_Sprint;
     private readonly InputAction m_Actions_Power;
+    private readonly InputAction m_Actions_Repair;
     public struct ActionsActions
     {
         private @InputSystemControl m_Wrapper;
@@ -284,6 +327,7 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
         public InputAction @Aim => m_Wrapper.m_Actions_Aim;
         public InputAction @Sprint => m_Wrapper.m_Actions_Sprint;
         public InputAction @Power => m_Wrapper.m_Actions_Power;
+        public InputAction @Repair => m_Wrapper.m_Actions_Repair;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -305,6 +349,9 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                 @Power.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPower;
                 @Power.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPower;
                 @Power.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPower;
+                @Repair.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnRepair;
+                @Repair.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnRepair;
+                @Repair.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnRepair;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -321,6 +368,9 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                 @Power.started += instance.OnPower;
                 @Power.performed += instance.OnPower;
                 @Power.canceled += instance.OnPower;
+                @Repair.started += instance.OnRepair;
+                @Repair.performed += instance.OnRepair;
+                @Repair.canceled += instance.OnRepair;
             }
         }
     }
@@ -349,5 +399,6 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnPower(InputAction.CallbackContext context);
+        void OnRepair(InputAction.CallbackContext context);
     }
 }
