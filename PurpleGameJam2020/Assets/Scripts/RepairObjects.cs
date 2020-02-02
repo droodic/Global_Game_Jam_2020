@@ -25,6 +25,9 @@ public class RepairObjects : MonoBehaviour
                 objectToRepair.Repair(player);
                 gameObject.GetComponent<InventoryManager>().RemoveDebrisCount();
                 ShowParticles();
+                var lookAt = objectToRepair.transform.position;
+                //lookAt.y = 0.0f;
+                player.Movement.Arm.transform.LookAt(lookAt);
             }
         }
     }
@@ -46,6 +49,7 @@ public class RepairObjects : MonoBehaviour
     void OnTriggerExit(Collider col)
     {
         isRepairing = false;
+        player.Movement.Arm.transform.rotation = player.Movement.Body.transform.rotation;
     }
 
     public void ShowParticles()
