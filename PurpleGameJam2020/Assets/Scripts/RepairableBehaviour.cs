@@ -14,6 +14,7 @@ public class RepairableBehaviour : MonoBehaviour
 
     public bool IsBroken { get => isBroken; set => isBroken = value; }
     public Transform JumpLocation { get => jumpLocation; set => jumpLocation = value; }
+    public float RepairedPercentage { get => currentDebrisCount / (float)debrisCountNeeded; }
 
     public void Start()
     {
@@ -66,13 +67,17 @@ public class RepairableBehaviour : MonoBehaviour
 
     public void DisplayRepairSign()
     {
-        if (repairZones != null && this.isBroken)
+        if (repairZones != null)
         {
-            repairZones.SetActive(true);
-        }
-        else
-        {
-            repairZones.SetActive(false);
+
+            if (this.isBroken)
+            {
+                repairZones.SetActive(true);
+            }
+            else
+            {
+                repairZones.SetActive(false);
+            } 
         }
     }
 
