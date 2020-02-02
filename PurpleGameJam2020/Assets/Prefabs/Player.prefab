@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7e8fd53afef0342879da361c2b7577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debrisParticle: {fileID: 9143461625585233379, guid: 1aec81983c317ff47bd6668179000ba2,
+  debrisParticle: {fileID: 9143461625585233379, guid: 9cc472c7513556844be34137fc2d59c8,
     type: 3}
 --- !u!135 &1471659965256920395
 SphereCollider:
