@@ -10,7 +10,7 @@ public class DebrisSpawn : MonoBehaviour
     [SerializeField] GameObject debrisOne;
     [SerializeField] GameObject debrisTwo;
 
-    [SerializeField] MeshCollider floorBounds;
+    [SerializeField] BoxCollider floorBounds;
 
     int spawnedDebris = 0;
 
