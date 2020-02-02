@@ -7,7 +7,7 @@ public class Cat : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] RepairableBehaviour[] destructables;
     int destroyIndex = 0;
-    
+    int previousIndex = 0;
     //List<RepairableBehaviour> destructableObjects = new List<RepairableBehaviour>();
 
     // Start is called before the first frame update
@@ -18,20 +18,27 @@ public class Cat : MonoBehaviour
 
     void CatAttack()
     {
-       
         StartCoroutine(WaitAndMove(0.14f));
+
+        previousIndex = destroyIndex;
+        destroyIndex = Random.Range(0, destructables.Length);
+  
+        do
+        {
+            destroyIndex = Random.Range(0, destructables.Length);
+            Debug.Log("Same index as previous, rerolling");
+        }   while (destroyIndex.Equals(previousIndex));
+        //transform.LookAt(Vector3(otherObject.position.x, transform.position.y, otherObject.position.z));
+        this.transform.LookAt(new Vector3(destructables[destroyIndex].transform.position.x, transform.position.y, destructables[destroyIndex].transform.position.z));
     }
 
 
     IEnumerator WaitAndMove(float delayTime)
     {
-       // yield return new WaitForSeconds(delayTime); // start at time X
-       // float startTime = Time.time; // Time.time contains current frame time, so remember starting point
 
         var speed = .775193f;
         var lerpValue = 0f;
         var location = this.transform.position;
-        this.transform.LookAt(destructables[destroyIndex].transform);
         anim.SetTrigger("catAttack");
         yield return new WaitForSeconds(delayTime);
 
@@ -41,7 +48,6 @@ public class Cat : MonoBehaviour
 
             lerpValue += speed * Time.deltaTime;
             transform.position = Vector3.Lerp(location, destructables[destroyIndex].JumpLocation.position, lerpValue);
-            //Time.time - startTime <= 1)
             yield return null;
             if(lerpValue >= 1)
             {
@@ -50,7 +56,7 @@ public class Cat : MonoBehaviour
         }
 
         destructables[destroyIndex].Break();
-        destroyIndex++;
+        //destroyIndex++;
         Debug.Log("Cat attack");
     }
 }
