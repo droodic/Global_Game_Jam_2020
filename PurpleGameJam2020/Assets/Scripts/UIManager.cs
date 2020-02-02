@@ -63,9 +63,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] Animation p1PowerAnim;
     [SerializeField] Animation p2PowerAnim;
 
+    //VictoryPanel
+    [SerializeField] GameObject victoryPanel;
+
     Color defaultColor;
     Color defaultFillColor;
-
 
     // Start is called before the first frame update
     void Start()
@@ -73,7 +75,7 @@ public class UIManager : MonoBehaviour
         defaultColor = p1SliderBg.color;
         defaultFillColor = p1SliderFill.color;
         game = FindObjectOfType<GameManager>();
-
+        victoryPanel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -246,4 +248,9 @@ public class UIManager : MonoBehaviour
 
     //Speedup Power Check
 
+    //activate and deactivate victorypanel
+    public void EndRoundUI()
+    {
+        victoryPanel.gameObject.SetActive(true);
+    }
 }
