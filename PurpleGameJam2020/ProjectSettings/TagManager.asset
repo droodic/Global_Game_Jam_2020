@@ -24,8 +24,8 @@ TagManager:
   - Player2
   - ForceField1
   - ForceField2
-  - 
-  - 
+  - RepairCollider
+  - RepairableObject
   - 
   - 
   - 
