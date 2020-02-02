@@ -36,4 +36,9 @@ public class ChargeReadyColor : MonoBehaviour
             _PlayerID = -1;
         }
     }
+
+    private void OnDisable()
+    {
+        _meshRenderer.material.SetColor("_BaseColor", _ogColor);
+    }
 }

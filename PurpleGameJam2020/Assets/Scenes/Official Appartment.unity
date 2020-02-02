@@ -9150,6 +9150,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1531368379, guid: 3a288b5c1096a4d47a3057861033770a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -347
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531368379, guid: 3a288b5c1096a4d47a3057861033770a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1531368380, guid: 3a288b5c1096a4d47a3057861033770a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 4
@@ -9224,11 +9232,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1579604106, guid: 3a288b5c1096a4d47a3057861033770a, type: 3}
       propertyPath: m_Text
-      value: Ce jeu pour 2 joueurs minimun. Connecter 2 mannettes.
+      value: Ce jeu se joue a deux joueurs.
       objectReference: {fileID: 0}
     - target: {fileID: 1579604106, guid: 3a288b5c1096a4d47a3057861033770a, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579604106, guid: 3a288b5c1096a4d47a3057861033770a, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2056011996, guid: 3a288b5c1096a4d47a3057861033770a, type: 3}
       propertyPath: m_LocalScale.x
@@ -9245,6 +9257,11 @@ PrefabInstance:
     - target: {fileID: 2056011996, guid: 3a288b5c1096a4d47a3057861033770a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -62
+      objectReference: {fileID: 0}
+    - target: {fileID: 5605924853219235123, guid: 3a288b5c1096a4d47a3057861033770a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -347
       objectReference: {fileID: 0}
     - target: {fileID: 5605924853219235124, guid: 3a288b5c1096a4d47a3057861033770a,
         type: 3}
