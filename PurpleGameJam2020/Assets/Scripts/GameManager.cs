@@ -32,12 +32,24 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void StartGame()
+    {
+        Time.timeScale = 1f; ;
+        playing = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (Playing && RoundTime > 0)
         {
             RoundTime -= Time.deltaTime;
+        }
+        else
+        {
+            playing = false;
+            UIManager.Instance.DisplayVictory();
+            Time.timeScale = 0f;
         }
     }
 }
