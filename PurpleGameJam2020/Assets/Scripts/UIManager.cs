@@ -142,7 +142,7 @@ public class UIManager : MonoBehaviour
 
             }
 
-            if (player.GetComponent<PowerupManager>().HasForceField)
+            else if (player.GetComponent<PowerupManager>().HasForceField)
             {
                 p1Power.sprite = forcefieldPower;
             }
@@ -164,7 +164,7 @@ public class UIManager : MonoBehaviour
 
             }
 
-            if (player.GetComponent<PowerupManager>().HasForceField)
+            else if(player.GetComponent<PowerupManager>().HasForceField)
             {
                 p2Power.sprite = forcefieldPower;
             }
