@@ -19,12 +19,16 @@ public class SoundManager : MonoBehaviour
         }
     }
     #endregion
-    public AudioSource efxSource;
+    public AudioSource playerMoveSource;
+    public AudioSource catMoveSource;
     public AudioSource musicSource;
     public AudioClip playerMoveSound;
 
     public float lowPitchRange = .95f;
     public float highPitchRange = 1.05f;
+
+    public AudioClip[] catClips;
+    public AudioClip repairSound;
 
     void Awake()
     {
@@ -33,31 +37,55 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySingle(AudioClip clip)
     {
-        efxSource.clip = clip;
-        efxSource.Play();
+        playerMoveSource.clip = clip;
+        playerMoveSource.Play();
     }
 
     public void RandomizeSfx(params AudioClip[] clips)
     {
         int randomIndex = Random.Range(0, clips.Length);
         float randomPitch = Random.Range(lowPitchRange, highPitchRange);
-        efxSource.pitch = randomPitch;
-        efxSource.clip = clips[randomIndex];
-        efxSource.Play();
+        playerMoveSource.pitch = randomPitch;
+        playerMoveSource.clip = clips[randomIndex];
+        playerMoveSource.Play();
     }
 
     public void PlayVectorSound(Vector2 vector2)
     {
         if (vector2.x != 0 || vector2.y != 0)
         {
-            efxSource.clip = playerMoveSound;
-            efxSource.Play();
-            efxSource.loop = true;
+            playerMoveSource.clip = playerMoveSound;
+            playerMoveSource.Play();
+            playerMoveSource.loop = true;
         }
         else
         {
-            efxSource.loop = false;
-            efxSource.Stop();
+            playerMoveSource.loop = false;
+            playerMoveSource.Stop();
+        }
+    }
+
+    public void PlayRandomCatNoise()
+    {
+        int randomIndex = Random.Range(0, catClips.Length);
+        float randomPitch = Random.Range(lowPitchRange, highPitchRange);
+        catMoveSource.pitch = randomPitch;
+        catMoveSource.clip = catClips[randomIndex];
+        catMoveSource.Play();
+    }
+
+    public void Repair(float value)
+    {
+        if (value == 1)
+        {
+            playerMoveSource.clip = repairSound;
+            playerMoveSource.Play();
+            playerMoveSource.loop = true;
+        }
+        else
+        {
+            playerMoveSource.loop = false;
+            playerMoveSource.Stop();
         }
     }
 }

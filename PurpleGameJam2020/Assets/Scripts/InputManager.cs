@@ -72,10 +72,12 @@ public class InputManager : MonoBehaviour
         if (context.ReadValue<float>() == 1)
         {
             _repairing = true;
+            SoundManager.Instance.Repair(context.ReadValue<float>());
         }
         else if (context.ReadValue<float>() == 0)
         {
             _repairing = false;
+            SoundManager.Instance.Repair(context.ReadValue<float>());
         }
     }
 }

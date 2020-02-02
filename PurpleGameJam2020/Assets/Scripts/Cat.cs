@@ -40,6 +40,7 @@ public class Cat : MonoBehaviour
         var lerpValue = 0f;
         var location = this.transform.position;
         anim.SetTrigger("catAttack");
+        SoundManager.Instance.PlayRandomCatNoise();
         yield return new WaitForSeconds(delayTime);
 
 
