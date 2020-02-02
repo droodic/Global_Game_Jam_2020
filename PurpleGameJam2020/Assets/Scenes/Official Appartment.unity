@@ -9364,6 +9364,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4160830314249901616, guid: 903d60c4da9dfff48bd1a3e7e84edf72,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -5252942607392320233, guid: e10ae9adbf1e24646ad6be5ba29c51cd,
+        type: 2}
+    - target: {fileID: 4160830314249901616, guid: 903d60c4da9dfff48bd1a3e7e84edf72,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4af1f0f3b86ff054b8693ed85122510b, type: 3}
     - target: {fileID: 4160830314249901617, guid: 903d60c4da9dfff48bd1a3e7e84edf72,
         type: 3}
       propertyPath: catMoveSource
