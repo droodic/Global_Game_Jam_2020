@@ -19,7 +19,7 @@ public class RepairObjects : MonoBehaviour
     {
         if (isRepairing && objectToRepair != null)
         {
-            if (player.InputManager.Repairing && gameObject.GetComponent<InventoryManager>().hasAnyDebris() &&objectToRepair.IsBroken)
+            if (player.InputManager.Repairing && gameObject.GetComponent<InventoryManager>().hasAnyDebris() && objectToRepair.IsBroken)
             {
                 objectToRepair.Repair(player);
                 gameObject.GetComponent<InventoryManager>().RemoveDebrisCount();
