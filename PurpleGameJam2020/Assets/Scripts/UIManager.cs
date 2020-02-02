@@ -185,8 +185,6 @@ public class UIManager : MonoBehaviour
         }
         else if (player.tag == "Player2" && enable)
         {
-
-
             if (player.GetComponent<PowerupManager>().HasSpeedUp)
             {
                 p2Power.sprite = speedPower;
@@ -232,13 +230,16 @@ public class UIManager : MonoBehaviour
                 if (P2.SprintBuffed)
                 {
                     p2SliderFill.color = Color.white;
+                    
                 }
                 else if (!P2.SprintBuffed)
                 {
                     p2SliderFill.color = defaultFillColor;
+
                 }
             }
             p2Power.enabled = false;
+
         }
 
     }
