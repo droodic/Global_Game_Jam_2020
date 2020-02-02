@@ -140,4 +140,12 @@ public class Player : MonoBehaviour
             _armMR.material = color;
         }
     }
+
+    public void Pause()
+    {
+        if (gameObject.CompareTag("Player"))
+        {
+            UIManager.Instance.PauseGame();
+        }
+    }
 }

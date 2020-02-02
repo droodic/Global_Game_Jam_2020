@@ -57,6 +57,14 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""2edc1aaf-d6a3-4c37-a36a-bb27cb3d81a0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -119,6 +127,17 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""564c5e87-a345-48ab-b748-5941163bb2ca"",
                     ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b62bcb5e-8786-4ab1-8422-5578ed057100"",
+                    ""path"": ""<Gamepad>/dpad"",
                     ""interactions"": """",
                     ""processors"": ""StickDeadzone"",
                     ""groups"": ""Gamepad"",
@@ -222,6 +241,28 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Repair"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""497744fc-06f0-4a45-94ec-2d57327bbca2"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""607d94c9-f799-490f-87d0-253cfd9bce4f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -484,6 +525,7 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
         m_Actions_Sprint = m_Actions.FindAction("Sprint", throwIfNotFound: true);
         m_Actions_Power = m_Actions.FindAction("Power", throwIfNotFound: true);
         m_Actions_Repair = m_Actions.FindAction("Repair", throwIfNotFound: true);
+        m_Actions_Pause = m_Actions.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -543,6 +585,7 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
     private readonly InputAction m_Actions_Sprint;
     private readonly InputAction m_Actions_Power;
     private readonly InputAction m_Actions_Repair;
+    private readonly InputAction m_Actions_Pause;
     public struct ActionsActions
     {
         private @InputSystemControl m_Wrapper;
@@ -552,6 +595,7 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Actions_Sprint;
         public InputAction @Power => m_Wrapper.m_Actions_Power;
         public InputAction @Repair => m_Wrapper.m_Actions_Repair;
+        public InputAction @Pause => m_Wrapper.m_Actions_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -576,6 +620,9 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                 @Repair.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnRepair;
                 @Repair.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnRepair;
                 @Repair.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnRepair;
+                @Pause.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -595,6 +642,9 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
                 @Repair.started += instance.OnRepair;
                 @Repair.performed += instance.OnRepair;
                 @Repair.canceled += instance.OnRepair;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -673,6 +723,7 @@ public class @InputSystemControl : IInputActionCollection, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnPower(InputAction.CallbackContext context);
         void OnRepair(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

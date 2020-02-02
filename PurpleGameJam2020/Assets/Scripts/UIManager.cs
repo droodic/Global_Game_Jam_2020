@@ -71,6 +71,7 @@ public class UIManager : MonoBehaviour
 
     //Pause Panel
     [SerializeField] GameObject pausePanel;
+    [SerializeField] Button _pauseButton;
 
     Color defaultColor;
     Color defaultFillColor;
@@ -82,7 +83,8 @@ public class UIManager : MonoBehaviour
         defaultFillColor = p1SliderFill.color;
         game = FindObjectOfType<GameManager>();
         victoryPanel.gameObject.SetActive(false);
-        //pausePanel.gameObject.SetActive(false);
+        //_pauseButton.Select();
+        pausePanel.gameObject.SetActive(false);
     }
 
     public void DisplayVictory() //GameOver
@@ -287,9 +289,10 @@ public class UIManager : MonoBehaviour
     public void PauseGame()
     {
         pausePanel.gameObject.SetActive(true);
+        //_pauseButton.Select();
         Time.timeScale = 0;
     }
-
+    
     public void UnpauseGame()
     {
         pausePanel.gameObject.SetActive(false);
