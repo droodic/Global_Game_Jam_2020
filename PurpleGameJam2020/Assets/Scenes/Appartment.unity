@@ -1645,7 +1645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025026441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.311, y: -0, z: 1.18}
+  m_LocalPosition: {x: -0.311, y: 0, z: 0.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1262085659}
@@ -1658,6 +1658,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1718537501, guid: d74400c822d5aff4d870f7ff017015be, type: 3}
+      propertyPath: destructables.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1718537501, guid: d74400c822d5aff4d870f7ff017015be, type: 3}
       propertyPath: destructables.Array.data[0]
       value: 
