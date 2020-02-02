@@ -5,22 +5,6 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    //#region Singleton
-    //private static InputManager _instance = null;
-    //public static InputManager Instance
-    //{
-    //    get
-    //    {
-    //        if (_instance == null)
-    //        {
-    //            _instance = GameObject.FindObjectOfType<InputManager>();
-    //        }
-    //        return _instance;
-    //    }
-    //}
-
-    //#endregion
-
     private Vector2 _moveAxis;
     public Vector2 MoveAxis { get => _moveAxis; set => _moveAxis = value; }
 

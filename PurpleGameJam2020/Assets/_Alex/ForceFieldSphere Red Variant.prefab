@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &6515147130377036877
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8634478369428083721}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -2400841460937244437, guid: 3475df799512b0747973affbf6c20745, type: 3}
 --- !u!1001 &7018322849614637620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34,7 +20,17 @@ PrefabInstance:
     - target: {fileID: 1636428608346504765, guid: 653cbc7a98800624db7b51ca2bbc85ab,
         type: 3}
       propertyPath: m_Name
-      value: ForceFieldSphere Red
+      value: ForceFieldSphere Red Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636428608346504765, guid: 653cbc7a98800624db7b51ca2bbc85ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1866650424487202497, guid: 653cbc7a98800624db7b51ca2bbc85ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2373004472660085806, guid: 653cbc7a98800624db7b51ca2bbc85ab,
         type: 3}
@@ -113,9 +109,3 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 88e129c7a9122184ba47eb3b3bff3563, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 653cbc7a98800624db7b51ca2bbc85ab, type: 3}
---- !u!1 &8634478369428083721 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1636428608346504765, guid: 653cbc7a98800624db7b51ca2bbc85ab,
-    type: 3}
-  m_PrefabInstance: {fileID: 7018322849614637620}
-  m_PrefabAsset: {fileID: 0}

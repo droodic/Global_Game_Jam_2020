@@ -6,14 +6,21 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [Header("Color Choices")]
+    [SerializeField] private List<Material> _colors;
+    [SerializeField] private MeshRenderer _bodyMR;
+    [SerializeField] private MeshRenderer _armMR;
     [SerializeField] float sprintMeter;
     InputManager _inputManager;
-    bool sprinting;
 
+
+    int victoryPoints;
+    bool sprinting;
     bool sprintLocked;
     bool sprintBuffed;
 
     float lockTimer = 5f;
+
 
     public float SprintMeter { get => sprintMeter; set => sprintMeter = value; }
     public bool SprintLocked { get => sprintLocked; set => sprintLocked = value; }
@@ -23,6 +30,8 @@ public class Player : MonoBehaviour
     public Gamepad GP { get => _movement.Gamepad; }
     public InputManager InputManager { get => _inputManager; }
     public PowerupManager Power { get => power; }
+    public List<Material> Colors { get => _colors; }
+    public int VictoryPoints { get => victoryPoints; set => victoryPoints = value; }
 
     private Movement _movement;
     PowerupManager power;
@@ -55,53 +64,6 @@ public class Player : MonoBehaviour
         {
             ClearSprint(SprintLocked);
         }
-        //Call power
-        //if (GP.buttonWest.wasPressedThisFrame)
-        //{
-        //    power.UsePower();
-        //}
-        //
-        //if (GP != null)
-        //{
-        //    if (GP.rightShoulder.ReadValue() > 0 && !SprintLocked)
-        //    {
-        //        Sprint();
-        //    }
-        //
-        //    if (GP.rightShoulder.ReadValue() == 0 || !sprinting)
-        //    {
-        //        ClearSprint(SprintLocked);
-        //    }
-        //    //Call power
-        //    if (GP.buttonWest.wasPressedThisFrame)
-        //    {
-        //        power.UsePower();
-        //    }
-        //}
-        //else
-        //{
-        //    if (PlayerManager.Instance.Players[0] == this)
-        //    {
-        //        if (Keyboard.current.shiftKey.ReadValue() > 0 && !SprintLocked)
-        //        {
-        //            Sprint();
-        //        }
-        //
-        //        if (Keyboard.current.shiftKey.ReadValue() == 0 || !sprinting)
-        //        {
-        //            ClearSprint(SprintLocked);
-        //        }
-        //    }
-        //}
-
-        //Debug Switch
-        //if (Keyboard.current.pKey.wasPressedThisFrame)
-        //{
-        //    //player2 = !player2;
-        //    //Debug.LogError(player2 + this.gameObject.name);
-        //}
-
-
     }
 
     void Sprint()
@@ -164,4 +126,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void ChangeColor(Material color)
+    {
+        if (color != null)
+        {
+            var mats = _bodyMR.materials;
+            mats[2] = color;
+            _bodyMR.materials = mats;
+            _armMR.material = color;
+        }
+    }
 }

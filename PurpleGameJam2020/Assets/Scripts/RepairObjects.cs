@@ -5,17 +5,23 @@ using UnityEngine.InputSystem;
 
 public class RepairObjects : MonoBehaviour
 {
+    Player player;
     private bool isRepairing = false;
     private RepairableBehaviour objectToRepair;
     [SerializeField] private GameObject debrisParticle;
+
+    void Start()
+    {
+        player = GetComponent<Player>();
+    }
 
     public void Update()
     {
         if (isRepairing && objectToRepair != null)
         {
-            if (Mouse.current.leftButton.ReadValue() > 0 && gameObject.GetComponent<InventoryManager>().hasAnyDebris())
+            if (Mouse.current.leftButton.ReadValue() > 0 && gameObject.GetComponent<InventoryManager>().hasAnyDebris() &&objectToRepair.IsBroken)
             {
-                objectToRepair.Repair();
+                objectToRepair.Repair(player);
                 gameObject.GetComponent<InventoryManager>().RemoveDebrisCount();
                 ShowParticles();
             }
@@ -29,6 +35,11 @@ public class RepairObjects : MonoBehaviour
             objectToRepair = collider.GetComponent<RepairableBehaviour>();
             isRepairing = true;
         }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        isRepairing = false;
     }
 
     public void ShowParticles()

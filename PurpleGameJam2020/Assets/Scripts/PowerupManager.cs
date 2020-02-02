@@ -7,6 +7,8 @@ public class PowerupManager : MonoBehaviour
 
     [SerializeField] GameObject debrisBomb;
     [SerializeField] SphereCollider sphere;
+    [SerializeField] GameObject forceFieldPlayer1;
+    [SerializeField] GameObject forceFieldPlayer2;
 
     Player player;
     UIManager ui;
@@ -18,17 +20,19 @@ public class PowerupManager : MonoBehaviour
     bool hasDebrisBomb;
     bool hasSpeedUp;
     bool hasMagnet;
+    bool hasForceField;
 
     public bool HasDebrisBomb { get => hasDebrisBomb; set => hasDebrisBomb = value; }
     public bool HasSpeedUp { get => hasSpeedUp; set => hasSpeedUp = value; }
     public bool HasMagnet { get => hasMagnet; set => hasMagnet = value; }
     public bool HasPowerUp { get => hasPowerUp; set => hasPowerUp = value; }
+    public bool HasForceField { get => hasForceField; set => hasForceField = value; }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         ui = FindObjectOfType<UIManager>();
         player = GetComponent<Player>();
         //debrisSphere = GetComponent<SphereCollider>();
@@ -61,6 +65,20 @@ public class PowerupManager : MonoBehaviour
                 sphere.radius = 6f;
                 StartCoroutine(CancelPowers(3, 5f));
             }
+            else if (hasForceField) //4
+            {
+                Debug.LogError("spawned force field");
+                ui.UpdatePowerUI(player, 4, false);
+                if (player == PlayerManager.Instance.Players[0])
+                {
+                    Destroy(Instantiate(forceFieldPlayer1, this.transform.position, forceFieldPlayer1.transform.rotation,  null).gameObject, 5f);
+                }
+                else if (player == PlayerManager.Instance.Players[1])
+                {
+                    Destroy(Instantiate(forceFieldPlayer2, this.transform.position, forceFieldPlayer2.transform.rotation, null).gameObject, 5f);
+                }
+                StartCoroutine(CancelPowers(4, 5f));
+            }
             HasPowerUp = false;
         }
 
@@ -84,7 +102,7 @@ public class PowerupManager : MonoBehaviour
     void RollRandomPower()
     {
 
-        int num = 2;
+        int num = 4;
         //num = Random.Range(1, 2);
         if (num == 1)
         {
@@ -94,9 +112,13 @@ public class PowerupManager : MonoBehaviour
         {
             HasSpeedUp = true;
         }
-        else if(num == 3) 
+        else if (num == 3)
         {
             HasMagnet = true;
+        }
+        else if(num == 4)
+        {
+            HasForceField = true;
         }
 
         ui.UpdatePowerUI(player);
@@ -106,7 +128,7 @@ public class PowerupManager : MonoBehaviour
     IEnumerator CancelPowers(int powerNum, float sec)
     {
         yield return new WaitForSeconds(sec);
-        if(powerNum == 2)
+        if (powerNum == 2)
         {
             player.SprintBuffed = false;
             ui.UpdatePowerUI(player, 2, false);
@@ -118,8 +140,20 @@ public class PowerupManager : MonoBehaviour
             sphere.radius = 2f;
             Debug.LogError("Coroutine end");
         }
+        if (powerNum == 4)
+        {
+            hasForceField = false;
+            if (player == PlayerManager.Instance.Players[0])
+            {
+                Destroy(forceFieldPlayer1);
+            }
+            else if (player == PlayerManager.Instance.Players[1])
+            {
+                Destroy(forceFieldPlayer2);
+            }
+            Debug.LogError("Coroutine end");
+        }
     }
-
 }
 
 
