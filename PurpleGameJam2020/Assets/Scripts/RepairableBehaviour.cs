@@ -54,6 +54,7 @@ public class RepairableBehaviour : MonoBehaviour
             this.isBroken = false;
             player.VictoryPoints += vpCompleteBoost;
             UIManager.Instance.UpdateVp();
+            UIManager.Instance.UpdateWithBonus(player, vpCompleteBoost);
             UpdateText();
         }
         Debug.Log($"Needed: {currentDebrisCount}");

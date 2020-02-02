@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour
     //VP
     [SerializeField] Text p1Vp;
     [SerializeField] Text p2Vp;
+    [SerializeField] Text p1Bonus;
+    [SerializeField] Text p2Bonus;
 
     //Debris
     [SerializeField] Slider p1DebrisSlider;
@@ -86,6 +88,30 @@ public class UIManager : MonoBehaviour
     {
         p1Vp.text = "Points: " + p1.VictoryPoints.ToString();
         p2Vp.text = "Points: " + p2.VictoryPoints.ToString();
+    }
+
+    public void UpdateWithBonus(Player player, int num)
+    {
+        if(player.tag == "Player")
+        {
+            p1Bonus.text = "Complete! +" + num;
+            p1Bonus.enabled = true;
+            p1Bonus.GetComponent<Animation>().Play();
+        }
+        else if(player.tag == "Player2")
+        {
+            p2Bonus.text = "Complete! +" + num;
+            p2Bonus.enabled = true;
+            p2Bonus.GetComponent<Animation>().Play();
+        }
+
+        Invoke("HideBonus", 3.5f);
+    }
+
+    void HideBonus()
+    {
+        p1Bonus.enabled = false;
+        p2Bonus.enabled = false;
     }
 
     public void UpdateDebrisUI()
