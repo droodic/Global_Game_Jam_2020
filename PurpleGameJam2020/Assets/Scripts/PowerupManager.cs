@@ -46,7 +46,7 @@ public class PowerupManager : MonoBehaviour
             {
                 GameObject bullet = Instantiate(debrisBomb, transform.forward, Quaternion.identity) as GameObject; //use arm forward
                 bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
-                Debug.Log("threw debris bomb");
+                //Debug.Log("threw debris bomb");
                 hasDebrisBomb = false;
                 ui.UpdatePowerUI(player, 1, false);
             }
@@ -54,7 +54,7 @@ public class PowerupManager : MonoBehaviour
             {
                 hasMagnet = false;
                 hasForceField = false;
-                Debug.Log("used speedup");
+                //Debug.Log("used speedup");
                 player.SprintBuffed = true;
                 player.SprintLocked = false;
                 //HasSpeedUp = false;
@@ -70,7 +70,7 @@ public class PowerupManager : MonoBehaviour
                 hasForceField = false;
                 player.SprintBuffed = false;
 
-                Debug.Log("used magnet power");
+                //Debug.Log("used magnet power");
                 ui.UpdatePowerUI(player, 3, false);
                 sphere.radius = 14f;
                 CancelInvoke("CancelMagnet");
@@ -82,7 +82,7 @@ public class PowerupManager : MonoBehaviour
             {
                 HasSpeedUp = false;
                 hasMagnet = false;
-                Debug.Log("spawned force field");
+                //Debug.Log("spawned force field");
                 ui.UpdatePowerUI(player, 4, false);
                 if (player == PlayerManager.Instance.Players[0])
                 {
@@ -101,7 +101,7 @@ public class PowerupManager : MonoBehaviour
 
         else
         {
-            Debug.LogError("No current power");
+            //Debug.LogError("No current power");
         }
     }
 
@@ -110,7 +110,7 @@ public class PowerupManager : MonoBehaviour
         if (col.gameObject.tag == "Power" && !HasPowerUp)
         {
             HasPowerUp = true;
-            Debug.Log("collide with power");
+            //Debug.Log("collide with power");
             StartCoroutine(SwallowPowerUp(col.gameObject));
         }
     }
@@ -127,7 +127,7 @@ public class PowerupManager : MonoBehaviour
             if (lerpValue >= 1.0f)
             {
                 RollRandomPower();
-                Debug.Log("Swallowed  power");
+                //Debug.Log("Swallowed  power");
                 Destroy(powerUp);
                 break;
             }
@@ -163,7 +163,7 @@ public class PowerupManager : MonoBehaviour
             HasMagnet = false;
             HasForceField = true;
         }
-        Debug.Log(num);
+        //Debug.Log(num);
         HasPowerUp = true;
         ui.UpdatePowerUI(player);
     }
@@ -173,13 +173,13 @@ public class PowerupManager : MonoBehaviour
     {
         player.SprintBuffed = false;
         ui.UpdatePowerUI(player, 2, false);
-        Debug.LogError("SPEEDss  end");
+        //Debug.LogError("SPEEDss  end");
     }
 
     void CancelMagnet()
     {
         sphere.radius = 4f;
-        Debug.LogError("MAGNET  end");
+        //Debug.LogError("MAGNET  end");
     }
 
     void CancelForceField()

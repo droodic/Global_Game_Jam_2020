@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     private Keyboard _keyboard;
     public Gamepad Gamepad { get => _gamepad; set => _gamepad = value; }
     public GameObject Arm { get => _arm; set => _arm = value; }
+    public GameObject Body { get => _body; set => _body = value; }
 
     InputAction _WASD;
     InputAction _MOUSE;
@@ -76,7 +77,7 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-        MoveArm();
+        //MoveArm();
     }
 
     private void MovePlayer()
@@ -98,6 +99,7 @@ public class Movement : MonoBehaviour
         var rotation = Quaternion.LookRotation(move.normalized, Vector3.up);
         _body.transform.rotation = rotation;
         transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
+        _arm.transform.rotation = _body.transform.rotation;
     }
 
     private void MoveArm()

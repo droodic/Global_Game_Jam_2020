@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     [SerializeField] private MeshRenderer _armMR;
     [SerializeField] float sprintMeter;
     InputManager _inputManager;
-
     #region Sounds
     public AudioClip aspirationSound;
     public AudioClip motorSound;
@@ -36,6 +35,7 @@ public class Player : MonoBehaviour
     public PowerupManager Power { get => power; }
     public List<Material> Colors { get => _colors; }
     public int VictoryPoints { get => victoryPoints; set => victoryPoints = value; }
+    public Movement Movement { get => _movement; }
 
     private Movement _movement;
     PowerupManager power;

@@ -57,7 +57,7 @@ public class PlayerManager : MonoBehaviour
     {
         _players.Add(player);
         var indexOfPlayer = _players.IndexOf(player);
-        Debug.Log(indexOfPlayer);
+        //Debug.Log(indexOfPlayer);
         player.ChangeColor(player.Colors[indexOfPlayer]);
         if (_players.Count == 1)
         {

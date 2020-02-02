@@ -31,7 +31,7 @@ public class InputManager : MonoBehaviour
         {
             mouseAndKey = _playerInput.devices[0].device.Equals(Mouse.current) || _playerInput.devices[0].device.Equals(Keyboard.current);
         }
-        Debug.Log(MouseAndKey);
+        //Debug.Log(MouseAndKey);
         _moveAxis = Vector2.zero;
         _aimAxis = Vector2.zero;
     }
