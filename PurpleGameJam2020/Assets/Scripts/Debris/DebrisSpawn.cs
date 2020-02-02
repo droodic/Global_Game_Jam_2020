@@ -41,7 +41,7 @@ public class DebrisSpawn : MonoBehaviour
             }
 
             int powerUpRand;
-            powerUpRand = Random.Range(1, 8);
+            powerUpRand = Random.Range(1, 4);
             if(powerUpRand == 1)
             {
                 Instantiate(powerUpBattery, RandomPointInBounds(floorBounds.bounds), this.transform.rotation);

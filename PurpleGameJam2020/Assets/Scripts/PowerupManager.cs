@@ -68,7 +68,7 @@ public class PowerupManager : MonoBehaviour
             {
                 HasSpeedUp = false;
                 hasForceField = false;
-                player.SprintBuffed = false;
+                //player.SprintBuffed = false;
 
                 //Debug.Log("used magnet power");
                 ui.UpdatePowerUI(player, 3, false);
