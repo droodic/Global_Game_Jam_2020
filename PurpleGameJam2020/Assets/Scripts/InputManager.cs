@@ -36,6 +36,7 @@ public class InputManager : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveAxis = context.ReadValue<Vector2>();
+        SoundManager.Instance.PlayVectorSound(_moveAxis);
     }
 
     public void OnAim(InputAction.CallbackContext context)
