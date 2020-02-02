@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PowerupManager : MonoBehaviour
 {
+    private const float FieldCancel = 7.0f;
     [SerializeField] private float _swallowSpeed = 3.0f;
     [SerializeField] GameObject debrisBomb;
     [SerializeField] SphereCollider sphere;
@@ -85,11 +86,11 @@ public class PowerupManager : MonoBehaviour
                 ui.UpdatePowerUI(player, 4, false);
                 if (player == PlayerManager.Instance.Players[0])
                 {
-                    Destroy(Instantiate(forceFieldPlayer1, this.transform.position, forceFieldPlayer1.transform.rotation, null).gameObject, 12.5f);
+                    Destroy(Instantiate(forceFieldPlayer1, this.transform.position, forceFieldPlayer1.transform.rotation, null).gameObject, FieldCancel);
                 }
                 else if (player == PlayerManager.Instance.Players[1])
                 {
-                    Destroy(Instantiate(forceFieldPlayer2, this.transform.position, forceFieldPlayer2.transform.rotation, null).gameObject, 12.5f);
+                    Destroy(Instantiate(forceFieldPlayer2, this.transform.position, forceFieldPlayer2.transform.rotation, null).gameObject, FieldCancel);
                 }
                 CancelInvoke("CancelForceField");
                 Invoke("CancelForceField", 6.5f);
