@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour
 
     public void Start()
     {
-        Debug.Log(DebrisCount);
+        //Debug.Log(DebrisCount);
     }
 
     public void AddDebrisCount(GameObject debris)
@@ -20,7 +20,7 @@ public class InventoryManager : MonoBehaviour
         if (!hasReachedMaxInventory())
         {
             DebrisCount++;
-            Debug.Log(DebrisCount);
+           // Debug.Log(DebrisCount);
             /*if (debris.transform.position == gameObject.transform.position)
             {
                 Destroy(debris);
@@ -61,6 +61,6 @@ public class InventoryManager : MonoBehaviour
             debrisCount--;
             UIManager.Instance.UpdateDebrisUI();
         }
-        Debug.Log($"Inv: {debrisCount}");
+      //  Debug.Log($"Inv: {debrisCount}");
     }
 }

@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.5
+  clip: {fileID: 8300000, guid: 27ddb4196312cd347b30a532d87871f6, type: 3}
 --- !u!114 &983079413726868556
 MonoBehaviour:
   m_ObjectHideFlags: 0
