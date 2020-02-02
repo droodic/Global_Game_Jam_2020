@@ -7,8 +7,8 @@ public class DebrisSpawn : MonoBehaviour
     [SerializeField] int minSpawn = 100;
     [SerializeField] int maxSpawn = 200;
     [SerializeField] int spawnLimit = 600;
-    [SerializeField] GameObject debrisOne;
-    [SerializeField] GameObject debrisTwo;
+    [SerializeField] GameObject debris;
+    [SerializeField] GameObject powerUpBattery;
 
     [SerializeField] BoxCollider floorBounds;
 
@@ -36,8 +36,15 @@ public class DebrisSpawn : MonoBehaviour
             rand = Random.Range(minSpawn, maxSpawn);
             for (int i = 0; i < rand; i++)
             {
-                Instantiate(debrisOne, RandomPointInBounds(floorBounds.bounds), this.transform.rotation);
+                Instantiate(debris, RandomPointInBounds(floorBounds.bounds), this.transform.rotation);
                 SpawnedDebris++;
+            }
+
+            int powerUpRand;
+            powerUpRand = Random.Range(1, 8);
+            if(powerUpRand == 1)
+            {
+                Instantiate(powerUpBattery, RandomPointInBounds(floorBounds.bounds), this.transform.rotation);
             }
         }
 

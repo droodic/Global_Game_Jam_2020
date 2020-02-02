@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7f04f53a9d66a41a81de815e851b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _swallowSpeed: 5
   debrisBomb: {fileID: 5844992119902359037, guid: dadafe3b35a625449a3c5a27a535dfd9,
     type: 3}
   sphere: {fileID: 8151482938938841793}
