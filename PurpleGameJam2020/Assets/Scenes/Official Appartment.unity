@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 112000000, guid: 7d9cc12b94ebf314bb696e653b174543,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -8949,6 +8949,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 56719147, guid: c18c313739fb7d24fa270500f76e0784, type: 3}
+      propertyPath: m_Text
+      value: "D\xE9bris"
+      objectReference: {fileID: 0}
     - target: {fileID: 247469513, guid: c18c313739fb7d24fa270500f76e0784, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8972,6 +8976,10 @@ PrefabInstance:
     - target: {fileID: 356333084, guid: c18c313739fb7d24fa270500f76e0784, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 717253447, guid: c18c313739fb7d24fa270500f76e0784, type: 3}
+      propertyPath: m_Text
+      value: "D\xE9bris"
       objectReference: {fileID: 0}
     - target: {fileID: 1342324703, guid: c18c313739fb7d24fa270500f76e0784, type: 3}
       propertyPath: m_AnchorMin.y
@@ -9151,6 +9159,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714600537998890834, guid: c18c313739fb7d24fa270500f76e0784,
+        type: 3}
+      propertyPath: m_Text
+      value: "\xC9nergie"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714600538010384860, guid: c18c313739fb7d24fa270500f76e0784,
+        type: 3}
+      propertyPath: m_Text
+      value: "\xC9nergie"
       objectReference: {fileID: 0}
     - target: {fileID: 4714600538503859384, guid: c18c313739fb7d24fa270500f76e0784,
         type: 3}
