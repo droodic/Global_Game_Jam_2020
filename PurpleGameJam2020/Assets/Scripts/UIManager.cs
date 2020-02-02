@@ -66,6 +66,9 @@ public class UIManager : MonoBehaviour
     //VictoryPanel
     [SerializeField] GameObject victoryPanel;
 
+    //Pause Panel
+    [SerializeField] GameObject pausePanel;
+
     Color defaultColor;
     Color defaultFillColor;
 
@@ -76,6 +79,7 @@ public class UIManager : MonoBehaviour
         defaultFillColor = p1SliderFill.color;
         game = FindObjectOfType<GameManager>();
         victoryPanel.gameObject.SetActive(false);
+        pausePanel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -269,5 +273,17 @@ public class UIManager : MonoBehaviour
     public void EndRoundUI()
     {
         victoryPanel.gameObject.SetActive(true);
+    }
+
+    public void PauseGame()
+    {
+        pausePanel.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void UnpauseGame()
+    {
+        pausePanel.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 }
