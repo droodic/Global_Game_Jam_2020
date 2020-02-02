@@ -66,6 +66,9 @@ public class UIManager : MonoBehaviour
     //VictoryPanel
     [SerializeField] GameObject victoryPanel;
 
+    //Pause Panel
+    [SerializeField] GameObject pausePanel;
+
     Color defaultColor;
     Color defaultFillColor;
 
@@ -76,6 +79,7 @@ public class UIManager : MonoBehaviour
         defaultFillColor = p1SliderFill.color;
         game = FindObjectOfType<GameManager>();
         victoryPanel.gameObject.SetActive(false);
+        pausePanel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -155,14 +159,32 @@ public class UIManager : MonoBehaviour
     }
 
 
+    public void DisablePowerBtn(Player player)
+    {
+        if(player.tag == "Player")
+        { 
+            p1Power.enabled = false;
+        }
+        else
+        {
+            p2Power.enabled = false;
+        }
+        
+    }
+
     /// <summary>
     /// Num : The number of the powerup 
     ///     1 - DebrisBomb
     ///     2 - Speedpowerup
+    ///     3 - Magnet
+    ///     4 - Forcefield
     /// Bool : Are you Enabling or Disabling the powerup
+    /// Change sprite and required UI element for specific power (energy bar becomes white for speedup, etc)
     /// </summary>
     /// <param name="num"></param>
     /// <param name="enable"></param>
+    /// 
+
     public void UpdatePowerUI(Player player, int num = 0, bool enable = true)
     {
         if (player.tag == "Player" && enable)
@@ -222,7 +244,7 @@ public class UIManager : MonoBehaviour
 
             }
 
-            p1Power.enabled = false;
+            
             
         }
         else if (player.tag == "Player2" && !enable)
@@ -240,7 +262,6 @@ public class UIManager : MonoBehaviour
 
                 }
             }
-            p2Power.enabled = false;
 
         }
 
@@ -252,5 +273,17 @@ public class UIManager : MonoBehaviour
     public void EndRoundUI()
     {
         victoryPanel.gameObject.SetActive(true);
+    }
+
+    public void PauseGame()
+    {
+        pausePanel.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void UnpauseGame()
+    {
+        pausePanel.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 }
