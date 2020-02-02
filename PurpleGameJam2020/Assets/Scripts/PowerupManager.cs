@@ -71,11 +71,11 @@ public class PowerupManager : MonoBehaviour
                 ui.UpdatePowerUI(player, 4, false);
                 if (player == PlayerManager.Instance.Players[0])
                 {
-                    Instantiate(forceFieldPlayer1);
+                    Destroy(Instantiate(forceFieldPlayer1, this.transform.position, forceFieldPlayer1.transform.rotation,  null).gameObject, 5f);
                 }
                 else if (player == PlayerManager.Instance.Players[1])
                 {
-                    Instantiate(forceFieldPlayer2);
+                    Destroy(Instantiate(forceFieldPlayer2, this.transform.position, forceFieldPlayer2.transform.rotation, null).gameObject, 5f);
                 }
                 StartCoroutine(CancelPowers(4, 5f));
             }
@@ -115,6 +115,10 @@ public class PowerupManager : MonoBehaviour
         else if (num == 3)
         {
             HasMagnet = true;
+        }
+        else if(num == 4)
+        {
+            HasForceField = true;
         }
 
         ui.UpdatePowerUI(player);
