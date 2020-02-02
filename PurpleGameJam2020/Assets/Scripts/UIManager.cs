@@ -35,6 +35,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] Text timerText;
 
+    [SerializeField] GameObject HudPanel;
+    [SerializeField] GameObject VictoryPanel;
+ 
     //VP
     [SerializeField] Text p1Vp;
     [SerializeField] Text p2Vp;
@@ -79,7 +82,13 @@ public class UIManager : MonoBehaviour
         defaultFillColor = p1SliderFill.color;
         game = FindObjectOfType<GameManager>();
         victoryPanel.gameObject.SetActive(false);
-        pausePanel.gameObject.SetActive(false);
+        //pausePanel.gameObject.SetActive(false);
+    }
+
+    public void DisplayVictory() //GameOver
+    {
+        HudPanel.SetActive(false);
+        VictoryPanel.SetActive(true);
     }
 
     // Update is called once per frame

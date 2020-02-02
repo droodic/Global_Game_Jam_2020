@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 public class InputManager : MonoBehaviour
 {
@@ -20,9 +21,9 @@ public class InputManager : MonoBehaviour
     private PlayerInput _playerInput;
     private bool mouseAndKey;
     public bool MouseAndKey { get => mouseAndKey; }
+    public PlayerInput PlayerInput { get => _playerInput; set => _playerInput = value; }
 
     private Player _player;
-
     private void Awake()
     {
         _player = GetComponent<Player>();
