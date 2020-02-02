@@ -5,7 +5,8 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     private int maxInventory = 300;
-    private int debrisCount = 0;
+    [Header("Debug")]
+    [SerializeField] private int debrisCount = 0;
 
     public int DebrisCount { get => debrisCount; set => debrisCount = value; }
 
