@@ -86,7 +86,7 @@ public class RepairableBehaviour : MonoBehaviour
 
     public void UpdateText()
     {
-        progressText.text = $"{RepairedPercentage * 100} %";
+        progressText.text = (RepairedPercentage * 100).ToString("F0") + "%";
         //progressText.text = currentDebrisCount.ToString() + " / " + debrisCountNeeded.ToString();
     }
 }
