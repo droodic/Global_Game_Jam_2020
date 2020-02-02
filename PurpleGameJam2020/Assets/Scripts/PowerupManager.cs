@@ -32,7 +32,7 @@ public class PowerupManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+    
         ui = FindObjectOfType<UIManager>();
         player = GetComponent<Player>();
         //debrisSphere = GetComponent<SphereCollider>();
@@ -59,7 +59,10 @@ public class PowerupManager : MonoBehaviour
                 player.SprintLocked = false;
                 //HasSpeedUp = false;
                 ui.UpdatePowerUI(player, 2, false);
-                StartCoroutine(CancelPowers(2, 8f));
+                // StopCoroutine("CancelSpeed");
+                // StartCoroutine(CancelSpeed());
+                CancelInvoke("CancelSpeed");
+                Invoke("CancelSpeed", 8f);
             }
             else if (hasMagnet) //3
             {
@@ -70,7 +73,10 @@ public class PowerupManager : MonoBehaviour
                 Debug.Log("used magnet power");
                 ui.UpdatePowerUI(player, 3, false);
                 sphere.radius = 14f;
-                StartCoroutine(CancelPowers(3, 5f));
+                CancelInvoke("CancelMagnet");
+                Invoke("CancelMagnet", 8f);
+                // StopCoroutine(CancelMagnet());
+                // StartCoroutine(CancelMagnet());
             }
             else if (hasForceField) //4
             {
@@ -86,7 +92,9 @@ public class PowerupManager : MonoBehaviour
                 {
                     Destroy(Instantiate(forceFieldPlayer2, this.transform.position, forceFieldPlayer2.transform.rotation, null).gameObject, 5f);
                 }
-                StartCoroutine(CancelPowers(4, 10f));
+                CancelInvoke("CancelForceField");
+                Invoke("CancelForceField", 10f);
+                
             }
             HasPowerUp = false;
         }
@@ -110,8 +118,7 @@ public class PowerupManager : MonoBehaviour
 
     void RollRandomPower()
     {
-
-
+        Random.InitState(System.DateTime.Now.Millisecond);
         int num = Random.Range(2, 4);
         if (num == 1)
         {
@@ -135,29 +142,50 @@ public class PowerupManager : MonoBehaviour
     }
 
 
-    IEnumerator CancelPowers(int powerNum, float sec)
+    void CancelSpeed()
     {
-        yield return new WaitForSeconds(sec);
-        if (powerNum == 2 && HasSpeedUp)
-        {
-           // HasSpeedUp = false;
-            player.SprintBuffed = false;
-            ui.UpdatePowerUI(player, 2, false);
-            Debug.LogError("Coroutine end");
-        }
-        if (powerNum == 3 && hasMagnet)
-        {
-           // hasMagnet = false;
-            sphere.radius = 4f;
-            Debug.LogError("Coroutine end");
-        }
-        if (powerNum == 4 && HasForceField)
-        {
-          //  hasForceField = false;
-            Debug.LogError("Coroutine end");
-        }
-
+        player.SprintBuffed = false;
+        ui.UpdatePowerUI(player, 2, false);
+        Debug.LogError("SPEEDss  end");
     }
+
+    void CancelMagnet()
+    {
+        // hasMagnet = false;
+        sphere.radius = 4f;
+        Debug.LogError("MAGNET  end");
+    }
+
+    void CancelForceField()
+    {
+        HasForceField = false;
+    }
+
+    //IEnumerator CancelPowers(int powerNum, float sec)
+    //{
+    //    yield return new WaitForSeconds(sec);
+    //    if (powerNum == 2 && HasSpeedUp)
+    //    {
+    //        // HasSpeedUp = false;
+    //        player.SprintBuffed = false;
+    //        ui.UpdatePowerUI(player, 2, false);
+    //        Debug.LogError("Coroutine end");
+    //    }
+    //    if (powerNum == 3 && hasMagnet)
+    //    {
+    //        // hasMagnet = false;
+    //        sphere.radius = 4f;
+    //        Debug.LogError("Coroutine end");
+    //    }
+    //    if (powerNum == 4 && HasForceField)
+    //    {
+    //        //  hasForceField = false;
+    //        Debug.LogError("Coroutine end");
+    //    }
+
+    //}
+
+
 }
 
 
