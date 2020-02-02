@@ -194,6 +194,8 @@ MonoBehaviour:
   _bodyMR: {fileID: 7956684347283817560}
   _armMR: {fileID: 7630370513774719849}
   sprintMeter: 50
+  aspirationSound: {fileID: 0}
+  motorSound: {fileID: 0}
 --- !u!114 &6649819917190676997
 MonoBehaviour:
   m_ObjectHideFlags: 0
