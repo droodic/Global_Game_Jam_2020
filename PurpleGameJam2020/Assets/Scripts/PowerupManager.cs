@@ -28,7 +28,6 @@ public class PowerupManager : MonoBehaviour
     public bool HasPowerUp { get => hasPowerUp; set => hasPowerUp = value; }
     public bool HasForceField { get => hasForceField; set => hasForceField = value; }
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -74,7 +73,7 @@ public class PowerupManager : MonoBehaviour
                 ui.UpdatePowerUI(player, 3, false);
                 sphere.radius = 14f;
                 CancelInvoke("CancelMagnet");
-                Invoke("CancelMagnet", 8f);
+                Invoke("CancelMagnet", 6f);
                 // StopCoroutine(CancelMagnet());
                 // StartCoroutine(CancelMagnet());
             }
@@ -93,7 +92,7 @@ public class PowerupManager : MonoBehaviour
                     Destroy(Instantiate(forceFieldPlayer2, this.transform.position, forceFieldPlayer2.transform.rotation, null).gameObject, 12.5f);
                 }
                 CancelInvoke("CancelForceField");
-                Invoke("CancelForceField", 10f);
+                Invoke("CancelForceField", 6.5f);
                 
             }
             HasPowerUp = false;
