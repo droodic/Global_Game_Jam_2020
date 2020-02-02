@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 112000000, guid: 06c041afb11cbaa4db8493e58f7341a7,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1160,6 +1160,7 @@ GameObject:
   - component: {fileID: 542135939}
   - component: {fileID: 542135938}
   - component: {fileID: 542135937}
+  - component: {fileID: 542135940}
   m_Layer: 5
   m_Name: PlayBtn
   m_TagString: Untagged
@@ -1229,7 +1230,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 542135938}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 542135940}
+        m_MethodName: Load
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &542135938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1266,6 +1278,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542135935}
   m_CullTransparentMesh: 0
+--- !u!114 &542135940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542135935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1985e7c59be49a4e82f1e352ccb8f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &600754214
 GameObject:
   m_ObjectHideFlags: 0
