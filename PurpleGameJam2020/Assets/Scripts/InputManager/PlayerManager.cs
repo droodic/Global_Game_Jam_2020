@@ -83,4 +83,12 @@ public class PlayerManager : MonoBehaviour
         localPos.x += 2;
         return localPos;
     }
+
+    public void LockPlayer()
+    {
+        foreach (var player in _players)
+        {
+            player.InputManager.Locked = true;
+        }
+    }
 }
