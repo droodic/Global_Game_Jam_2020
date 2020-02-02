@@ -7,6 +7,7 @@ public class DebrisBehaviour : MonoBehaviour
     private Player target;
     private bool isColliding = false;
     [SerializeField] private float movementSpeed = 1.0f;
+    [SerializeField] AudioClip clip;
     private float lerpValue = 0.0f;
     /// <summary>
     /// Debris collection behaviour
@@ -24,7 +25,11 @@ public class DebrisBehaviour : MonoBehaviour
             ivm.AddDebrisCount(this.gameObject);
             UIManager.Instance.UpdateDebrisUI();
             GetComponent<SphereCollider>().enabled = false;
-            
+            if (clip != null)
+            {
+                SoundManager.Instance.PlaySingle(clip);
+            }
+
             target = collider.gameObject.GetComponent<Player>();
             isColliding = true;
         }

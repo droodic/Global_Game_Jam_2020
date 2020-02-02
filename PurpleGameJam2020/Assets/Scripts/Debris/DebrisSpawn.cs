@@ -7,12 +7,14 @@ public class DebrisSpawn : MonoBehaviour
     [SerializeField] int minSpawn = 100;
     [SerializeField] int maxSpawn = 200;
     [SerializeField] int spawnLimit = 600;
-    [SerializeField] GameObject debrisOne;
-    [SerializeField] GameObject debrisTwo;
+    [SerializeField] GameObject debris;
+    [SerializeField] GameObject powerUpBattery;
 
-    [SerializeField] MeshCollider floorBounds;
+    [SerializeField] BoxCollider floorBounds;
 
     int spawnedDebris = 0;
+
+    public int SpawnedDebris { get => spawnedDebris; set => spawnedDebris = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -28,14 +30,21 @@ public class DebrisSpawn : MonoBehaviour
 
     void SpawnDebris()
     {
-        if(spawnedDebris < 800)
+        if(SpawnedDebris < 800)
         {
             int rand;
             rand = Random.Range(minSpawn, maxSpawn);
             for (int i = 0; i < rand; i++)
             {
-                Instantiate(debrisOne, RandomPointInBounds(floorBounds.bounds), this.transform.rotation);
-                spawnedDebris++;
+                Instantiate(debris, RandomPointInBounds(floorBounds.bounds), this.transform.rotation);
+                SpawnedDebris++;
+            }
+
+            int powerUpRand;
+            powerUpRand = Random.Range(1, 8);
+            if(powerUpRand == 1)
+            {
+                Instantiate(powerUpBattery, RandomPointInBounds(floorBounds.bounds), this.transform.rotation);
             }
         }
 

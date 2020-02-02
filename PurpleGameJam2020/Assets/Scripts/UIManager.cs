@@ -25,15 +25,21 @@ public class UIManager : MonoBehaviour
     public Player P2 { get => p2; set => p2 = value; }
     #endregion
 
+    GameManager game;
+
     Player p1;
     Player p2;
 
     InventoryManager P1im;
     InventoryManager P2im;
 
+    [SerializeField] Text timerText;
+
     //VP
     [SerializeField] Text p1Vp;
     [SerializeField] Text p2Vp;
+    [SerializeField] Text p1Bonus;
+    [SerializeField] Text p2Bonus;
 
     //Debris
     [SerializeField] Slider p1DebrisSlider;
@@ -48,22 +54,28 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image p2SliderBg;
 
     //Powerups
+    [SerializeField] Sprite speedPower;
+    [SerializeField] Sprite magnetPower;
+    [SerializeField] Sprite forcefieldPower;
+
     [SerializeField] Image p1Power;
     [SerializeField] Image p2Power;
     [SerializeField] Animation p1PowerAnim;
     [SerializeField] Animation p2PowerAnim;
 
+    //VictoryPanel
+    [SerializeField] GameObject victoryPanel;
+
     Color defaultColor;
     Color defaultFillColor;
-
 
     // Start is called before the first frame update
     void Start()
     {
         defaultColor = p1SliderBg.color;
         defaultFillColor = p1SliderFill.color;
-
-
+        game = FindObjectOfType<GameManager>();
+        victoryPanel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -75,6 +87,11 @@ public class UIManager : MonoBehaviour
             p2EnergySlider.value = P2.SprintMeter;
             CheckEnergyLocks();
         }
+        if (game.Playing)
+        {
+            timerText.text = game.RoundTime.ToString("F0");
+
+        }
 
     }
 
@@ -82,6 +99,30 @@ public class UIManager : MonoBehaviour
     {
         p1Vp.text = "Points: " + p1.VictoryPoints.ToString();
         p2Vp.text = "Points: " + p2.VictoryPoints.ToString();
+    }
+
+    public void UpdateWithBonus(Player player, int num)
+    {
+        if(player.tag == "Player")
+        {
+            p1Bonus.text = "Complete! +" + num;
+            p1Bonus.enabled = true;
+            p1Bonus.GetComponent<Animation>().Play();
+        }
+        else if(player.tag == "Player2")
+        {
+            p2Bonus.text = "Complete! +" + num;
+            p2Bonus.enabled = true;
+            p2Bonus.GetComponent<Animation>().Play();
+        }
+
+        Invoke("HideBonus", 3.5f);
+    }
+
+    void HideBonus()
+    {
+        p1Bonus.enabled = false;
+        p2Bonus.enabled = false;
     }
 
     public void UpdateDebrisUI()
@@ -127,42 +168,39 @@ public class UIManager : MonoBehaviour
         if (player.tag == "Player" && enable)
         {
 
-            if (player.GetComponent<PowerupManager>().HasDebrisBomb)
-            {
-                //p1Power.sprite = bombsprite;
-
-            }
-            else if (player.GetComponent<PowerupManager>().HasDebrisBomb)
-            {
-                //p1Power.sprite = bombsprite;
-
-            }
-
             if (player.GetComponent<PowerupManager>().HasSpeedUp)
             {
-                //p1Power.sprite = speedupSprite;
+                p1Power.sprite = speedPower;
+
+            }
+            else if (player.GetComponent<PowerupManager>().HasMagnet)
+            {
+                p1Power.sprite = magnetPower;
+            }
+
+            else if (player.GetComponent<PowerupManager>().HasForceField)
+            {
+                p1Power.sprite = forcefieldPower;
             }
             p1Power.enabled = true;
             p1PowerAnim.Play();
         }
         else if (player.tag == "Player2" && enable)
         {
-
-            if (player.GetComponent<PowerupManager>().HasDebrisBomb)
-            {
-                //p1Power.sprite = bombsprite;
-
-            }
-            else if (player.GetComponent<PowerupManager>().HasDebrisBomb)
-            {
-                //p1Power.sprite = bombsprite;
-
-            }
-
             if (player.GetComponent<PowerupManager>().HasSpeedUp)
             {
-                //p1Power.sprite = speedupSprite;
+                p2Power.sprite = speedPower;
 
+            }
+            else if (player.GetComponent<PowerupManager>().HasMagnet)
+            {
+                p2Power.sprite = magnetPower;
+
+            }
+
+            else if(player.GetComponent<PowerupManager>().HasForceField)
+            {
+                p2Power.sprite = forcefieldPower;
             }
             p2Power.enabled = true;
             p2PowerAnim.Play();
@@ -194,17 +232,25 @@ public class UIManager : MonoBehaviour
                 if (P2.SprintBuffed)
                 {
                     p2SliderFill.color = Color.white;
+                    
                 }
                 else if (!P2.SprintBuffed)
                 {
                     p2SliderFill.color = defaultFillColor;
+
                 }
             }
             p2Power.enabled = false;
+
         }
 
     }
 
     //Speedup Power Check
 
+    //activate and deactivate victorypanel
+    public void EndRoundUI()
+    {
+        victoryPanel.gameObject.SetActive(true);
+    }
 }

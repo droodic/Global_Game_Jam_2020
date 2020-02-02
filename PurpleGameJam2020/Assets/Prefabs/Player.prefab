@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3447625416534775202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5027647993087754}
+  - component: {fileID: 7562575798792021735}
+  m_Layer: 16
+  m_Name: RepairCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5027647993087754
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3447625416534775202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6838978456329300893}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &7562575798792021735
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3447625416534775202}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4045227526459921236
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6838978456329300893
 Transform:
   m_ObjectHideFlags: 0
@@ -102,6 +146,8 @@ Transform:
   m_Children:
   - {fileID: 7181743608451925800}
   - {fileID: 8779484644528597521}
+  - {fileID: 5027647993087754}
+  - {fileID: 6183606782726398831}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -151,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7f04f53a9d66a41a81de815e851b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _swallowSpeed: 5
   debrisBomb: {fileID: 5844992119902359037, guid: dadafe3b35a625449a3c5a27a535dfd9,
     type: 3}
   sphere: {fileID: 8151482938938841793}
@@ -194,6 +241,8 @@ MonoBehaviour:
   _bodyMR: {fileID: 7956684347283817560}
   _armMR: {fileID: 7630370513774719849}
   sprintMeter: 50
+  aspirationSound: {fileID: 0}
+  motorSound: {fileID: 0}
 --- !u!114 &6649819917190676997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e33827c86e1224b907ddc6858cb9e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debrisCount: 0
 --- !u!114 &6280400205044551743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,8 +268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7e8fd53afef0342879da361c2b7577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debrisParticle: {fileID: 9143461625585233379, guid: 1aec81983c317ff47bd6668179000ba2,
+  debrisParticle: {fileID: 9143461625585233379, guid: 9cc472c7513556844be34137fc2d59c8,
     type: 3}
+  _collider: {fileID: 0}
 --- !u!135 &1471659965256920395
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -244,7 +295,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &394966824308265626
 MonoBehaviour:
@@ -332,6 +383,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8a771b29-9728-4dc9-b672-d3aa168f2f8a
     m_ActionName: Actions/Power[/DualShock4GamepadHID/buttonWest,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4535666579316095216}
+        m_MethodName: OnRepair
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8dad15fc-83f9-48c7-8e5d-bf28f276baf0
+    m_ActionName: Actions/Repair[/Mouse/rightButton,/DualShock4GamepadHID/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Actions
@@ -349,6 +415,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5b63fe6d920094da448e3ebb11588d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7686346825310866861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6183606782726398831}
+  - component: {fileID: 7069820637654287330}
+  m_Layer: 18
+  m_Name: DebrisPusher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6183606782726398831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686346825310866861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6838978456329300893}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &7069820637654287330
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686346825310866861}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &393758595404933517
 PrefabInstance:
   m_ObjectHideFlags: 0

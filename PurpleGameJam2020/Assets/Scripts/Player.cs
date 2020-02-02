@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     [SerializeField] float sprintMeter;
     InputManager _inputManager;
 
+    #region Sounds
+    public AudioClip aspirationSound;
+    public AudioClip motorSound;
+    #endregion
 
     int victoryPoints;
     bool sprinting;
