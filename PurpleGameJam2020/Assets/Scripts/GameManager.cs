@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         {
             RoundTime -= Time.deltaTime;
         }
-        else
+        else if(Playing && RoundTime < 0)
         {
             playing = false;
             UIManager.Instance.DisplayVictory();
