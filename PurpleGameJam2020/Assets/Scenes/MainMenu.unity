@@ -376,6 +376,7 @@ GameObject:
   - component: {fileID: 285166153}
   - component: {fileID: 285166150}
   - component: {fileID: 285166154}
+  - component: {fileID: 285166155}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -630,11 +631,27 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 234515b5-2136-4814-b47e-8d965d8934a1
     m_ActionName: UI/Cancel[/Keyboard/escape,/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2edc1aaf-d6a3-4c37-a36a-bb27cb3d81a0
+    m_ActionName: Actions/Pause[/DualShock4GamepadHID/start,/DualShock4GamepadHID/start,/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Actions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &285166155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285166149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b1a1349adb5364697787a9c01b398f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &378336591
 GameObject:
   m_ObjectHideFlags: 0

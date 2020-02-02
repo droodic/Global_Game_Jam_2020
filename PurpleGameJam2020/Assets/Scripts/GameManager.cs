@@ -40,11 +40,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Playing && RoundTime > 0)
+        if (playing && RoundTime > 0)
         {
             RoundTime -= Time.deltaTime;
         }
-        else
+        else if (playing)
         {
             playing = false;
             UIManager.Instance.DisplayVictory();

@@ -117,10 +117,20 @@ public class UIManager : MonoBehaviour
 
         postGamep1Score.text = "Points Joueur 1 : " + p1.VictoryPoints.ToString() + "\nPoints Joueur 2 : " + p2.VictoryPoints.ToString();
         // postGamep2Score.text = p2.VictoryPoints.ToString();
-        Time.timeScale = 0.0f;
+        //Time.timeScale = 0.0f;
+        
         HudPanel.SetActive(false);
         VictoryPanel.SetActive(true);
+        PlayerManager.Instance.LockPlayer();
+        _victoryButton.gameObject.SetActive(false);
+        Invoke("EnableVictoryButton", 3.0f);
+    }
+
+    private void EnableVictoryButton()
+    {
+        _victoryButton.gameObject.SetActive(true);
         _victoryButton.Select();
+        Debug.Log("ENABLE!!");
     }
 
     // Update is called once per frame
@@ -320,8 +330,6 @@ public class UIManager : MonoBehaviour
         pausePanel.gameObject.SetActive(true);
         Time.timeScale = 0;
         _pauseButton.Select();
-        Debug.Log("PAUSE!!!");
-
     }
 
     public void UnpauseGame()

@@ -9141,6 +9141,11 @@ PrefabInstance:
       propertyPath: _victoryButton
       value: 
       objectReference: {fileID: 1379063647}
+    - target: {fileID: 6249614291148052518, guid: c18c313739fb7d24fa270500f76e0784,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c18c313739fb7d24fa270500f76e0784, type: 3}
 --- !u!1001 &5605924852937504376

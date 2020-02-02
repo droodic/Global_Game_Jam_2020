@@ -23,6 +23,10 @@ public class InputManager : MonoBehaviour
     public bool MouseAndKey { get => mouseAndKey; }
     public PlayerInput PlayerInput { get => _playerInput; set => _playerInput = value; }
 
+    private bool _locked = false;
+    public bool Locked { get => _locked; set => _locked = value; }
+
+
     private Player _player;
     private void Awake()
     {
@@ -39,17 +43,32 @@ public class InputManager : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (_locked)
+        {
+            _moveAxis = Vector2.zero;
+            return;
+        }
+
         _moveAxis = context.ReadValue<Vector2>();
         SoundManager.Instance.PlayVectorSound(_moveAxis);
     }
 
     public void OnAim(InputAction.CallbackContext context)
     {
+        if (_locked)
+        {
+            _aimAxis = Vector2.zero;
+            return;
+        }
         _aimAxis = context.ReadValue<Vector2>();
     }
 
     public void OnSprint(InputAction.CallbackContext context)
     {
+        if (_locked)
+        {
+            return;
+        }
         if (context.ReadValue<float>() == 1)
         {
             _sprinting = true;
@@ -62,6 +81,10 @@ public class InputManager : MonoBehaviour
 
     public void OnPower(InputAction.CallbackContext context)
     {
+        if (_locked)
+        {
+            return;
+        }
         if (context.started)
         {
             _player.Power.UsePower();
@@ -70,6 +93,10 @@ public class InputManager : MonoBehaviour
 
     public void OnRepair(InputAction.CallbackContext context)
     {
+        if (_locked)
+        {
+            return;
+        }
         if (SoundManager.Instance == null)
         {
             return;
