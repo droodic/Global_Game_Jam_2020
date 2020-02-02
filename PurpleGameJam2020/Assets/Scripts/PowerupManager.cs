@@ -71,7 +71,7 @@ public class PowerupManager : MonoBehaviour
                 ui.UpdatePowerUI(player, 4, false);
                 if (player == PlayerManager.Instance.Players[0])
                 {
-                    Destroy(Instantiate(forceFieldPlayer1, this.transform.position, forceFieldPlayer1.transform.rotation,  null).gameObject, 5f);
+                    Destroy(Instantiate(forceFieldPlayer1, this.transform.position, forceFieldPlayer1.transform.rotation, null).gameObject, 5f);
                 }
                 else if (player == PlayerManager.Instance.Players[1])
                 {
@@ -102,8 +102,8 @@ public class PowerupManager : MonoBehaviour
     void RollRandomPower()
     {
 
-        int num = 4;
-        //num = Random.Range(1, 2);
+
+        int num = Random.Range(2, 5);
         if (num == 1)
         {
             HasDebrisBomb = true;
@@ -116,7 +116,7 @@ public class PowerupManager : MonoBehaviour
         {
             HasMagnet = true;
         }
-        else if(num == 4)
+        else if (num == 4)
         {
             HasForceField = true;
         }
@@ -145,6 +145,7 @@ public class PowerupManager : MonoBehaviour
             hasForceField = false;
             Debug.LogError("Coroutine end");
         }
+
     }
 }
 
