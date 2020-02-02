@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviour
         defaultFillColor = p1SliderFill.color;
         game = FindObjectOfType<GameManager>();
         victoryPanel.gameObject.SetActive(false);
-        pausePanel.gameObject.SetActive(false);
+        //pausePanel.gameObject.SetActive(false);
     }
 
     public void DisplayVictory() //GameOver

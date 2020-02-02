@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -42,8 +43,8 @@ public class PlayerManager : MonoBehaviour
                 _playerInputManager.JoinPlayer();
                 break;
             case 1:
-                _playerInputManager.JoinPlayer();
                 _playerInputManager.JoinPlayer(-1, -1, null, Gamepad.all[0]);
+                _playerInputManager.JoinPlayer();
                 break;
             case 2:
                 _playerInputManager.JoinPlayer(-1, -1, null, Gamepad.all[0]);
@@ -64,6 +65,7 @@ public class PlayerManager : MonoBehaviour
             player.tag = "Player";
             player.gameObject.layer = LayerMask.NameToLayer("Player1");
             UIManager.Instance.P1 = player;
+            player.InputManager.PlayerInput.uiInputModule = FindObjectOfType<InputSystemUIInputModule>();
             player.gameObject.transform.localPosition = SpawnOffset(player1Start.transform.localPosition);
             
         }
