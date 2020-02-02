@@ -119,21 +119,30 @@ public class PowerupManager : MonoBehaviour
     void RollRandomPower()
     {
         Random.InitState(System.DateTime.Now.Millisecond);
-        int num = Random.Range(2, 4);
+        int num = Random.Range(2, 5);
+
         if (num == 1)
         {
+            HasSpeedUp = false;
+            HasMagnet = false;
             HasDebrisBomb = true;
         }
         else if (num == 2)
         {
             HasSpeedUp = true;
+            HasMagnet = false;
+            HasForceField = false;
         }
         else if (num == 3)
         {
+            HasSpeedUp = false;
             HasMagnet = true;
+            HasForceField = false;
         }
         else if (num == 4)
         {
+            HasSpeedUp = false;
+            HasMagnet = false;
             HasForceField = true;
         }
         Debug.Log(num);
@@ -151,14 +160,13 @@ public class PowerupManager : MonoBehaviour
 
     void CancelMagnet()
     {
-        // hasMagnet = false;
         sphere.radius = 4f;
         Debug.LogError("MAGNET  end");
     }
 
     void CancelForceField()
     {
-        HasForceField = false;
+       // HasForceField = false;
     }
 
     //IEnumerator CancelPowers(int powerNum, float sec)
