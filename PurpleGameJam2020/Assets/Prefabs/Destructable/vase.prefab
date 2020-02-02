@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2819002734457963442}
   - component: {fileID: 6504353114558560644}
   - component: {fileID: 682457905814570365}
-  - component: {fileID: 7090258746548512933}
   - component: {fileID: 7090258746548512938}
   - component: {fileID: 8296172669339052605}
   m_Layer: 0
@@ -83,19 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7090258746548512933
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244196181675749793}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.2561684, y: 6.5330944, z: 4.626582}
-  m_Center: {x: -7.1956615, y: 0.4864657, z: -7.929269}
 --- !u!114 &7090258746548512938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLocation: {fileID: 7090258748062894900}
+  vpCompleteBoost: 100
   debrisCountNeeded: 100
   repairZones: {fileID: 7090258747197059151}
   progressText: {fileID: 7090258746301540062}
@@ -183,13 +170,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7090258746301540060}
-  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: -0.289, y: 0.18, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.10000006, z: 0.10000006}
+  m_LocalRotation: {x: 0.70716006, y: 0.70705354, z: -1.654486e-24, w: -1.6542368e-24}
+  m_LocalPosition: {x: -0.289, y: -0.145, z: 0.279}
+  m_LocalScale: {x: 0.17632, y: 0.10000006, z: 0.10000006}
   m_Children: []
   m_Father: {fileID: 7090258747197059150}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: -0.000015258789, z: -89.991}
 --- !u!23 &7090258746301540057
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -294,7 +281,7 @@ GameObject:
   m_Layer: 0
   m_Name: JumpLoc
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

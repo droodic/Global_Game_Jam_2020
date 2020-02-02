@@ -58,7 +58,7 @@ public class RepairableBehaviour : MonoBehaviour
             UIManager.Instance.UpdateWithBonus(player, vpCompleteBoost);
             UpdateText();
         }
-        Debug.Log($"Needed: {currentDebrisCount}");
+        //Debug.Log($"Needed: {currentDebrisCount}");
     }
 
     public void Break()
@@ -86,7 +86,7 @@ public class RepairableBehaviour : MonoBehaviour
 
     public void UpdateText()
     {
-        // progressText.text = $"{((currentDebrisCount / debrisCountNeeded) * 100)} %";
-        progressText.text = currentDebrisCount.ToString() + " / " + debrisCountNeeded.ToString();
+        progressText.text = $"{RepairedPercentage * 100} %";
+        //progressText.text = currentDebrisCount.ToString() + " / " + debrisCountNeeded.ToString();
     }
 }
