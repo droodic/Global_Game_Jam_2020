@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
 
             if (sprinting && SprintMeter > 0)
             {
-                SprintMeter -= 0.25f;
+                SprintMeter -= 0.24f;
                 // p1slider.value = SprintMeter;
             }
             else if (SprintMeter <= 0)
@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
             if (sprinting) sprinting = false;
             if (SprintMeter < 50)
             {
-                SprintMeter += 0.18f;
+                SprintMeter += 0.22f;
                 //Debug.Log("Sprintmeter" + SprintMeter.ToString());
             }
             else if (SprintMeter.Equals(50))
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
             if (sprinting) sprinting = false;
             if (SprintMeter < 50)
             {
-                SprintMeter += 0.145f;
+                SprintMeter += 0.19f;
                 //p1slider.value = SprintMeter;
                 //Debug.Log("Sprintmeter" + SprintMeter.ToString());
             }
