@@ -333,7 +333,7 @@ Transform:
   - {fileID: 1334946579}
   - {fileID: 175332621}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &57868840
 GameObject:
@@ -493,17 +493,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 8e0ddc4323cf0c14aa6a4b3cb7f2dd54,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 25.000046
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8e0ddc4323cf0c14aa6a4b3cb7f2dd54,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 25.00003
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8e0ddc4323cf0c14aa6a4b3cb7f2dd54,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 25.00003
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 8e0ddc4323cf0c14aa6a4b3cb7f2dd54,
         type: 3}
@@ -630,13 +630,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72414563}
-  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: -0, w: 0}
+  m_LocalPosition: {x: -1.264, y: 0.096, z: 0}
   m_LocalScale: {x: 0.1, y: 0.10000006, z: 0.10000006}
   m_Children: []
   m_Father: {fileID: 1527623290}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: -90}
 --- !u!102 &72414565
 TextMesh:
   serializedVersion: 3
@@ -740,7 +740,7 @@ Transform:
   - {fileID: 81224180}
   - {fileID: 104704354}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &104704354 stripped
 Transform:
@@ -1580,14 +1580,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238462142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25, y: 5.5, z: -25.4}
+  m_LocalPosition: {x: 25, y: -0.2, z: -25.4}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 44583450}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &238462144
-MeshCollider:
+--- !u!65 &238462144
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1596,10 +1596,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 10, y: 0.05, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &238462145
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2447,6 +2446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLocation: {fileID: 1124667561}
+  vpCompleteBoost: 100
   debrisCountNeeded: 100
   repairZones: {fileID: 1889889234}
   progressText: {fileID: 704970051}
@@ -2914,7 +2914,7 @@ Transform:
   - {fileID: 929945050}
   - {fileID: 1731874660}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &508475605 stripped
 GameObject:
@@ -4114,13 +4114,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704970049}
-  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: -0, w: 0}
   m_LocalPosition: {x: -0.289, y: 0.18, z: 0}
   m_LocalScale: {x: 0.1, y: 0.10000006, z: 0.10000006}
   m_Children: []
   m_Father: {fileID: 1889889235}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: -90}
 --- !u!102 &704970051
 TextMesh:
   serializedVersion: 3
@@ -4431,7 +4431,7 @@ PrefabInstance:
     - target: {fileID: 7894447609385829248, guid: b21c5bf0b62321c43bbcf1170b767a3e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7894447609385829248, guid: b21c5bf0b62321c43bbcf1170b767a3e,
         type: 3}
@@ -4475,20 +4475,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b21c5bf0b62321c43bbcf1170b767a3e, type: 3}
---- !u!1 &717217620 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8197543719679886315, guid: b21c5bf0b62321c43bbcf1170b767a3e,
-    type: 3}
-  m_PrefabInstance: {fileID: 717217619}
-  m_PrefabAsset: {fileID: 0}
---- !u!81 &717217621
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717217620}
-  m_Enabled: 1
 --- !u!1 &761116661
 GameObject:
   m_ObjectHideFlags: 0
@@ -5821,7 +5807,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLocation: {fileID: 1259848305}
-  debrisCountNeeded: 100
+  vpCompleteBoost: 250
+  debrisCountNeeded: 150
   repairZones: {fileID: 188396926}
   progressText: {fileID: 1578808279}
 --- !u!65 &1001387716
@@ -6014,7 +6001,7 @@ Transform:
   - {fileID: 547066515}
   - {fileID: 972551467}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1084569273 stripped
 GameObject:
@@ -6387,7 +6374,7 @@ Transform:
   - {fileID: 916537249}
   - {fileID: 1518836616}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1186518079
 PrefabInstance:
@@ -6745,7 +6732,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLocation: {fileID: 1025026442}
-  debrisCountNeeded: 100
+  vpCompleteBoost: 300
+  debrisCountNeeded: 250
   repairZones: {fileID: 1527623289}
   progressText: {fileID: 72414565}
 --- !u!1 &1280606746
@@ -7202,7 +7190,37 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1371526396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1371526397}
+  m_Layer: 0
+  m_Name: JumpLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1371526397
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371526396}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.35, y: 0.706, z: 0.112}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 563677884}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422234916
 GameObject:
@@ -7229,13 +7247,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422234916}
-  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: -0, w: 0}
+  m_LocalPosition: {x: -0.655, y: -0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.10000006, z: 0.10000006}
   m_Children: []
   m_Father: {fileID: 362846516}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: -90}
 --- !u!102 &1422234918
 TextMesh:
   serializedVersion: 3
@@ -7475,7 +7493,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1459964331
 GameObject:
@@ -7921,7 +7939,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d934d2d3706d4854ba39eec3e1961f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpLocation: {fileID: 0}
+  jumpLocation: {fileID: 1371526397}
+  vpCompleteBoost: 100
   debrisCountNeeded: 100
   repairZones: {fileID: 1942735084}
   progressText: {fileID: 151076539}
@@ -7985,7 +8004,7 @@ Transform:
   - {fileID: 1284134336}
   - {fileID: 2087984702}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1553355751
 GameObject:
@@ -8687,7 +8706,7 @@ Transform:
   - {fileID: 13028678}
   - {fileID: 1662704778}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1705276720
 GameObject:
@@ -9187,7 +9206,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1802125573
 MonoBehaviour:
@@ -9202,6 +9221,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UsePipelineSettings: 1
+--- !u!1 &1802975679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1802975680}
+  m_Layer: 0
+  m_Name: Recovery GameObject (2097918712)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1802975680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802975679}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1805768859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9295,6 +9344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLocation: {fileID: 1459964332}
+  vpCompleteBoost: 100
   debrisCountNeeded: 100
   repairZones: {fileID: 10289641}
   progressText: {fileID: 714732905}
@@ -9436,6 +9486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLocation: {fileID: 356357042}
+  vpCompleteBoost: 100
   debrisCountNeeded: 50
   repairZones: {fileID: 362846515}
   progressText: {fileID: 1422234918}
@@ -9910,6 +9961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLocation: {fileID: 347738582}
+  vpCompleteBoost: 100
   debrisCountNeeded: 100
   repairZones: {fileID: 975660928}
   progressText: {fileID: 560207279}
@@ -11139,7 +11191,7 @@ PrefabInstance:
     - target: {fileID: 4714600537416146742, guid: c18c313739fb7d24fa270500f76e0784,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4714600537416146742, guid: c18c313739fb7d24fa270500f76e0784,
         type: 3}
@@ -11311,7 +11363,7 @@ PrefabInstance:
     - target: {fileID: 7579177470740578430, guid: beba5c4b1a2708b4290c8d2bb3d5f109,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7579177470740578430, guid: beba5c4b1a2708b4290c8d2bb3d5f109,
         type: 3}
