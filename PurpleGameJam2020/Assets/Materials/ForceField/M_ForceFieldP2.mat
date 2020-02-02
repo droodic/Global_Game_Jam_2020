@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_ForceField 1
+  m_Name: M_ForceFieldP2
   m_Shader: {fileID: -6465566751694194690, guid: c350b64b7280b1c4ca3aef6a49a7bc07,
     type: 3}
   m_ShaderKeywords: 
