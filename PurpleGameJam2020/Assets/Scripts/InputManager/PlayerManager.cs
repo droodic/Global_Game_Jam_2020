@@ -22,6 +22,8 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     [SerializeField] private List<Player> _players;
+    [SerializeField] private GameObject player1Start;
+    [SerializeField] private GameObject player2Start;
     public List<Player> Players { get => _players; set => _players = value; }
 
     private PlayerInputManager _playerInputManager;
@@ -62,7 +64,7 @@ public class PlayerManager : MonoBehaviour
             player.tag = "Player";
             player.gameObject.layer = LayerMask.NameToLayer("Player1");
             UIManager.Instance.P1 = player;
-            
+            player.gameObject.transform.localPosition = SpawnOffset(player1Start.transform.localPosition);
             
         }
         else if (_players.Count == 2)
@@ -70,7 +72,13 @@ public class PlayerManager : MonoBehaviour
             player.tag = "Player2";
             player.gameObject.layer = LayerMask.NameToLayer("Player2");
             UIManager.Instance.P2 = player;
+            player.gameObject.transform.localPosition = SpawnOffset(player2Start.transform.localPosition);
 
         }
+    }
+    private Vector3 SpawnOffset(Vector3 localPos)
+    {
+        localPos.x += 2;
+        return localPos;
     }
 }

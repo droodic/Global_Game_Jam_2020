@@ -46,18 +46,24 @@ public class RepairableBehaviour : MonoBehaviour
         {
             currentDebrisCount++;
             player.VictoryPoints++;
+            if (IsRepaired())
+            {
+                player.VictoryPoints += vpCompleteBoost;
+                UIManager.Instance.UpdateWithBonus(player, vpCompleteBoost);
+            }
             UIManager.Instance.UpdateVp();
             UpdateText();
         }
-        else
-        {
-            IsRepaired();
-            this.isBroken = false;
-            player.VictoryPoints += vpCompleteBoost;
-            UIManager.Instance.UpdateVp();
-            UIManager.Instance.UpdateWithBonus(player, vpCompleteBoost);
-            UpdateText();
-        }
+        //else
+        //{
+        //    Debug.Log("HEY!!!!!!!");
+        //    IsRepaired();
+        //    this.isBroken = false;
+        //    
+        //    UIManager.Instance.UpdateVp();
+        //    UIManager.Instance.UpdateWithBonus(player, vpCompleteBoost);
+        //    UpdateText();
+        //}
         //Debug.Log($"Needed: {currentDebrisCount}");
     }
 

@@ -52,14 +52,21 @@ public class PowerupManager : MonoBehaviour
             }
             else if (HasSpeedUp) //2
             {
+                hasMagnet = false;
+                hasForceField = false;
                 Debug.Log("used speedup");
                 player.SprintBuffed = true;
+                player.SprintLocked = false;
                 //HasSpeedUp = false;
                 ui.UpdatePowerUI(player, 2, false);
-                StartCoroutine(CancelPowers(2, 5f));
+                StartCoroutine(CancelPowers(2, 8f));
             }
             else if (hasMagnet) //3
             {
+                HasSpeedUp = false;
+                hasForceField = false;
+                player.SprintBuffed = false;
+
                 Debug.Log("used magnet power");
                 ui.UpdatePowerUI(player, 3, false);
                 sphere.radius = 14f;
@@ -67,6 +74,8 @@ public class PowerupManager : MonoBehaviour
             }
             else if (hasForceField) //4
             {
+                HasSpeedUp = false;
+                hasMagnet = false;
                 Debug.Log("spawned force field");
                 ui.UpdatePowerUI(player, 4, false);
                 if (player == PlayerManager.Instance.Players[0])
@@ -103,7 +112,7 @@ public class PowerupManager : MonoBehaviour
     {
 
 
-        int num = Random.Range(2, 3);
+        int num = Random.Range(2, 4);
         if (num == 1)
         {
             HasDebrisBomb = true;
@@ -131,20 +140,20 @@ public class PowerupManager : MonoBehaviour
         yield return new WaitForSeconds(sec);
         if (powerNum == 2 && HasSpeedUp)
         {
-            HasSpeedUp = false;
+           // HasSpeedUp = false;
             player.SprintBuffed = false;
             ui.UpdatePowerUI(player, 2, false);
             Debug.LogError("Coroutine end");
         }
         if (powerNum == 3 && hasMagnet)
         {
-            hasMagnet = false;
+           // hasMagnet = false;
             sphere.radius = 4f;
             Debug.LogError("Coroutine end");
         }
         if (powerNum == 4 && HasForceField)
         {
-            hasForceField = false;
+          //  hasForceField = false;
             Debug.LogError("Coroutine end");
         }
 

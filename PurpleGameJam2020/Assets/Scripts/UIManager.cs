@@ -25,11 +25,15 @@ public class UIManager : MonoBehaviour
     public Player P2 { get => p2; set => p2 = value; }
     #endregion
 
+    GameManager game;
+
     Player p1;
     Player p2;
 
     InventoryManager P1im;
     InventoryManager P2im;
+
+    [SerializeField] Text timerText;
 
     //VP
     [SerializeField] Text p1Vp;
@@ -68,7 +72,7 @@ public class UIManager : MonoBehaviour
     {
         defaultColor = p1SliderBg.color;
         defaultFillColor = p1SliderFill.color;
-
+        game = FindObjectOfType<GameManager>();
 
     }
 
@@ -81,6 +85,12 @@ public class UIManager : MonoBehaviour
             p2EnergySlider.value = P2.SprintMeter;
             CheckEnergyLocks();
         }
+        if (game.Playing)
+        {
+            timerText.text = game.RoundTime.ToString("F0");
+
+        }
+
     }
 
     public void UpdateVp()
@@ -175,8 +185,6 @@ public class UIManager : MonoBehaviour
         }
         else if (player.tag == "Player2" && enable)
         {
-
-
             if (player.GetComponent<PowerupManager>().HasSpeedUp)
             {
                 p2Power.sprite = speedPower;
@@ -222,13 +230,16 @@ public class UIManager : MonoBehaviour
                 if (P2.SprintBuffed)
                 {
                     p2SliderFill.color = Color.white;
+                    
                 }
                 else if (!P2.SprintBuffed)
                 {
                     p2SliderFill.color = defaultFillColor;
+
                 }
             }
             p2Power.enabled = false;
+
         }
 
     }
