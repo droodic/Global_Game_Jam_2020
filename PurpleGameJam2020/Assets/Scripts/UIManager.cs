@@ -35,9 +35,16 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] Text timerText;
 
+    //Panels
     [SerializeField] GameObject HudPanel;
     [SerializeField] GameObject VictoryPanel;
- 
+    [SerializeField] GameObject pausePanel;
+
+    //Subpanels
+    [SerializeField] Text winnerText;
+    [SerializeField] Text postGamep1Score;
+   // [SerializeField] Text postGamep2Score;
+
     //VP
     [SerializeField] Text p1Vp;
     [SerializeField] Text p2Vp;
@@ -73,6 +80,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject pausePanel;
     [SerializeField] Button _pauseButton;
 
+
     Color defaultColor;
     Color defaultFillColor;
 
@@ -89,6 +97,27 @@ public class UIManager : MonoBehaviour
 
     public void DisplayVictory() //GameOver
     {
+
+
+    /*[SerializeField] Text winnerText;
+    [SerializeField] Text postGamep1Score;
+    [SerializeField] Text postGamep2Score;*/
+        if(p1.VictoryPoints > p2.VictoryPoints)
+        {
+            winnerText.text = "Victoire au Joueur 1!";
+        }
+        else if(p1.VictoryPoints < p2.VictoryPoints)
+        {
+            winnerText.text = "Victoire au Joueur 2!";
+        }
+        else
+        {
+            winnerText.text = "Égalité";
+        }
+
+        postGamep1Score.text = "Points Joueur 1 : " + p1.VictoryPoints.ToString() + "\nPoints Joueur 2 : " + p2.VictoryPoints.ToString();
+       // postGamep2Score.text = p2.VictoryPoints.ToString();
+
         HudPanel.SetActive(false);
         VictoryPanel.SetActive(true);
     }
