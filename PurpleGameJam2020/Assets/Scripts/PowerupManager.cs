@@ -140,17 +140,9 @@ public class PowerupManager : MonoBehaviour
             sphere.radius = 2f;
             Debug.LogError("Coroutine end");
         }
-        if (powerNum == 4)
+        if (powerNum == 4 && !HasForceField)
         {
             hasForceField = false;
-            if (player == PlayerManager.Instance.Players[0])
-            {
-                Destroy(forceFieldPlayer1);
-            }
-            else if (player == PlayerManager.Instance.Players[1])
-            {
-                Destroy(forceFieldPlayer2);
-            }
             Debug.LogError("Coroutine end");
         }
     }
