@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerupManager : MonoBehaviour
 {
-
+    [SerializeField] private float _swallowSpeed = 3.0f;
     [SerializeField] GameObject debrisBomb;
     [SerializeField] SphereCollider sphere;
     [SerializeField] GameObject forceFieldPlayer1;
@@ -105,35 +105,62 @@ public class PowerupManager : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "Power" && !HasPowerUp)
         {
-            Destroy(col.gameObject);
-            RollRandomPower();
             HasPowerUp = true;
             Debug.Log("collide with power");
+            StartCoroutine(SwallowPowerUp(col.gameObject));
+        }
+    }
+
+    IEnumerator SwallowPowerUp(GameObject powerUp)
+    {
+        var startingPosition = powerUp.gameObject.transform.position;
+        var lerpValue = 0.0f;
+        while (true)
+        {
+            lerpValue += _swallowSpeed * Time.deltaTime;
+            powerUp.transform.position = Vector3.Lerp(startingPosition, transform.position, lerpValue);
+            yield return null;
+            if (lerpValue >= 1.0f)
+            {
+                RollRandomPower();
+                Debug.Log("Swallowed  power");
+                Destroy(powerUp);
+                break;
+            }
         }
     }
 
     void RollRandomPower()
     {
         Random.InitState(System.DateTime.Now.Millisecond);
-        int num = Random.Range(2, 4);
+        int num = Random.Range(2, 5);
+
         if (num == 1)
         {
+            HasSpeedUp = false;
+            HasMagnet = false;
             HasDebrisBomb = true;
         }
         else if (num == 2)
         {
             HasSpeedUp = true;
+            HasMagnet = false;
+            HasForceField = false;
         }
         else if (num == 3)
         {
+            HasSpeedUp = false;
             HasMagnet = true;
+            HasForceField = false;
         }
         else if (num == 4)
         {
+            HasSpeedUp = false;
+            HasMagnet = false;
             HasForceField = true;
         }
         Debug.Log(num);
@@ -151,14 +178,13 @@ public class PowerupManager : MonoBehaviour
 
     void CancelMagnet()
     {
-        // hasMagnet = false;
         sphere.radius = 4f;
         Debug.LogError("MAGNET  end");
     }
 
     void CancelForceField()
     {
-        HasForceField = false;
+       // HasForceField = false;
     }
 
     //IEnumerator CancelPowers(int powerNum, float sec)

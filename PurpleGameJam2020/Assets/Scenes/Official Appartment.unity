@@ -3045,6 +3045,18 @@ PrefabInstance:
       propertyPath: floorBounds
       value: 
       objectReference: {fileID: 238462144}
+    - target: {fileID: 3242271199762106986, guid: b21c5bf0b62321c43bbcf1170b767a3e,
+        type: 3}
+      propertyPath: debris
+      value: 
+      objectReference: {fileID: 9143461625585233379, guid: ec1c9a4f068cc1a4ba04d4e7008cbc3f,
+        type: 3}
+    - target: {fileID: 3242271199762106986, guid: b21c5bf0b62321c43bbcf1170b767a3e,
+        type: 3}
+      propertyPath: powerUpBattery
+      value: 
+      objectReference: {fileID: 1266586769588418227, guid: 548ba5e55b1d05940b88bf0200904364,
+        type: 3}
     - target: {fileID: 7894447609385829248, guid: b21c5bf0b62321c43bbcf1170b767a3e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8967,6 +8979,11 @@ PrefabInstance:
     - target: {fileID: 4714600538503859384, guid: c18c313739fb7d24fa270500f76e0784,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6249614291148052518, guid: c18c313739fb7d24fa270500f76e0784,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
