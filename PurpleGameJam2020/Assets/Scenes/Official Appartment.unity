@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 112000000, guid: 536a15b1420f1c643b08d4b7faad32dc,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -9890,6 +9890,66 @@ PrefabInstance:
     - target: {fileID: 1531368380, guid: 3a288b5c1096a4d47a3057861033770a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538982987, guid: 3a288b5c1096a4d47a3057861033770a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 18697686655403165, guid: 3a288b5c1096a4d47a3057861033770a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 393.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 18697686655403165, guid: 3a288b5c1096a4d47a3057861033770a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.003418
+      objectReference: {fileID: 0}
+    - target: {fileID: 18697686655403165, guid: 3a288b5c1096a4d47a3057861033770a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1603.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 18697686655403165, guid: 3a288b5c1096a4d47a3057861033770a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 84.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842034756887664262, guid: 3a288b5c1096a4d47a3057861033770a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 46.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842034756887664262, guid: 3a288b5c1096a4d47a3057861033770a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0033913
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842034756887664262, guid: 3a288b5c1096a4d47a3057861033770a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 608.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842034756887664262, guid: 3a288b5c1096a4d47a3057861033770a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1700.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187500724377720248, guid: 3a288b5c1096a4d47a3057861033770a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660718110958510744, guid: 3a288b5c1096a4d47a3057861033770a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5138a4418104c61488b701b190d45da3,
+        type: 3}
+    - target: {fileID: 5605924853241710306, guid: 3a288b5c1096a4d47a3057861033770a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5605924853677203474, guid: 3a288b5c1096a4d47a3057861033770a,
         type: 3}
