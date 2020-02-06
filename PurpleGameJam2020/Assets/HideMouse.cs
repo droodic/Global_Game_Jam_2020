@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class HideMouse : MonoBehaviour
 {
+    [SerializeField] private bool _hideMouse;
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
+        if (_hideMouse)
+        {
+            Cursor.visible = false;
+        }
+        
     }
 
     // Update is called once per frame

@@ -40,11 +40,11 @@ public class PlayerManager : MonoBehaviour
         {
             case 0:
                 _playerInputManager.JoinPlayer();
-                _playerInputManager.JoinPlayer();
+                _playerInputManager.JoinPlayer(-1, -1, "Arrow", Keyboard.current);
                 break;
             case 1:
                 _playerInputManager.JoinPlayer(-1, -1, null, Gamepad.all[0]);
-                _playerInputManager.JoinPlayer();
+                _playerInputManager.JoinPlayer(-1, -1, "Arrow", Keyboard.current);
                 break;
             case 2:
                 _playerInputManager.JoinPlayer(-1, -1, null, Gamepad.all[0]);
